@@ -1,0 +1,47 @@
+.login-container {
+  @include flex-center-center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #ffe5b3;
+  .login-form {
+    @include form;
+    margin-top: 130px;
+
+    .username,
+    .password {
+      line-height: 49px;
+      margin-bottom: 40px;
+      padding-left: 20px;
+    }
+
+    .login-form-checkbox {
+      transform: scale(1.7);
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+
+    .login-btn {
+      @include button(265px, #eaeaea, #000000);
+      margin-top: 40px;
+    }
+  }
+  .title-group {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: -10px;
+  }
+  .login-title,
+  .register-title {
+    border-right: 1px solid;
+    padding: 0 40px;
+    font-weight: 900;
+    font-size: 64px;
+    color: #7f4b4f;
+  }
+  .register-title {
+    border-right: 0;
+    color: #000000;
+  }
+}

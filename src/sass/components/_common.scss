@@ -19,4 +19,27 @@
   width: $width;
   color: $font-color;
   background-color: $color;
+  border-radius: 50px;
+  margin: 0 auto;
+  border: 0;
+}
+
+@mixin form {
+  display: grid;
+  width: 780px;
+  padding: 95px;
+  background: #fff;
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.offscreen,
+legend,
+caption {
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
