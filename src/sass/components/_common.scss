@@ -13,16 +13,7 @@
 }
 
 // components
-// button
-@mixin button($width, $color, $font-color) {
-  padding: 10px 20px;
-  width: $width;
-  color: $font-color;
-  background-color: $color;
-  border-radius: 50px;
-  margin: 0 auto;
-  border: 0;
-}
+
 
 @mixin form {
   display: grid;
@@ -42,4 +33,38 @@ caption {
   width: 1px;
   height: 1px;
   margin: -1px;
+}
+
+// button
+@mixin button($bg-color, $font-color, $font-size, $font-weight) {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  padding: 20px 40px;
+  background-color: $bg-color;
+  color: $font-color;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin button-hover($bg-color, $font-color) {
+  background-color: $bg-color;
+  color: $font-color;
+  background-color: $color;
+  border-radius: 50px;
+  margin: 0 auto;
+  border: 0;
+}
+
+.signin-btn,
+.signup-btn {
+  @include button($red, $white_font, 20px, 700);
+  // @include button($gray_btn, $black, 20px, 700);
+}
+
+.signin-btn:hover,
+.signup-btn:hover {
+  @include button-hover($black, $white_font);
+  // @include button-hover($red, $white_font);
 }
