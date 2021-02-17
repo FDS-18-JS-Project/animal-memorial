@@ -1,0 +1,22 @@
+// layout
+@mixin flex($justify, $align, $direction, $wrap) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-flow: $direction $wrap;
+}
+
+@mixin flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// components
+// button
+@mixin button($width, $color, $font-color) {
+  padding: 10px 20px;
+  width: $width;
+  color: $font-color;
+  background-color: $color;
+}
