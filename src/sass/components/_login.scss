@@ -1,16 +1,21 @@
-.login-container {
+.login-container,
+.register-container {
   @include flex-center-center;
   width: 100vw;
   height: 100vh;
   position: relative;
   background: #ffe5b3;
-  .login-form {
+
+  .login-form,
+  .register-form {
     @include form;
-    margin-top: 130px;
+    margin-top: 40px;
+    box-sizing: border-box;
 
     .username,
-    .password {
-      line-height: 49px;
+    .password,
+    .email {
+      line-height: 40px;
       margin-bottom: 40px;
       padding-left: 20px;
     }
@@ -21,7 +26,8 @@
       margin-left: 5px;
     }
 
-    .login-btn {
+    .login-btn,
+    .register-btn {
       @include button(265px, #eaeaea, #000000);
       margin-top: 40px;
     }
@@ -38,10 +44,13 @@
     padding: 0 40px;
     font-weight: 900;
     font-size: 64px;
-    color: #7f4b4f;
+    margin: 0;
+    margin-top: 10px;
   }
   .register-title {
     border-right: 0;
-    color: #000000;
+  }
+  .login-active {
+    color: #7f4b4f;
   }
 }

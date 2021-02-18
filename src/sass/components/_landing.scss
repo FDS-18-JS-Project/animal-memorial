@@ -2,3 +2,8 @@
 .landing-container {
   @include flex-center-center;
 }
+.site-title {
+  background-color: #ffe5b3;
+  margin: 0;
+  padding: 20px;
+}
