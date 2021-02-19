@@ -1,6 +1,6 @@
 .header {
   @include flex(space-between, center, row, nowrap);
-  background-color: $red;
+  background-color: $color-secondary;
   color: $white_font;
   padding: 10px 50px;
   
