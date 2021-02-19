@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+    <title>Animal Memorial</title>
+</head>
+<body>
+    <h1 class="site-title"><a href="/public/index.html">Memorial for My Pet</a></h1>
+    <main class="register-container"> 
+        <h2 class="offscreen">Register</h2>
+        <div class="title-group">
+            <a href='/public/html/signin.html' class="login-title">로그인</a>
+            <a href='/public/html/signup.html' class="register-title login-active">회원가입</a>
+        </div>
+        <form class="register-form">
+            <label for="username" class="offscreen">Username</label>
+            <input type="text" name='username' id='username' class="username" placeholder="Username">
+            <label for="password" class="offscreen">Password</label>
+            <input type="password" name='password' id='password' class="password" placeholder="Password">
+            <label for="email" class="offscreen">Email</label>
+            <input type="email" name='email' id='email' class="email" placeholder="Email">
+            <button class="register-btn">아이디 등록</button>
+        </form>
+    </main>
+</body>
+</html>
+
