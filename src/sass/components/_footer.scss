@@ -1,0 +1,35 @@
+.footer {
+  @include flex(center, center, column, nowrap);
+  background-color: $gray_background;
+  color: $black;
+}
+
+  .footer-title {
+    font-size: 40px;
+    font-weight: $extra-bold;
+    opacity: 0.6;
+  }
+
+.footer-address {
+  opacity: 0.6;
+  font-style: normal;
+  margin-bottom: 12px;
+}
+
+.git-links {
+  opacity: 0.6;
+  
+  a {
+    margin-left: 5px;
+    padding: 10px;
+    text-decoration: none; 
+    outline: none;
+    color: $black;
+  }
+}
+
+.copyright {
+  opacity: 0.6;
+  font-size: 14px;
+  margin: 25px 0;
+}
