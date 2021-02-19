@@ -4,7 +4,7 @@ body {
 // component
 .landing-container {
   @include flex-center-center;
-  background-color: #ffe5b3;
+  background-color: $color-primary;
   flex-direction: column;
   align-items: flex-start;
   width: 100vw;
@@ -12,17 +12,18 @@ body {
 
   .landing-title,
   .landing-subtitle {
+    font-family: 'Iropke Batang', serif;
     width: 800px;
     color: rgba(0, 0, 0, 0.6);
     margin: 0 auto;
     margin-bottom: 50px;
   }
   .landing-title {
-    font-weight: 900;
+    font-weight: $extra-bold;
     font-size: 32px;
   }
   .landing-subtitle {
-    font-weight: 700;
+    font-weight: $bold;
     font-size: 24px;
   }
   .landing-links {
@@ -34,7 +35,7 @@ body {
 
     .signin-btn,
     .signup-btn {
-      @include button(#7f4b4f, #fffcf9, 24, 400);
+      @include button($color-secondary, $white_font, 20px, 700);
       margin: 0;
       display: block;
       text-align: center;
@@ -42,11 +43,15 @@ body {
     .signin-btn {
       margin-right: 20px;
     }
+    .signin-btn:hover,
+    .signup-btn:hover {
+      @include button-hover($black, $white_font);
+    }
   }
 }
 
 .site-title {
-  background-color: #ffe5b3;
+  background-color: $color-primary;
   margin: 0;
   padding: 20px;
 }
