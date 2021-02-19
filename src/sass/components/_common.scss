@@ -14,7 +14,6 @@
 
 // components
 
-
 @mixin form {
   display: grid;
   width: 780px;
@@ -51,7 +50,7 @@ caption {
 @mixin button-hover($bg-color, $font-color) {
   background-color: $bg-color;
   color: $font-color;
-  background-color: $color;
+  background-color: $bg-color;
   border-radius: 50px;
   margin: 0 auto;
   border: 0;

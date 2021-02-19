@@ -1,7 +1,50 @@
+body {
+  overflow: hidden;
+}
 // component
 .landing-container {
   @include flex-center-center;
+  background-color: #ffe5b3;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100vw;
+  height: 89vh;
+
+  .landing-title,
+  .landing-subtitle {
+    width: 800px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+  .landing-title {
+    font-weight: 900;
+    font-size: 32px;
+  }
+  .landing-subtitle {
+    font-weight: 700;
+    font-size: 24px;
+  }
+  .landing-links {
+    @include flex-center-center;
+    justify-content: flex-start;
+    width: 800px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+
+    .signin-btn,
+    .signup-btn {
+      @include button(#7f4b4f, #fffcf9, 24, 400);
+      margin: 0;
+      display: block;
+      text-align: center;
+    }
+    .signin-btn {
+      margin-right: 20px;
+    }
+  }
 }
+
 .site-title {
   background-color: #ffe5b3;
   margin: 0;
