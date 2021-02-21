@@ -1,7 +1,6 @@
 // import axios from "axios";
 // import { signUp } from './utils/firebase';
 
-
 // const state = {
 //     userInfo: ["user-id", "password", "email"],
 //     animalInfo: ["user-id", "animal-id", "animal-name", "animal-image","favourites"],
@@ -15,6 +14,6 @@
 // };
 // const getTodos = () => {
 //     axios.get('http://localhost:7000/userInfo').then(res => setTodos(res.data)).catch(res => console.error(res.data));
-// };   
+// };
 
 // getTodos();

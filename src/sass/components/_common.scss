@@ -85,35 +85,35 @@ caption {
     opacity: 0.5;
     font-size: 0.8em;
   }
-  
+
   .desc {
     opacity: 0.8;
   }
-  
+
   .name {
     margin-top: 10px;
   }
 
-  .date>.desc {
+  .date > .desc {
     font-size: 0.9em;
   }
-  
+
   .favorite {
     .title {
       display: block;
       margin-bottom: 2px;
     }
-    
+
     .desc {
       display: block;
       height: 3.6em;
       overflow: hidden;
       white-space: normal;
       line-height: 1.2;
-      text-align: left; 
-      word-wrap: break-word; 
+      text-align: left;
+      word-wrap: break-word;
       display: -webkit-box;
-      -webkit-line-clamp: 3; 
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
   }
