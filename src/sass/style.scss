@@ -1,17 +1,19 @@
 @import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
 @font-face {
   font-family: 'Eoe_Zno_M';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_M.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_M.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
-@import "./components/_reset";
-@import "./components/_normalize.scss";
-@import "./components/_var";
-@import "./components/_common";
-@import "./components/_header";
-@import "./components/footer";
-@import "./components/_landing";
-@import "./components/_user-register";
-@import "./components/_login";
-@import "./components/_animal-register";
+@import './components/_reset';
+@import './components/_normalize.scss';
+@import './components/_var';
+@import './components/_common';
+@import './components/_header';
+@import './components/_footer';
+@import './components/_landing';
+@import './components/_user-register';
+@import './components/_login';
+@import './components/_animal-register';
+@import './components/_main';
