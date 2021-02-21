@@ -1,0 +1,145 @@
+// component
+.animal-register-container {
+  background-color: $color-primary;
+  height: 100%;
+  padding-bottom: 120px;
+
+  .title {
+    margin-top: 0;
+    font-size: 60px;
+    font-weight: 700;
+    padding-top: 70px;
+    text-align: center;
+  }
+}
+
+.animal-register-form {
+  @include form;
+  margin: auto;
+
+  .button {
+    @include button($gray_btn, $black, 20px, 700);
+    @include flex-center-center;
+
+    margin-top: 30px;
+  }
+
+  .button:hover {
+    @include button-hover($color-secondary, $black);
+
+    margin: 30px 0 0 0;
+  }
+
+  div > label.active {
+    @include label-focus;
+  }
+}
+
+.img-container {
+  height: 300px;
+  border: 2px dashed rgba(24, 24, 24, 0.3);
+  margin-bottom: 90px;
+  position: relative;
+
+  .img-label {
+    font-size: 18px;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.6;
+  }
+
+  .img-input {
+    @include flex-center-center;
+  
+    padding: 0;
+    margin: 40px auto 0;
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+
+  .img-icon {
+    padding: 30px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+}
+
+.name-container {
+  @include input-container;
+
+  .name-label {
+    @include label;
+  }
+
+  .name-input {
+    @include input;
+  }
+}
+
+.death-container {
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  .death-year-label {
+    position: absolute;
+    font-size: 15px;
+    top: -25px;
+    left: 5px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .death-year-select,
+  .death-month-select {
+    @include input;
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .death-date-select {
+    @include input;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.favorite-1st-container,
+.favorite-2nd-container,
+.favorite-3rd-container {
+  @include input-container;
+
+  .favorit-1st-label,
+  .favorit-2nd-label,
+  .favorit-3rd-label{
+    @include label;
+  }
+  
+  .favorit-1st-input,
+  .favorit-2nd-input,
+  .favorit-3rd-input {
+    @include input;
+  }
+}
+
+.foot-1st {
+  @include foot(0, 40px, 8.71deg);
+}
+
+.foot-2nd {
+  @include foot(-200px, 100px, -24.84deg);
+}
+
+.foot-3rd {
+  @include foot(-450px, 140px, 6.43deg);
+}
+
