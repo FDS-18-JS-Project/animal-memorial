@@ -3,13 +3,22 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/ts/index.ts', './src/sass/style.scss'],
+  entry: ['@babel/polyfill', './src/js/index.js', './src/sass/style.scss'],
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.js$/,
+        include: [
+          path.resolve(__dirname, 'src/js')
+        ],
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
       },
       {
         test: /\.s[ac]ss$/i,
@@ -28,7 +37,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
   },
   devtool: 'source-map',
   mode: 'development',

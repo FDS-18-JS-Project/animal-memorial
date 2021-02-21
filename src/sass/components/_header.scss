@@ -3,20 +3,20 @@
   background-color: $color-secondary;
   color: $white_font;
   padding: 10px 50px;
-  
+
   .brand {
     font-size: 20px;
     font-weight: $medium;
     margin: 10px;
   }
-  
+
   .menu {
     @include flex(center, center, row, nowrap);
 
     a {
       margin-left: 10px;
       padding: 10px;
-      text-decoration: none; 
+      text-decoration: none;
       outline: none;
       color: $white_font;
     }
