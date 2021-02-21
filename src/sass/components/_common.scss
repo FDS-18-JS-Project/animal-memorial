@@ -13,7 +13,6 @@
 }
 
 // components
-
 @mixin form {
   display: grid;
   width: 780px;
@@ -51,20 +50,7 @@ caption {
   background-color: $bg-color;
   color: $font-color;
   border-radius: 50px;
-  margin: 0 auto;
   border: 0;
-}
-
-.signin-btn,
-.signup-btn {
-  @include button($color-secondary, $white_font, 20px, 700);
-  // @include button($gray_btn, $black, 20px, 700);
-}
-
-.signin-btn:hover,
-.signup-btn:hover {
-  @include button-hover($black, $white_font);
-  // @include button-hover($red, $white_font);
 }
 
 // card
@@ -98,7 +84,6 @@ caption {
     display: inline-block;
     opacity: 0.5;
     font-size: 0.8em;
-    // margin: 10px 5px 0px 25px;
   }
 
   .desc {
