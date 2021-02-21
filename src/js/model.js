@@ -9,10 +9,10 @@ export class User {
 }
 
 export class Pet {
-  constructor(petName, deathDate, favourites, image) {
+  constructor(petName, deathDate, favorites, image) {
     this.petName = petName;
     this.deathDate = deathDate;
-    this.favourites = favourites;
+    this.favorites = favorites;
     this.image = image;
   }
 }
