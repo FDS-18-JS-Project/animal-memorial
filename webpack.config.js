@@ -8,9 +8,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: [
-          path.resolve(__dirname, 'src/js')
-        ],
+        include: [path.resolve(__dirname, 'src/js')],
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -24,25 +22,33 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader'
       }
-    ],
+    ]
   },
   plugins: [
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
     new MiniCssExtractPlugin({ filename: './style.css' }),
-    new HtmlWebpackPlugin({ title: 'Hot Module Replacement', template: './src/index.html', scriptLoading: 'defer' }),
+    new HtmlWebpackPlugin({
+      title: 'Hot Module Replacement',
+      template: './src/index.html',
+      scriptLoading: 'defer'
+    })
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js']
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public')
   },
   devtool: 'source-map',
   mode: 'development',
   devServer: {
     compress: true,
-    port: 9000,
-  },
+    port: 9000
+  }
 };

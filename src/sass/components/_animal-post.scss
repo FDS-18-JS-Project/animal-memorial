@@ -1,0 +1,229 @@
+::-webkit-scrollbar {
+  width: 5px; 
+} 
+
+::-webkit-scrollbar-track {
+  background-color: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($color: $black, $alpha: 0.2); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover { 
+  background: rgba($color: $black, $alpha: 0.5); 
+} 
+
+::-webkit-scrollbar-thumb:active { 
+  background: $color-secondary; 
+}
+
+::-webkit-scrollbar-button { 
+  display: none; 
+}
+
+.post-container {
+  background: $white_background;
+}
+
+// Pet image
+//TODO .img -> img
+.pets-container {
+  @include flex(flex-end, center, row, nowrap);
+  background-color: $color-primary;
+  height: 300px;
+  padding: 60px;
+
+  .img {
+    background: url(https://source.unsplash.com/random);
+    width: 600px;
+    height: 400px;
+    margin-top: 100px;
+    z-index: 1;
+  }
+}
+
+// Pet information
+.pets-info {
+  font-size: 25px;
+  color: $black;
+  width: 50%;
+  margin-left: 60px;
+
+  .name,
+  .death-date,
+  .favorite {
+    margin-bottom: 10px;
+  }
+
+  .title {
+    display: inline-block;
+    color: rgba($color: $black, $alpha: 0.5);
+    font-size: 0.8em;
+  }
+  
+  .desc {
+    font-weight: $bold;
+    color: rgba($color: $black, $alpha: 0.8);
+  }
+  
+  .name {
+    margin-top: 10px;
+  }
+  
+  .death-date>.desc {
+    font-size: 0.8em;
+  }
+  
+  .favorite {
+    .title {
+      display: block;
+      margin-bottom: 2px;
+    }
+  
+    .desc {
+      display: block;
+      height: 3.6em;
+      overflow: hidden;
+      white-space: normal;
+      line-height: 1.2;
+      text-align: left;
+      word-wrap: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
+
+.column-container {
+  @include flex(flex-start, space-between, row, nowrap);
+  padding: 0;
+}
+
+// Owner information
+.owner-container {
+  width: 30%;
+  padding: 25px 60px;
+}
+
+.owner-row {
+  display: block;
+  font-size: 16px;
+  margin: 40px 25px;
+  padding: 30px;
+  background-color: $white_background;
+  color: $black;
+  border-left: 1px solid rgba($color: $black, $alpha: 0.3);
+  transition: 400ms;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-radius: 0 10px 10px 0;
+    box-shadow: 1px 1px 10px rgba($color: $black, $alpha: 0.1);
+  }
+
+  .owner {
+    font-size: 30px;
+    font-weight: $bold;
+  }
+
+  .pet {
+    font-size: 20px;
+    display: block;
+    text-indent: 5px;
+    margin-top: 10px;
+
+    a:hover {
+      background-color: rgba($color: $color-primary, $alpha: 0.5);
+      border-radius: 5px;
+    }
+  }
+}
+
+// Comment
+.comment-container {
+  width: 50%;
+  padding: 60px;
+  background-color: rgba($color: $color-primary, $alpha: 0.2);
+}
+
+.new-comment{
+  @include flex(flex-end, center, row, wrap);
+  font-size: 30px;
+}
+
+.comment-input {
+  resize: none;
+  font-size: 20px;
+  overflow: auto;
+  background: transparent;
+  border: 1px solid rgba($color: $black, $alpha: 0.0);
+  border-bottom: 1px solid rgba($color: $black, $alpha: 0.1);
+  border-radius: 5px;
+  padding: 8px;
+  width: 100%;
+  margin: 20px;
+  
+  &:focus {
+    outline: none;
+    border: 1px solid rgba($color: $black, $alpha: 0);
+    border-bottom: 1px solid rgba($color: $black, $alpha: 0.3);
+    border-radius: 0px;
+    transition: 100ms;
+  }
+
+  &::placeholder {
+    font-size: 16px;
+    color: rgba($color: $black, $alpha: 0.4);
+    text-indent: 0;
+  }
+}
+
+.comment-submit {
+  @include button($color-secondary, $white_font, 20px, $bold);
+  display: block;
+  padding: 15px 30px;
+}
+
+.comment-submit:hover {
+  @include button-hover($black, $white_font);
+}
+
+.comments-list {
+  max-height: 500px;
+  overflow: auto;
+}
+
+.comment-count {
+  padding: 10px;
+  font-size: 16px;
+  
+  .count {
+    color: $color-secondary;
+  }
+}
+
+.comment-row {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: rgba($color: $black, $alpha: 0.8);
+
+  .username {
+    font-size: 20px;
+    font-weight: $bold;
+    display: inline-block;
+  }
+  
+  .date {
+    color: rgba($color: $black, $alpha: 0.5);
+  }
+  
+  .content {
+    margin: 5px 0;
+    font-weight: $medium;
+    font-size: 20px;
+  }
+}
+
