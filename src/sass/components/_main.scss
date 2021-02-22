@@ -1,8 +1,116 @@
-.bg {
+body {
+  overflow: visible;
+}
+
+// section 1 - main poster
+.poster {
+  height: 700px;
   background-image: url('~/src/img/dog-poster.jpg');
-  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
-  width: 100vw;
-  height: 80vh;
+  background-position: center;
+  background-size: cover;
+  padding: 210px 0 210px 100px;
+  box-sizing: border-box;
+
+  .poster-title {
+    font-family: 'Iropke Batang', serif;
+    ;
+    font-size: 120px;
+    font-weight: $extra-bold;
+    color: $white_font;
+    line-height: 140px;
+    white-space: pre-line;
+    margin: 0;
+  }
+}
+
+// section 2 - attention list
+.attention {
+  background: $white_background;
+  height: 564px;
+  padding: 100px 150px;
+  box-sizing: border-box;
+
+  .attention-title {
+    @include card-title;
+  }
+
+  .attention-card-container {
+    @include flex(space-between, center, row, nowrap);
+
+    .attention-card {
+      @include card-small;
+
+      position: relative;
+    }
+
+    .name {
+      @include flex-center-center;
+
+      width: 170px;
+      height: 60px;
+      border-radius: 50px;
+      box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+      background: $white_background;
+      position: absolute;
+      margin: 0;
+      bottom: -30px;
+      left: 40px;
+      color: rgba($color: $black, $alpha: 0.6);
+    }
+  }
+}
+
+// section 3 - pets list
+.pets {
+  background: rgba($color: $color-primary, $alpha: 0.5);
+  height: 747px;
+  padding: 100px 150px;
+  box-sizing: border-box;
+
+  .pets-title {
+    @include card-title;
+  }
+
+  .slides-container {
+    position: relative;
+  }
+
+  .pets-card-container {
+    overflow: hidden;
+    width: 1500px;
+    /* opacity: 0; */
+
+    .slides {
+      --currentSlide: 0;
+      --duration: 0;
+      display: flex;
+      transition: transform calc(var(--duration) * 1ms) ease-out;
+      transform: translate3D(calc(var(--currentSlide) * -535px), 0, 0);
+    }
+
+    .pets-card {
+      @include card-big;
+
+      margin-right: 130px;
+    }
+  }
+
+  .slide-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3em;
+    color: rgba($color: $black, $alpha: 0.5);
+    cursor: pointer;
+    z-index: 99;
+  }
+
+  .slide-control.prev {
+    left: -50px;
+  }
+
+  .slide-control.next {
+    right: -70px;
+  }
 }

@@ -62,7 +62,7 @@ caption {
   width: 380px;
   height: 435px;
   border-radius: 5px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transition: 400ms;
 
   &:hover {
@@ -119,14 +119,6 @@ caption {
   }
 }
 
-.test {
-  @include card-big();
-}
-
-.bigcard-container {
-  @include flex(center, center, row, nowrap);
-}
-
 @mixin card-small {
   font-size: 16px;
   margin: 40px 25px;
@@ -150,12 +142,11 @@ caption {
   }
 }
 
-.test2 {
-  @include card-small();
-}
-
-.smallcard-container {
-  @include flex(center, center, row, nowrap);
+@mixin card-title {
+  margin: 0 0 0 25px;
+  font-size: 30px;
+  font-weight: $extra-bold;
+  color: rgba($color: $black, $alpha: 0.6);
 }
 
 // input
