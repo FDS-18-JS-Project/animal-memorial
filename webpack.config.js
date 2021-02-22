@@ -24,8 +24,17 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader'
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[name].[ext]',
+              outputPath: 'assets/',
+              publicPath: 'assets/'
+            }
+          }
+        ]
       }
     ]
   },
