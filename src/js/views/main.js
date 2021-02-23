@@ -2,12 +2,12 @@ const displayMainPage = () => {
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
   <p class="slogan">Memorial for my Pet</p>
-  <div class="logo"><img src="./img/logo.png" alt="logo"></div>
+  <div class="logo"><img src="../img/logo.png" alt="logo"></div>
   <nav>
     <ul class="menu">
-      <li class="bookmark"><a href="#">북마크</a></li>
-      <li class="animal-register"><a href="/public/html/animal-register.html">내 반려견 등록</a></li>
-      <li class="logout"><a href="/public/index.html">로그아웃</a></li>
+      <li class="bookmark">북마크</li>
+      <li class="animal-register">내 반려견 등록</li>
+      <li class="logout">로그아웃</li>
     </ul>
   </nav>
 </header>

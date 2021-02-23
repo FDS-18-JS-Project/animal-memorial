@@ -1,7 +1,5 @@
 const displaySignUpPage = () => {
-  const markup = `<h1 class="site-title">
-    <a href="/public/index.html">Memorial for My Pet</a>
-  </h1>
+  const markup = `<h1 class="site-title">Memorial for My Pet</h1>
   <main class="register-container">
     <h2 class="offscreen">Register</h2>
     <div class="title-group">

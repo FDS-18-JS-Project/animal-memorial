@@ -1,8 +1,6 @@
 // eslint-disable-next-line no-undef
 const displaySignInPage = () => {
-  const markup = `<h1 class="site-title">
-  <a href="/public/index.html">Memorial for My Pet</a>
-</h1>
+  const markup = `<h1 class="site-title">Memorial for My Pet</h1>
 <main class="login-container">
   <h2 class="offscreen">login</h2>
   <div class="title-group">

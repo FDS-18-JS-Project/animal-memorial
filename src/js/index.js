@@ -15,12 +15,15 @@ import { User } from './model';
 // axios requests
 import * as request from './request';
 
+// cookies
+import * as Cookies from './utils/cookies';
+
 const user = new User();
 
-const eventHandler = async e => {
-  // if token existed
-  //   if (user.getToken()) displayMainPage();
+// check if token exists
+if (Cookies.getCookie('token')) displayMainPage();
 
+const eventHandler = async e => {
   // redirect to landing
   if (e.target.matches('.site-title')) {
     displayLandingPage();
@@ -47,6 +50,10 @@ const eventHandler = async e => {
     const userInfo = await request.signup(email, password, username);
     if (userInfo) {
       user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+      Cookies.setCookie('token', userInfo.data.token, {
+        secure: true,
+        'max-age': 3600 * 3
+      });
       displayMainPage();
     }
   }
@@ -61,12 +68,16 @@ const eventHandler = async e => {
 
     const userInfo = await request.signin(email, password);
     if (userInfo) {
-      console.log(userInfo);
       user.updateUserInfoWithToken(
         userInfo.data.payload.email,
         userInfo.data.username,
         userInfo.data.token
       );
+
+      Cookies.setCookie('token', userInfo.data.token, {
+        secure: true,
+        'max-age': 3600 * 3
+      });
 
       if (userInfo.data.token) displayMainPage();
     }
@@ -74,6 +85,13 @@ const eventHandler = async e => {
 
   // click the login cred auto-saved button
   if (e.target.matches('.login-form-checkbox'));
+
+  // click logout button
+  if (e.target.matches('.logout')) {
+    request.signout();
+    Cookies.deleteCookie('token');
+    displayLandingPage();
+  }
 };
 
 document.querySelector('body').addEventListener('click', eventHandler);

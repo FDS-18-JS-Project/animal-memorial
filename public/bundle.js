@@ -2005,7 +2005,8 @@ var comments = function comments(_comments, pet, owner) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "signin": () => (/* binding */ signin),
-/* harmony export */   "signup": () => (/* binding */ signup)
+/* harmony export */   "signup": () => (/* binding */ signup),
+/* harmony export */   "signout": () => (/* binding */ signout)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2095,6 +2096,41 @@ var signup = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+var signout = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'get',
+              url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_LOGOUT
+            });
+
+          case 3:
+            res = _context3.sent;
+            return _context3.abrupt("return", res);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            console.error(_context3.t0);
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+
+  return function signout() {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -2108,10 +2144,73 @@ var signup = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "URL_LOGIN": () => (/* binding */ URL_LOGIN),
-/* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER)
+/* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER),
+/* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT)
 /* harmony export */ });
 var URL_LOGIN = 'http://localhost:8080/login';
 var URL_REGISTER = 'http://localhost:8080/signup';
+var URL_LOGOUT = 'http://localhost:8080/logout';
+
+/***/ }),
+
+/***/ "./src/js/utils/cookies.js":
+/*!*********************************!*\
+  !*** ./src/js/utils/cookies.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCookie": () => (/* binding */ getCookie),
+/* harmony export */   "setCookie": () => (/* binding */ setCookie),
+/* harmony export */   "deleteCookie": () => (/* binding */ deleteCookie)
+/* harmony export */ });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// 주어진 이름의 쿠키를 반환하는데,
+// 조건에 맞는 쿠키가 없다면 undefined를 반환합니다.
+var getCookie = function getCookie(name) {
+  var matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+};
+
+var setCookie = function setCookie(name, value) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  // eslint-disable-next-line no-param-reassign
+  options = _objectSpread({}, options);
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  document.cookie = "".concat(encodeURIComponent(name), " = ").concat(encodeURIComponent(value));
+  var updatedCookie = encodeURIComponent(name) + '=' + encodeURIComponent(value); // eslint-disable-next-line guard-for-in
+
+  for (var optionKey in options) {
+    updatedCookie += '; ' + optionKey;
+    var optionValue = options[optionKey];
+
+    if (optionValue !== true) {
+      updatedCookie += '=' + optionValue;
+    }
+  }
+
+  console.log(updatedCookie);
+  document.cookie = "".concat(updatedCookie);
+};
+
+var deleteCookie = function deleteCookie(name) {
+  setCookie(name, '', {
+    'max-age': -1
+  });
+};
+
+
 
 /***/ }),
 
@@ -2127,7 +2226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var displayLandingPage = function displayLandingPage() {
-  var markup = "<main class=\"landing-container\">\n        <h1 class=\"site-title\">Memorial for My Pet</h1>\n        <div class=\"landing-container\">\n            <p class=\"landing-title\">\uC6B0\uB9AC \uC0AC\uC774\uD2B8\uB294 \uC18C\uC911\uD55C \uAC00\uC871\uC744 \uCD94\uBAA8\uD558\uB294 \uACF5\uAC04\uC785\uB2C8\uB2E4.</p>\n            <p class=\"landing-subtitle\">\uB85C\uADF8\uC778 \uD6C4 \uC774\uC6A9 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4</p>\n            <div class=\"landing-links\">\n                <a href='/public/html/signin.html' class=\"signin-btn\">\uB85C\uADF8\uC778</a>\n                <a href='/public/html/signup.html' class=\"signup-btn\">\uD68C\uC6D0\uAC00\uC785</a>\n            </div>\n        </div>\n    </main>";
+  var markup = "<main class=\"landing-container\">\n        <h1 class=\"site-title\">Memorial for My Pet</h1>\n        <div class=\"landing-container\">\n            <p class=\"landing-title\">\uC6B0\uB9AC \uC0AC\uC774\uD2B8\uB294 \uC18C\uC911\uD55C \uAC00\uC871\uC744 \uCD94\uBAA8\uD558\uB294 \uACF5\uAC04\uC785\uB2C8\uB2E4.</p>\n            <p class=\"landing-subtitle\">\uB85C\uADF8\uC778 \uD6C4 \uC774\uC6A9 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4</p>\n            <div class=\"landing-links\">\n                <button class=\"signin-btn\">\uB85C\uADF8\uC778</button>\n                <button class=\"signup-btn\">\uD68C\uC6D0\uAC00\uC785</button>\n            </div>\n        </div>\n    </main>";
   document.querySelector('body').innerHTML = markup;
 };
 
@@ -2147,7 +2246,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var displayMainPage = function displayMainPage() {
-  var markup = "<header class=\"header\">\n  <h1 class=\"offscreen\">\uB3D9\uBB3C \uCD94\uBAA8\uACF5\uC6D0</h1>\n  <p class=\"slogan\">Memorial for my Pet</p>\n  <div class=\"logo\"><img src=\"./img/logo.png\" alt=\"logo\"></div>\n  <nav>\n    <ul class=\"menu\">\n      <li class=\"bookmark\"><a href=\"#\">\uBD81\uB9C8\uD06C</a></li>\n      <li class=\"animal-register\"><a href=\"/public/html/animal-register.html\">\uB0B4 \uBC18\uB824\uACAC \uB4F1\uB85D</a></li>\n      <li class=\"logout\"><a href=\"/public/index.html\">\uB85C\uADF8\uC544\uC6C3</a></li>\n    </ul>\n  </nav>\n</header>\n<main class=\"main\">\n  <section class=\"poster\">\n    <p class=\"poster-title\">\uC548\uB155,\n      \uB098\uC758 \uCE5C\uAD6C.</p>\n  </section>\n  <section class=\"attention\">\n    <h2 class=\"attention-title\">\uC774 \uC544\uC774\uB4E4\uC5D0\uAC8C\uB3C4 \uAD00\uC2EC\uC744 \uC8FC\uC138\uC694.</h2>\n    <div class=\"attention-card-container\">\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n    </div>\n  </section>\n  <section class=\"pets\">\n    <h2 class=\"pets-title\">\uC774\uB7F0 \uC544\uC774\uB4E4\uB3C4 \uC788\uB2F5\uB2C8\uB2E4.</h2>\n    <div class=\"slides-container\">\n      <!-- <div class=\"pets-card-container\">\n        <div class=\"slides\">\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">1</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">2</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">3</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">4</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">5</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">6</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">7</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n        </div>\n      </div>\n      <i class=\"slide-control prev fas fa-chevron-left\"></i>\n      <i class=\"slide-control next fas fa-chevron-right\"></i> -->\n    </div>\n  </section>\n</main>\n<footer class=\"footer\">\n  <h2 class=\"offscreen\">\uD558\uB2E8\uC601\uC5ED</h2>\n  <p class=\"footer-title\">Memorial for my Pet</p>\n  <address class=\"footer-address\">\n    <i class=\"fas fa-home\"></i>\n    <span>\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uC131\uC218\uC774\uB85C 113 \uC81C\uAC15\uBE4C\uB529 7\uCE35</span>\n  </address>\n  <div class=\"git-links\">\n    <i class=\"fab fa-github\"></i>\n    <a href=\"https://github.com/dannylee9212\">Jaehoon Lee @dannylee9212</a>\n    <a href=\"https://github.com/jjhstoday\">Jihye Jang @jjhstoday</a>\n    <a href=\"https://github.com/Bernese-Corgi\">Jinyoung Choi @Bernese-Corgi</a>\n  </div>\n  <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>\n</footer>";
+  var markup = "<header class=\"header\">\n  <h1 class=\"offscreen\">\uB3D9\uBB3C \uCD94\uBAA8\uACF5\uC6D0</h1>\n  <p class=\"slogan\">Memorial for my Pet</p>\n  <div class=\"logo\"><img src=\"../img/logo.png\" alt=\"logo\"></div>\n  <nav>\n    <ul class=\"menu\">\n      <li class=\"bookmark\">\uBD81\uB9C8\uD06C</li>\n      <li class=\"animal-register\">\uB0B4 \uBC18\uB824\uACAC \uB4F1\uB85D</li>\n      <li class=\"logout\">\uB85C\uADF8\uC544\uC6C3</li>\n    </ul>\n  </nav>\n</header>\n<main class=\"main\">\n  <section class=\"poster\">\n    <p class=\"poster-title\">\uC548\uB155,\n      \uB098\uC758 \uCE5C\uAD6C.</p>\n  </section>\n  <section class=\"attention\">\n    <h2 class=\"attention-title\">\uC774 \uC544\uC774\uB4E4\uC5D0\uAC8C\uB3C4 \uAD00\uC2EC\uC744 \uC8FC\uC138\uC694.</h2>\n    <div class=\"attention-card-container\">\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n    </div>\n  </section>\n  <section class=\"pets\">\n    <h2 class=\"pets-title\">\uC774\uB7F0 \uC544\uC774\uB4E4\uB3C4 \uC788\uB2F5\uB2C8\uB2E4.</h2>\n    <div class=\"slides-container\">\n      <!-- <div class=\"pets-card-container\">\n        <div class=\"slides\">\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">1</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">2</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">3</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">4</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">5</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">6</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">7</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n        </div>\n      </div>\n      <i class=\"slide-control prev fas fa-chevron-left\"></i>\n      <i class=\"slide-control next fas fa-chevron-right\"></i> -->\n    </div>\n  </section>\n</main>\n<footer class=\"footer\">\n  <h2 class=\"offscreen\">\uD558\uB2E8\uC601\uC5ED</h2>\n  <p class=\"footer-title\">Memorial for my Pet</p>\n  <address class=\"footer-address\">\n    <i class=\"fas fa-home\"></i>\n    <span>\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uC131\uC218\uC774\uB85C 113 \uC81C\uAC15\uBE4C\uB529 7\uCE35</span>\n  </address>\n  <div class=\"git-links\">\n    <i class=\"fab fa-github\"></i>\n    <a href=\"https://github.com/dannylee9212\">Jaehoon Lee @dannylee9212</a>\n    <a href=\"https://github.com/jjhstoday\">Jihye Jang @jjhstoday</a>\n    <a href=\"https://github.com/Bernese-Corgi\">Jinyoung Choi @Bernese-Corgi</a>\n  </div>\n  <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>\n</footer>";
   document.querySelector('body').innerHTML = markup;
 };
 
@@ -2168,7 +2267,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // eslint-disable-next-line no-undef
 var displaySignInPage = function displaySignInPage() {
-  var markup = "<h1 class=\"site-title\">\n  <a href=\"/public/index.html\">Memorial for My Pet</a>\n</h1>\n<main class=\"login-container\">\n  <h2 class=\"offscreen\">login</h2>\n  <div class=\"title-group\">\n    <button class=\"login-title login-active\"\n      >\uB85C\uADF8\uC778</button\n    >\n    <button class=\"register-title\">\uD68C\uC6D0\uAC00\uC785</button>\n  </div>\n  <form class=\"login-form\">\n    <label for=\"email\" class=\"offscreen\">Email</label>\n    <input\n      type=\"email\"\n      name=\"email\"\n      id=\"email\"\n      class=\"email\"\n      placeholder=\"Email\"\n    />\n    <label for=\"password\" class=\"offscreen\">Password</label>\n    <input\n      type=\"password\"\n      name=\"password\"\n      id=\"password\"\n      class=\"password\"\n      placeholder=\"Password\"\n    />\n    <label for=\"checkbox\"\n      ><input\n        type=\"checkbox\"\n        id=\"checkbox\"\n        class=\"login-form-checkbox\"\n      />\uC544\uC774\uB514 \uC800\uC7A5</label\n    >\n    <button class=\"login-btn\">\uB85C\uADF8\uC778</button>\n  </form>\n</main>";
+  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n<main class=\"login-container\">\n  <h2 class=\"offscreen\">login</h2>\n  <div class=\"title-group\">\n    <button class=\"login-title login-active\"\n      >\uB85C\uADF8\uC778</button\n    >\n    <button class=\"register-title\">\uD68C\uC6D0\uAC00\uC785</button>\n  </div>\n  <form class=\"login-form\">\n    <label for=\"email\" class=\"offscreen\">Email</label>\n    <input\n      type=\"email\"\n      name=\"email\"\n      id=\"email\"\n      class=\"email\"\n      placeholder=\"Email\"\n    />\n    <label for=\"password\" class=\"offscreen\">Password</label>\n    <input\n      type=\"password\"\n      name=\"password\"\n      id=\"password\"\n      class=\"password\"\n      placeholder=\"Password\"\n    />\n    <label for=\"checkbox\"\n      ><input\n        type=\"checkbox\"\n        id=\"checkbox\"\n        class=\"login-form-checkbox\"\n      />\uC544\uC774\uB514 \uC800\uC7A5</label\n    >\n    <button class=\"login-btn\">\uB85C\uADF8\uC778</button>\n  </form>\n</main>";
   document.querySelector('body').innerHTML = markup;
 };
 
@@ -2188,7 +2287,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var displaySignUpPage = function displaySignUpPage() {
-  var markup = "<h1 class=\"site-title\">\n    <a href=\"/public/index.html\">Memorial for My Pet</a>\n  </h1>\n  <main class=\"register-container\">\n    <h2 class=\"offscreen\">Register</h2>\n    <div class=\"title-group\">\n      <button class=\"login-title\">\uB85C\uADF8\uC778</button>\n      <button class=\"register-title login-active\"\n        >\uD68C\uC6D0\uAC00\uC785</button\n      >\n    </div>\n    <form class=\"register-form\">\n      <label for=\"username\" class=\"offscreen\">Username</label>\n      <input\n        type=\"text\"\n        name=\"username\"\n        id=\"username\"\n        class=\"username\"\n        placeholder=\"Username\"\n      />\n      <label for=\"password\" class=\"offscreen\">Password</label>\n      <input\n        type=\"password\"\n        name=\"password\"\n        id=\"password\"\n        class=\"password\"\n        placeholder=\"Password\"\n      />\n      <label for=\"email\" class=\"offscreen\">Email</label>\n      <input\n        type=\"email\"\n        name=\"email\"\n        id=\"email\"\n        class=\"email\"\n        placeholder=\"Email\"\n      />\n      <button class=\"register-btn\">\uC544\uC774\uB514 \uB4F1\uB85D</button>\n    </form>\n  </main>";
+  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n  <main class=\"register-container\">\n    <h2 class=\"offscreen\">Register</h2>\n    <div class=\"title-group\">\n      <button class=\"login-title\">\uB85C\uADF8\uC778</button>\n      <button class=\"register-title login-active\"\n        >\uD68C\uC6D0\uAC00\uC785</button\n      >\n    </div>\n    <form class=\"register-form\">\n      <label for=\"username\" class=\"offscreen\">Username</label>\n      <input\n        type=\"text\"\n        name=\"username\"\n        id=\"username\"\n        class=\"username\"\n        placeholder=\"Username\"\n      />\n      <label for=\"password\" class=\"offscreen\">Password</label>\n      <input\n        type=\"password\"\n        name=\"password\"\n        id=\"password\"\n        class=\"password\"\n        placeholder=\"Password\"\n      />\n      <label for=\"email\" class=\"offscreen\">Email</label>\n      <input\n        type=\"email\"\n        name=\"email\"\n        id=\"email\"\n        class=\"email\"\n        placeholder=\"Email\"\n      />\n      <button class=\"register-btn\">\uC544\uC774\uB514 \uB4F1\uB85D</button>\n    </form>\n  </main>";
   document.querySelector('body').innerHTML = markup;
 };
 
@@ -12115,6 +12214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./model */ "./src/js/model.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./request */ "./src/js/request.js");
+/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -12130,8 +12230,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
  // axios requests
 
+ // cookies
 
-var user = new _model__WEBPACK_IMPORTED_MODULE_6__.User();
+
+var user = new _model__WEBPACK_IMPORTED_MODULE_6__.User(); // check if token exists
+
+if (_utils_cookies__WEBPACK_IMPORTED_MODULE_8__.getCookie('token')) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
 
 var eventHandler = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
@@ -12141,8 +12245,6 @@ var eventHandler = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            // if token existed
-            //   if (user.getToken()) displayMainPage();
             // redirect to landing
             if (e.target.matches('.site-title')) {
               (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
@@ -12175,6 +12277,10 @@ var eventHandler = /*#__PURE__*/function () {
 
             if (userInfo) {
               user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.setCookie('token', userInfo.data.token, {
+                secure: true,
+                'max-age': 3600 * 3
+              });
               (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
@@ -12194,16 +12300,25 @@ var eventHandler = /*#__PURE__*/function () {
             _userInfo = _context.sent;
 
             if (_userInfo) {
-              console.log(_userInfo);
               user.updateUserInfoWithToken(_userInfo.data.payload.email, _userInfo.data.username, _userInfo.data.token);
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.setCookie('token', _userInfo.data.token, {
+                secure: true,
+                'max-age': 3600 * 3
+              });
               if (_userInfo.data.token) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
           case 17:
             // click the login cred auto-saved button
-            if (e.target.matches('.login-form-checkbox')) ;
+            if (e.target.matches('.login-form-checkbox')) ; // click logout button
 
-          case 18:
+            if (e.target.matches('.logout')) {
+              _request__WEBPACK_IMPORTED_MODULE_7__.signout();
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.deleteCookie('token');
+              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
+            }
+
+          case 19:
           case "end":
             return _context.stop();
         }
