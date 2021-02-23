@@ -1895,10 +1895,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./src/js/components/main.js":
-/*!***********************************!*\
-  !*** ./src/js/components/main.js ***!
-  \***********************************/
+/***/ "./src/js/components/landing.js":
+/*!**************************************!*\
+  !*** ./src/js/components/landing.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1906,112 +1906,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-// TODO: section 1 - attention list server fetch
-// section 2 - pets list
-// TODO: server fetch
-var getMainInfo = function getMainInfo() {
-  var pets = [{
-    petName: '1',
-    deathDate: '2021.02.19',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }, {
-    petName: '2',
-    deathDate: '2021.02.20',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }, {
-    petName: '3',
-    deathDate: '2021.02.21',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }, {
-    petName: '4',
-    deathDate: '2021.02.23',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }, {
-    petName: '5',
-    deathDate: '2021.02.24',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }, {
-    petName: '6',
-    deathDate: '2021.02.25',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }, {
-    petName: '7',
-    deathDate: '2021.02.26',
-    favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  }];
-
-  var carousel = function carousel($container, pets) {
-    var currentSlide = 0;
-    var isMoving = false;
-    var DURATION = 500;
-    var timerId = null;
-    var $Slides = null;
-
-    var move = function move(currentSlide) {
-      var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      if (duration) isMoving = true;
-      $Slides.style.setProperty('--duration', duration);
-      $Slides.style.setProperty('--currentSlide', currentSlide);
-    };
-
-    $container.innerHTML = "\n      <div class=\"pets-card-container\">\n        <div class=\"slides\">\n        ".concat([pets[pets.length - 2], pets[pets.length - 1]].concat(_toConsumableArray(pets), [pets[0], pets[1]]).map(function (_ref) {
-      var petName = _ref.petName,
-          deathDate = _ref.deathDate,
-          favorites = _ref.favorites,
-          image = _ref.image;
-      return "<a href=\"#\" class=\"pets-card\">\n            <img src=\"".concat(image, "\" />\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">").concat(petName, "</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">").concat(deathDate, "</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">").concat(favorites, "</span>\n            </div>\n          </a>");
-    }).join(''), "\n        </div>\n      </div>\n      <i class=\"slide-control prev fas fa-chevron-left\"></i>\n      <i class=\"slide-control next fas fa-chevron-right\"></i>");
-    $Slides = document.querySelector('.slides');
-
-    window.onload = function () {
-      move(currentSlide = 2); // Autoplay
-
-      timerId = setInterval(function () {
-        return move(++currentSlide, DURATION);
-      }, 2000);
-    };
-
-    $container.onclick = function (_ref2) {
-      var target = _ref2.target;
-      if (!target.classList.contains('slide-control') || isMoving) return;
-      clearInterval(timerId);
-      var clickedBtn = target.classList.contains('prev') ? -1 : 1;
-      currentSlide += 1 * clickedBtn;
-      move(currentSlide, DURATION);
-    };
-
-    $container.ontransitionend = function () {
-      isMoving = false;
-      var clickedBtn = currentSlide === 1 ? 1 : currentSlide === pets.length + 1 ? -1 : 0;
-      if (!clickedBtn) return;
-      clickedBtn === -1 ? currentSlide = 1 : currentSlide += pets.length * currentSlide;
-      move(currentSlide);
-    };
-  };
-
-  carousel(document.querySelector('.slides-container'), pets);
+var displayLandingPage = function displayLandingPage() {
+  var markup = "<main class=\"landing-container\">\n  <h1 class=\"site-title\">Memorial for My Pet</h1>\n  <div class=\"landing-container\">\n    <p class=\"landing-title\">\n      \uC6B0\uB9AC \uC0AC\uC774\uD2B8\uB294 \uC18C\uC911\uD55C \uAC00\uC871\uC744 \uCD94\uBAA8\uD558\uB294 \uACF5\uAC04\uC785\uB2C8\uB2E4.\n    </p>\n    <p class=\"landing-subtitle\">\uB85C\uADF8\uC778 \uD6C4 \uC774\uC6A9 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4</p>\n    <div class=\"landing-links\">\n      <button class=\"signin-btn\">\uB85C\uADF8\uC778</button>\n      <button class=\"signup-btn\">\uD68C\uC6D0\uAC00\uC785</button>\n    </div>\n  </div>\n</main>";
+  document.querySelector('body').innerHTML = markup;
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getMainInfo);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayLandingPage);
+
+/***/ }),
+
+/***/ "./src/js/components/main.js":
+/*!***********************************!*\
+  !*** ./src/js/components/main.js ***!
+  \***********************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/jihye/Documents/dev/animal-memorial/src/js/components/main.js: Unexpected token, expected \",\" (100:3)\n\n\u001b[0m \u001b[90m  98 |\u001b[39m       move(currentSlide)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  99 |\u001b[39m     }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 100 |\u001b[39m   }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 101 |\u001b[39m   \u001b[0m\n\u001b[0m \u001b[90m 102 |\u001b[39m   carousel(document\u001b[33m.\u001b[39mquerySelector(\u001b[32m'.slides-container'\u001b[39m)\u001b[33m,\u001b[39m pets)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 103 |\u001b[39m }\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:776:17)\n    at Parser.raiseWithData (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:769:17)\n    at Parser.raise (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:737:17)\n    at Parser.unexpected (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:9264:16)\n    at Parser.expect (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:9250:28)\n    at Parser.parseCallExpressionArguments (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:10513:14)\n    at Parser.parseCoverCallAndAsyncArrowHead (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:10437:29)\n    at Parser.parseSubscript (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:10373:19)\n    at Parser.parseSubscripts (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:10346:19)\n    at Parser.parseExprSubscripts (/Users/jihye/Documents/dev/animal-memorial/node_modules/@babel/parser/lib/index.js:10335:17)");
 
 /***/ }),
 
@@ -2024,8 +1934,26 @@ var getMainInfo = function getMainInfo() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "getSignInInfo": () => (/* binding */ getSignInInfo),
+/* harmony export */   "displaySignInPage": () => (/* binding */ displaySignInPage)
 /* harmony export */ });
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model */ "./src/js/model.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
+/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main */ "./src/js/components/main.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// models
+ // axios requests
+
+ // cookies
+
+
+
+var user = new _model__WEBPACK_IMPORTED_MODULE_0__.User();
+
 var getSignInInfo = function getSignInInfo() {
   var email = document.querySelector('.email').value;
   var password = document.querySelector('.password').value;
@@ -2035,7 +1963,53 @@ var getSignInInfo = function getSignInInfo() {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getSignInInfo);
+var loginHandler = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var _getSignInInfo, email, password, userInfo;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault(); // validation required
+
+            _getSignInInfo = getSignInInfo(), email = _getSignInInfo.email, password = _getSignInInfo.password;
+            _context.next = 4;
+            return _request__WEBPACK_IMPORTED_MODULE_1__.signin(email, password);
+
+          case 4:
+            userInfo = _context.sent;
+
+            if (userInfo) {
+              user.updateUserInfoWithToken(userInfo.data.payload.email, userInfo.data.username, userInfo.data.token);
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.setCookie('token', userInfo.data.token, {
+                secure: true,
+                'max-age': 3600 * 3
+              });
+              if (userInfo.data.token) (0,_main__WEBPACK_IMPORTED_MODULE_3__.displayMainPage)();
+            }
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function loginHandler(_x) {
+    return _ref.apply(this, arguments);
+  };
+}(); // eslint-disable-next-line no-undef
+
+
+var displaySignInPage = function displaySignInPage() {
+  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n<main class=\"login-container\">\n  <h2 class=\"offscreen\">login</h2>\n  <div class=\"title-group\">\n    <button class=\"login-title login-active\"\n      >\uB85C\uADF8\uC778</button\n    >\n    <button class=\"register-title\">\uD68C\uC6D0\uAC00\uC785</button>\n  </div>\n  <form class=\"login-form\">\n    <label for=\"email\" class=\"offscreen\">Email</label>\n    <input\n      type=\"email\"\n      name=\"email\"\n      id=\"email\"\n      class=\"email\"\n      placeholder=\"Email\"\n    />\n    <label for=\"password\" class=\"offscreen\">Password</label>\n    <input\n      type=\"password\"\n      name=\"password\"\n      id=\"password\"\n      class=\"password\"\n      placeholder=\"Password\"\n    />\n    <label for=\"checkbox\"\n      ><input\n        type=\"checkbox\"\n        id=\"checkbox\"\n        class=\"login-form-checkbox\"\n      />\uC544\uC774\uB514 \uC800\uC7A5</label\n    >\n    <button class=\"login-btn\">\uB85C\uADF8\uC778</button>\n  </form>\n</main>";
+  document.querySelector('body').innerHTML = markup;
+  document.querySelector('.login-form').addEventListener('submit', loginHandler);
+};
+
+
 
 /***/ }),
 
@@ -2048,8 +2022,26 @@ var getSignInInfo = function getSignInInfo() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "getSignUpInfo": () => (/* binding */ getSignUpInfo),
+/* harmony export */   "displaySignUpPage": () => (/* binding */ displaySignUpPage)
 /* harmony export */ });
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model */ "./src/js/model.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
+/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main */ "./src/js/components/main.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// models
+ // axios requests
+
+ // cookies
+
+
+
+var user = new _model__WEBPACK_IMPORTED_MODULE_0__.User();
+
 var getSignUpInfo = function getSignUpInfo() {
   var email = document.querySelector('.email').value;
   var password = document.querySelector('.password').value;
@@ -2061,7 +2053,52 @@ var getSignUpInfo = function getSignUpInfo() {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getSignUpInfo);
+var registerHandler = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var _getSignUpInfo, email, password, username, userInfo;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault(); // validation required
+
+            _getSignUpInfo = getSignUpInfo(), email = _getSignUpInfo.email, password = _getSignUpInfo.password, username = _getSignUpInfo.username;
+            _context.next = 4;
+            return _request__WEBPACK_IMPORTED_MODULE_1__.signup(email, password, username);
+
+          case 4:
+            userInfo = _context.sent;
+
+            if (userInfo) {
+              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.setCookie('token', userInfo.data.token, {
+                secure: true,
+                'max-age': 3600 * 3
+              });
+              (0,_main__WEBPACK_IMPORTED_MODULE_3__.displayMainPage)();
+            }
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function registerHandler(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var displaySignUpPage = function displaySignUpPage() {
+  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n  <main class=\"register-container\">\n    <h2 class=\"offscreen\">Register</h2>\n    <div class=\"title-group\">\n      <button class=\"login-title\">\uB85C\uADF8\uC778</button>\n      <button class=\"register-title login-active\"\n        >\uD68C\uC6D0\uAC00\uC785</button\n      >\n    </div>\n    <form class=\"register-form\">\n      <label for=\"username\" class=\"offscreen\">Username</label>\n      <input\n        type=\"text\"\n        name=\"username\"\n        id=\"username\"\n        class=\"username\"\n        placeholder=\"Username\"\n      />\n      <label for=\"password\" class=\"offscreen\">Password</label>\n      <input\n        type=\"password\"\n        name=\"password\"\n        id=\"password\"\n        class=\"password\"\n        placeholder=\"Password\"\n      />\n      <label for=\"email\" class=\"offscreen\">Email</label>\n      <input\n        type=\"email\"\n        name=\"email\"\n        id=\"email\"\n        class=\"email\"\n        placeholder=\"Email\"\n      />\n      <button class=\"register-btn\">\uC544\uC774\uB514 \uB4F1\uB85D</button>\n    </form>\n  </main>";
+  document.querySelector('body').innerHTML = markup;
+  document.querySelector('.register-form').addEventListener('submit', registerHandler);
+};
+
+
 
 /***/ }),
 
@@ -2073,138 +2110,39 @@ var getSignUpInfo = function getSignUpInfo() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/landing */ "./src/js/views/landing.js");
-/* harmony import */ var _views_signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/signup */ "./src/js/views/signup.js");
-/* harmony import */ var _views_signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/signin */ "./src/js/views/signin.js");
-/* harmony import */ var _views_main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/main */ "./src/js/views/main.js");
-/* harmony import */ var _components_signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/signup */ "./src/js/components/signup.js");
-/* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
-/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/main */ "./src/js/components/main.js");
-/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./model */ "./src/js/model.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./request */ "./src/js/request.js");
-/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-// views
+/* harmony import */ var _components_signup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/signup */ "./src/js/components/signup.js");
+/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/main */ "./src/js/components/main.js");
+/* harmony import */ var _components_landing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/landing */ "./src/js/components/landing.js");
+/* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
+/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
+// components
 
 
-
- // components
-
-
-
- // models
-
- // axios requests
 
  // cookies
 
+ // check if token exists
 
-var user = new _model__WEBPACK_IMPORTED_MODULE_7__.User(); // check if token exists
+if (_utils_cookies__WEBPACK_IMPORTED_MODULE_4__.getCookie('token')) (0,_components_main__WEBPACK_IMPORTED_MODULE_1__.displayMainPage)();
 
-if (_utils_cookies__WEBPACK_IMPORTED_MODULE_9__.getCookie('token')) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
-
-var eventHandler = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var _getSignUpInfo, email, password, username, userInfo, _getSignInInfo, _email, _password, _userInfo;
-
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            // redirect to landing
-            if (e.target.matches('.site-title')) {
-              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
-            } // redirect to signup page
+var eventHandler = function eventHandler(e) {
+  // redirect to landing
+  if (e.target.matches('.site-title')) {
+    (0,_components_landing__WEBPACK_IMPORTED_MODULE_2__.default)();
+  } // redirect to signup page
 
 
-            if (e.target.matches('.signup-btn') || e.target.matches('.register-title')) {
-              (0,_views_signup__WEBPACK_IMPORTED_MODULE_1__.default)();
-            } // redirect to signin page
+  if (e.target.matches('.signup-btn') || e.target.matches('.register-title')) {
+    (0,_components_signup__WEBPACK_IMPORTED_MODULE_0__.displaySignUpPage)();
+  } // redirect to signin page
 
 
-            if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
-              (0,_views_signin__WEBPACK_IMPORTED_MODULE_2__.default)();
-            } // click register button from signup page
+  if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
+    (0,_components_signin__WEBPACK_IMPORTED_MODULE_3__.displaySignInPage)();
+  }
+};
 
-
-            if (!e.target.matches('.register-btn')) {
-              _context.next = 10;
-              break;
-            }
-
-            e.preventDefault(); // validation required
-
-            _getSignUpInfo = (0,_components_signup__WEBPACK_IMPORTED_MODULE_4__.default)(), email = _getSignUpInfo.email, password = _getSignUpInfo.password, username = _getSignUpInfo.username;
-            _context.next = 8;
-            return _request__WEBPACK_IMPORTED_MODULE_8__.signup(email, password, username);
-
-          case 8:
-            userInfo = _context.sent;
-
-            if (userInfo) {
-              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
-              _utils_cookies__WEBPACK_IMPORTED_MODULE_9__.setCookie('token', userInfo.data.token, {
-                secure: true,
-                'max-age': 3600 * 3
-              });
-              (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
-            }
-
-          case 10:
-            if (!e.target.matches('.login-btn')) {
-              _context.next = 17;
-              break;
-            }
-
-            e.preventDefault(); // validation required
-
-            _getSignInInfo = (0,_components_signin__WEBPACK_IMPORTED_MODULE_5__.default)(), _email = _getSignInInfo.email, _password = _getSignInInfo.password;
-            _context.next = 15;
-            return _request__WEBPACK_IMPORTED_MODULE_8__.signin(_email, _password);
-
-          case 15:
-            _userInfo = _context.sent;
-
-            if (_userInfo) {
-              user.updateUserInfoWithToken(_userInfo.data.payload.email, _userInfo.data.username, _userInfo.data.token);
-              _utils_cookies__WEBPACK_IMPORTED_MODULE_9__.setCookie('token', _userInfo.data.token, {
-                secure: true,
-                'max-age': 3600 * 3
-              });
-
-              if (_userInfo.data.token) {
-                (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
-                (0,_components_main__WEBPACK_IMPORTED_MODULE_6__.default)();
-              }
-            }
-
-          case 17:
-            // click the login cred auto-saved button
-            if (e.target.matches('.login-form-checkbox')) ; // click logout button
-
-            if (e.target.matches('.logout')) {
-              _request__WEBPACK_IMPORTED_MODULE_8__.signout();
-              _utils_cookies__WEBPACK_IMPORTED_MODULE_9__.deleteCookie('token');
-              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
-            }
-
-          case 19:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function eventHandler(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-document.querySelector('body').addEventListener('click', eventHandler);
+document.body.addEventListener('click', eventHandler);
 
 /***/ }),
 
@@ -2497,87 +2435,6 @@ var deleteCookie = function deleteCookie(name) {
 };
 
 
-
-/***/ }),
-
-/***/ "./src/js/views/landing.js":
-/*!*********************************!*\
-  !*** ./src/js/views/landing.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var displayLandingPage = function displayLandingPage() {
-  var markup = "<main class=\"landing-container\">\n        <h1 class=\"site-title\">Memorial for My Pet</h1>\n        <div class=\"landing-container\">\n            <p class=\"landing-title\">\uC6B0\uB9AC \uC0AC\uC774\uD2B8\uB294 \uC18C\uC911\uD55C \uAC00\uC871\uC744 \uCD94\uBAA8\uD558\uB294 \uACF5\uAC04\uC785\uB2C8\uB2E4.</p>\n            <p class=\"landing-subtitle\">\uB85C\uADF8\uC778 \uD6C4 \uC774\uC6A9 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4</p>\n            <div class=\"landing-links\">\n                <button class=\"signin-btn\">\uB85C\uADF8\uC778</button>\n                <button class=\"signup-btn\">\uD68C\uC6D0\uAC00\uC785</button>\n            </div>\n        </div>\n    </main>";
-  document.querySelector('body').innerHTML = markup;
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayLandingPage);
-
-/***/ }),
-
-/***/ "./src/js/views/main.js":
-/*!******************************!*\
-  !*** ./src/js/views/main.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var displayMainPage = function displayMainPage() {
-  var markup = "<header class=\"header\">\n  <h1 class=\"offscreen\">\uB3D9\uBB3C \uCD94\uBAA8\uACF5\uC6D0</h1>\n  <p class=\"slogan\">Memorial for my Pet</p>\n  <div class=\"logo\"><img src=\"../img/logo.png\" alt=\"logo\"></div>\n  <nav>\n    <ul class=\"menu\">\n      <li class=\"bookmark\">\uBD81\uB9C8\uD06C</li>\n      <li class=\"animal-register\">\uB0B4 \uBC18\uB824\uACAC \uB4F1\uB85D</li>\n      <li class=\"logout\">\uB85C\uADF8\uC544\uC6C3</li>\n    </ul>\n  </nav>\n</header>\n<main class=\"main\">\n  <section class=\"poster\">\n    <p class=\"poster-title\">\uC548\uB155,\n      \uB098\uC758 \uCE5C\uAD6C.</p>\n  </section>\n  <section class=\"attention\">\n    <h2 class=\"attention-title\">\uC774 \uC544\uC774\uB4E4\uC5D0\uAC8C\uB3C4 \uAD00\uC2EC\uC744 \uC8FC\uC138\uC694.</h2>\n    <div class=\"attention-card-container\">\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n    </div>\n  </section>\n  <section class=\"pets\">\n    <h2 class=\"pets-title\">\uC774\uB7F0 \uC544\uC774\uB4E4\uB3C4 \uC788\uB2F5\uB2C8\uB2E4.</h2>\n    <div class=\"slides-container\">\n      <!-- <div class=\"pets-card-container\">\n        <div class=\"slides\">\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">1</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">2</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">3</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">4</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">5</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">6</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">7</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n        </div>\n      </div>\n      <i class=\"slide-control prev fas fa-chevron-left\"></i>\n      <i class=\"slide-control next fas fa-chevron-right\"></i> -->\n    </div>\n  </section>\n</main>\n<footer class=\"footer\">\n  <h2 class=\"offscreen\">\uD558\uB2E8\uC601\uC5ED</h2>\n  <p class=\"footer-title\">Memorial for my Pet</p>\n  <address class=\"footer-address\">\n    <i class=\"fas fa-home\"></i>\n    <span>\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uC131\uC218\uC774\uB85C 113 \uC81C\uAC15\uBE4C\uB529 7\uCE35</span>\n  </address>\n  <div class=\"git-links\">\n    <i class=\"fab fa-github\"></i>\n    <a href=\"https://github.com/dannylee9212\">Jaehoon Lee @dannylee9212</a>\n    <a href=\"https://github.com/jjhstoday\">Jihye Jang @jjhstoday</a>\n    <a href=\"https://github.com/Bernese-Corgi\">Jinyoung Choi @Bernese-Corgi</a>\n  </div>\n  <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>\n</footer>";
-  document.querySelector('body').innerHTML = markup;
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayMainPage);
-
-/***/ }),
-
-/***/ "./src/js/views/signin.js":
-/*!********************************!*\
-  !*** ./src/js/views/signin.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// eslint-disable-next-line no-undef
-var displaySignInPage = function displaySignInPage() {
-  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n<main class=\"login-container\">\n  <h2 class=\"offscreen\">login</h2>\n  <div class=\"title-group\">\n    <button class=\"login-title login-active\"\n      >\uB85C\uADF8\uC778</button\n    >\n    <button class=\"register-title\">\uD68C\uC6D0\uAC00\uC785</button>\n  </div>\n  <form class=\"login-form\">\n    <label for=\"email\" class=\"offscreen\">Email</label>\n    <input\n      type=\"email\"\n      name=\"email\"\n      id=\"email\"\n      class=\"email\"\n      placeholder=\"Email\"\n    />\n    <label for=\"password\" class=\"offscreen\">Password</label>\n    <input\n      type=\"password\"\n      name=\"password\"\n      id=\"password\"\n      class=\"password\"\n      placeholder=\"Password\"\n    />\n    <label for=\"checkbox\"\n      ><input\n        type=\"checkbox\"\n        id=\"checkbox\"\n        class=\"login-form-checkbox\"\n      />\uC544\uC774\uB514 \uC800\uC7A5</label\n    >\n    <button class=\"login-btn\">\uB85C\uADF8\uC778</button>\n  </form>\n</main>";
-  document.querySelector('body').innerHTML = markup;
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displaySignInPage);
-
-/***/ }),
-
-/***/ "./src/js/views/signup.js":
-/*!********************************!*\
-  !*** ./src/js/views/signup.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var displaySignUpPage = function displaySignUpPage() {
-  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n  <main class=\"register-container\">\n    <h2 class=\"offscreen\">Register</h2>\n    <div class=\"title-group\">\n      <button class=\"login-title\">\uB85C\uADF8\uC778</button>\n      <button class=\"register-title login-active\"\n        >\uD68C\uC6D0\uAC00\uC785</button\n      >\n    </div>\n    <form class=\"register-form\">\n      <label for=\"username\" class=\"offscreen\">Username</label>\n      <input\n        type=\"text\"\n        name=\"username\"\n        id=\"username\"\n        class=\"username\"\n        placeholder=\"Username\"\n      />\n      <label for=\"password\" class=\"offscreen\">Password</label>\n      <input\n        type=\"password\"\n        name=\"password\"\n        id=\"password\"\n        class=\"password\"\n        placeholder=\"Password\"\n      />\n      <label for=\"email\" class=\"offscreen\">Email</label>\n      <input\n        type=\"email\"\n        name=\"email\"\n        id=\"email\"\n        class=\"email\"\n        placeholder=\"Email\"\n      />\n      <button class=\"register-btn\">\uC544\uC774\uB514 \uB4F1\uB85D</button>\n    </form>\n  </main>";
-  document.querySelector('body').innerHTML = markup;
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displaySignUpPage);
 
 /***/ }),
 
