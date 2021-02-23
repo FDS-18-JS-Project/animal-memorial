@@ -2,7 +2,7 @@ const tmp = () => {
   const $animalRegisterForm = document.querySelector('.animal-register-form');
   const $imgInput = document.querySelector('.img-input');
   const $button = document.querySelector('.button');
-  
+
   const setThumbnail = e => {
     const image = e.target.files[0];
     const thubImage = document.createElement('img');
@@ -12,9 +12,9 @@ const tmp = () => {
     thubImage.style.position = 'absolute';
     thubImage.style.zIndex = '99';
     document.querySelector('.img-container').appendChild(thubImage);
-  
+
     // const reader = new FileReader();
-    
+
     // reader.onload = e => {
     //   const img = document.createElement('img');
     //   img.setAttribute('src', e.target.result);
@@ -24,13 +24,13 @@ const tmp = () => {
     //   img.style.zIndex = '99';
     //   document.querySelector('.img-container').appendChild(img);
     // };
-  
+
     // reader.readAsDataURL(e.target.files[0]);
   };
-  
+
   function dragOver(e) {
     const effectDrag = e.target.parentNode.style;
-  
+
     if (e.type === 'dragover') {
       effectDrag.backgroundColor = 'rgba(151, 151, 157, 0.4)';
       effectDrag.transition = 'all 0.3s';
@@ -38,46 +38,50 @@ const tmp = () => {
       effectDrag.backgroundColor = '#FFFFFF';
     }
   }
-  
+
   $imgInput.onchange = e => {
     setThumbnail(e);
   };
-  
+
   // TODO: 서버 보내기
   $button.onclick = e => {
     e.preventDefault();
     const formDate = [...document.forms][0];
-  
+
     const image = window.URL.createObjectURL(formDate[0].files[0]);
     const petName = formDate[1].value;
     const deathDate = `${formDate[2].value}.${formDate[3].value}.${formDate[4].value}`;
-    const favorites = [`${formDate[5].value}`, `${formDate[6].value}`, `${formDate[7].value}`];
-  
+    const favorites = [
+      `${formDate[5].value}`,
+      `${formDate[6].value}`,
+      `${formDate[7].value}`
+    ];
+
     console.log('image: ', image);
     console.log('petName: ', petName);
     console.log('deathDate: ', deathDate);
     console.log('favorites: ', favorites);
-  }
-  
+  };
+
   $animalRegisterForm.onclick = ({ target }) => {
     if (!target.matches('div > input[type="text"]')) return;
-  
+
     target.previousElementSibling.classList.add('active');
   };
-  
+
   $animalRegisterForm.onkeyup = e => {
     if (!e.key === 'Tab') return;
     if (!e.target.matches('div > input[type="text"]')) return;
-  
+
     e.target.previousElementSibling.classList.add('active');
   };
-  
+
   $imgInput.addEventListener('dragover', e => {
     e.stopPropagation();
     e.preventDefault();
     dragOver(e);
   });
-  
+
   $imgInput.addEventListener('dragleave', e => {
     e.stopPropagation();
     e.preventDefault();
@@ -89,12 +93,12 @@ const displayAnimalRegisterPage = () => {
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
   <p class="slogan">Memorial for my Pet</p>
-  <div class="logo"><img src="./img/logo.png" alt="logo"></div>
+  <div class="logo"><img src="../img/logo.png" alt="logo"></div>
   <nav>
     <ul class="menu">
-      <li class="bookmark"><a href="#">북마크</a></li>
-      <li class="animal-register"><a href="/public/html/animal-register.html">내 반려견 등록</a></li>
-      <li class="logout"><a href="/public/index.html">로그아웃</a></li>
+      <li class="bookmark">북마크</li>
+      <li class="animal-register">내 반려견 등록</li>
+      <li class="logout">로그아웃</li>
     </ul>
   </nav>
 </header>
@@ -219,9 +223,9 @@ const displayAnimalRegisterPage = () => {
   <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>
 </footer>`;
 
-document.querySelector('body').innerHTML = markup;
+  document.querySelector('body').innerHTML = markup;
 
-document.querySelector('.animal-register-button').addEventListener('click', );
-}
+  // document.querySelector('.animal-register-button').addEventListener('click', );
+};
 
 export default displayAnimalRegisterPage;
