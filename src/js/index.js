@@ -17,6 +17,9 @@ import * as request from './request';
 const user = new User();
 
 const eventHandler = async e => {
+  // if token existed
+  //   if (user.getToken()) displayMainPage();
+
   // redirect to landing
   if (e.target.matches('.site-title')) {
     displayLandingPage();
@@ -42,8 +45,8 @@ const eventHandler = async e => {
 
     const userInfo = await request.signup(email, password, username);
     if (userInfo) {
-      user.updateUserInfoAfterSignUp(email, password, username);
-      displaySignInPage();
+      user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+      displayMainPage();
     }
   }
 
@@ -57,8 +60,12 @@ const eventHandler = async e => {
 
     const userInfo = await request.signin(email, password);
     if (userInfo) {
-      user.updateUserInfoWithToken(userInfo.data.token);
-      console.log(user.updateUserInfoWithToken(userInfo.data.token));
+      console.log(userInfo);
+      user.updateUserInfoWithToken(
+        userInfo.data.payload.email,
+        userInfo.data.username,
+        userInfo.data.token
+      );
 
       if (userInfo.data.token) displayMainPage();
     }

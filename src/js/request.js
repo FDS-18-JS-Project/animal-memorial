@@ -13,7 +13,7 @@ export const signin = async (email, password) => {
     });
     return userInfo;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -30,6 +30,6 @@ export const signup = async (email, password, username) => {
     });
     return res;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

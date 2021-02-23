@@ -1942,54 +1942,49 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var User = /*#__PURE__*/function () {
-  function User(username, email, password, token, bookmark) {
+  function User(username, email, token, bookmark) {
     _classCallCheck(this, User);
 
     this.username = username;
     this.email = email;
-    this.password = password;
     this.token = token;
     this.bookmark = bookmark;
   }
 
   _createClass(User, [{
     key: "updateUserInfoAfterSignUp",
-    value: function updateUserInfoAfterSignUp(email, password, username) {
+    value: function updateUserInfoAfterSignUp(email, username, token) {
       this.username = username;
       this.email = email;
-      this.password = password;
+      this.token = token;
       return this;
     }
   }, {
     key: "updateUserInfoWithToken",
-    value: function updateUserInfoWithToken(token) {
+    value: function updateUserInfoWithToken(email, username, token) {
+      this.username = username;
+      this.email = email;
       this.token = token;
       return this;
+    }
+  }, {
+    key: "getToken",
+    value: function getToken() {
+      return this.token;
     }
   }]);
 
   return User;
 }();
-var Pet = /*#__PURE__*/function () {
-  function Pet(petName, deathDate, favorites, image) {
-    _classCallCheck(this, Pet);
+var Pet = function Pet(petName, deathDate, favorites, image) {
+  _classCallCheck(this, Pet);
 
-    this.petName = petName;
-    this.deathDate = deathDate;
-    this.favorites = favorites;
-    this.image = image;
-    this.comments = [];
-  }
-
-  _createClass(Pet, [{
-    key: "getName",
-    value: function getName() {
-      return this.petName;
-    }
-  }]);
-
-  return Pet;
-}();
+  this.petName = petName;
+  this.deathDate = deathDate;
+  this.favorites = favorites;
+  this.image = image;
+  this.comments = [];
+};
 var comments = function comments(_comments, pet, owner) {
   _classCallCheck(this, comments);
 
@@ -2046,7 +2041,7 @@ var signin = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            console.error(_context.t0);
 
           case 10:
           case "end":
@@ -2086,7 +2081,7 @@ var signup = /*#__PURE__*/function () {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
+            console.error(_context2.t0);
 
           case 10:
           case "end":
@@ -12146,6 +12141,8 @@ var eventHandler = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            // if token existed
+            //   if (user.getToken()) displayMainPage();
             // redirect to landing
             if (e.target.matches('.site-title')) {
               (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
@@ -12177,8 +12174,8 @@ var eventHandler = /*#__PURE__*/function () {
             userInfo = _context.sent;
 
             if (userInfo) {
-              user.updateUserInfoAfterSignUp(email, password, username);
-              (0,_views_signin__WEBPACK_IMPORTED_MODULE_2__.default)();
+              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+              (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
           case 10:
@@ -12197,8 +12194,8 @@ var eventHandler = /*#__PURE__*/function () {
             _userInfo = _context.sent;
 
             if (_userInfo) {
-              user.updateUserInfoWithToken(_userInfo.data.token);
-              console.log(user.updateUserInfoWithToken(_userInfo.data.token));
+              console.log(_userInfo);
+              user.updateUserInfoWithToken(_userInfo.data.payload.email, _userInfo.data.username, _userInfo.data.token);
               if (_userInfo.data.token) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
