@@ -2206,7 +2206,8 @@ var loginHandler = /*#__PURE__*/function () {
             userInfo = _context.sent;
 
             if (userInfo) {
-              user.updateUserInfoWithToken(userInfo.data.payload.email, userInfo.data.username, userInfo.data.token);
+              console.log(userInfo);
+              user.updateUserInfoWithToken(userInfo.data.payload.email, userInfo.data.username, userInfo.data.token, userInfo.data.payload._id);
               _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.setCookie('token', userInfo.data.token, {
                 secure: true,
                 'max-age': 3600 * 3
@@ -2247,8 +2248,7 @@ var displaySignInPage = function displaySignInPage() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getSignUpInfo": () => (/* binding */ getSignUpInfo),
-/* harmony export */   "displaySignUpPage": () => (/* binding */ displaySignUpPage)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model */ "./src/js/model.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
@@ -2296,7 +2296,8 @@ var registerHandler = /*#__PURE__*/function () {
             userInfo = _context.sent;
 
             if (userInfo) {
-              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+              console.log(userInfo);
+              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token, userInfo.data.user._id);
               _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.setCookie('token', userInfo.data.token, {
                 secure: true,
                 'max-age': 3600 * 3
@@ -2323,7 +2324,7 @@ var displaySignUpPage = function displaySignUpPage() {
   document.querySelector('.register-form').addEventListener('submit', registerHandler);
 };
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displaySignUpPage);
 
 /***/ }),
 
@@ -2347,9 +2348,10 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var User = /*#__PURE__*/function () {
-  function User(username, email, token, bookmark) {
+  function User(id, username, email, token, bookmark) {
     _classCallCheck(this, User);
 
+    this.id = id;
     this.username = username;
     this.email = email;
     this.token = token;
@@ -2358,18 +2360,20 @@ var User = /*#__PURE__*/function () {
 
   _createClass(User, [{
     key: "updateUserInfoAfterSignUp",
-    value: function updateUserInfoAfterSignUp(email, username, token) {
+    value: function updateUserInfoAfterSignUp(email, username, token, id) {
       this.username = username;
       this.email = email;
       this.token = token;
+      this.id = id;
       return this;
     }
   }, {
     key: "updateUserInfoWithToken",
-    value: function updateUserInfoWithToken(email, username, token) {
+    value: function updateUserInfoWithToken(email, username, token, id) {
       this.username = username;
       this.email = email;
       this.token = token;
+      this.id = id;
       return this;
     }
   }, {
@@ -2381,9 +2385,10 @@ var User = /*#__PURE__*/function () {
 
   return User;
 }();
-var Pet = function Pet(petName, deathDate, favorites, image) {
+var Pet = function Pet(petName, deathDate, favorites, image, petId) {
   _classCallCheck(this, Pet);
 
+  this.petId = petId;
   this.petName = petName;
   this.deathDate = deathDate;
   this.favorites = favorites;
@@ -12553,7 +12558,7 @@ var eventHandler = function eventHandler(e) {
 
 
   if (e.target.matches('.signup-btn') || e.target.matches('.register-title')) {
-    (0,_components_signup__WEBPACK_IMPORTED_MODULE_0__.displaySignUpPage)();
+    (0,_components_signup__WEBPACK_IMPORTED_MODULE_0__.default)();
   } // redirect to signin page
 
 

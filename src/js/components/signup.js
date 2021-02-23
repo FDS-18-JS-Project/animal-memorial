@@ -29,7 +29,13 @@ const registerHandler = async e => {
 
   const userInfo = await request.signup(email, password, username);
   if (userInfo) {
-    user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+    console.log(userInfo);
+    user.updateUserInfoAfterSignUp(
+      email,
+      username,
+      userInfo.data.token,
+      userInfo.data.user._id
+    );
     Cookies.setCookie('token', userInfo.data.token, {
       secure: true,
       'max-age': 3600 * 3
@@ -84,4 +90,4 @@ const displaySignUpPage = () => {
     .addEventListener('submit', registerHandler);
 };
 
-export { getSignUpInfo, displaySignUpPage };
+export default displaySignUpPage;

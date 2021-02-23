@@ -1,22 +1,25 @@
 export class User {
-  constructor(username, email, token, bookmark) {
+  constructor(id, username, email, token, bookmark) {
+    this.id = id;
     this.username = username;
     this.email = email;
     this.token = token;
     this.bookmark = bookmark;
   }
 
-  updateUserInfoAfterSignUp(email, username, token) {
+  updateUserInfoAfterSignUp(email, username, token, id) {
     this.username = username;
     this.email = email;
     this.token = token;
+    this.id = id;
     return this;
   }
 
-  updateUserInfoWithToken(email, username, token) {
+  updateUserInfoWithToken(email, username, token, id) {
     this.username = username;
     this.email = email;
     this.token = token;
+    this.id = id;
     return this;
   }
 
@@ -26,7 +29,8 @@ export class User {
 }
 
 export class Pet {
-  constructor(petName, deathDate, favorites, image) {
+  constructor(petName, deathDate, favorites, image, petId) {
+    this.petId = petId;
     this.petName = petName;
     this.deathDate = deathDate;
     this.favorites = favorites;
