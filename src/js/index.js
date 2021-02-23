@@ -7,6 +7,7 @@ import displayMainPage from './views/main';
 // components
 import getSignUpInfo from './components/signup';
 import getSignInInfo from './components/signin';
+import getMainInfo from './components/main';
 
 // models
 import { User } from './model';
@@ -78,7 +79,10 @@ const eventHandler = async e => {
         'max-age': 3600 * 3
       });
 
-      if (userInfo.data.token) displayMainPage();
+      if (userInfo.data.token) {
+        displayMainPage();
+        getMainInfo();
+      }
     }
   }
 

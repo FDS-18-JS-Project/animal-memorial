@@ -1,6 +1,29 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@babel/polyfill/lib/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@babel/polyfill/lib/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+__webpack_require__(/*! ./noConflict */ "./node_modules/@babel/polyfill/lib/noConflict.js");
+
+var _global = _interopRequireDefault(__webpack_require__(/*! core-js/library/fn/global */ "./node_modules/core-js/library/fn/global.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+if (_global["default"]._babelPolyfill && typeof console !== "undefined" && console.warn) {
+  console.warn("@babel/polyfill is loaded more than once on this page. This is probably not desirable/intended " + "and may have consequences if different versions of the polyfills are applied sequentially. " + "If you do need to load the polyfill more than once, use @babel/polyfill/noConflict " + "instead to bypass the warning.");
+}
+
+_global["default"]._babelPolyfill = true;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/polyfill/lib/noConflict.js":
 /*!********************************************************!*\
   !*** ./node_modules/@babel/polyfill/lib/noConflict.js ***!
@@ -1872,6 +1895,126 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/js/components/main.js":
+/*!***********************************!*\
+  !*** ./src/js/components/main.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+// TODO: section 1 - attention list server fetch
+// section 2 - pets list
+// TODO: server fetch
+var getMainInfo = function getMainInfo() {
+  var pets = [{
+    petName: '1',
+    deathDate: '2021.02.19',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '2',
+    deathDate: '2021.02.20',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '3',
+    deathDate: '2021.02.21',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '4',
+    deathDate: '2021.02.23',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '5',
+    deathDate: '2021.02.24',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '6',
+    deathDate: '2021.02.25',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '7',
+    deathDate: '2021.02.26',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }];
+
+  var carousel = function carousel($container, pets) {
+    var currentSlide = 0;
+    var isMoving = false;
+    var DURATION = 500;
+    var timerId = null;
+    var $Slides = null;
+
+    var move = function move(currentSlide) {
+      var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      if (duration) isMoving = true;
+      $Slides.style.setProperty('--duration', duration);
+      $Slides.style.setProperty('--currentSlide', currentSlide);
+    };
+
+    $container.innerHTML = "\n      <div class=\"pets-card-container\">\n        <div class=\"slides\">\n        ".concat([pets[pets.length - 2], pets[pets.length - 1]].concat(_toConsumableArray(pets), [pets[0], pets[1]]).map(function (_ref) {
+      var petName = _ref.petName,
+          deathDate = _ref.deathDate,
+          favorites = _ref.favorites,
+          image = _ref.image;
+      return "<a href=\"#\" class=\"pets-card\">\n            <img src=\"".concat(image, "\" />\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">").concat(petName, "</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">").concat(deathDate, "</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">").concat(favorites, "</span>\n            </div>\n          </a>");
+    }).join(''), "\n        </div>\n      </div>\n      <i class=\"slide-control prev fas fa-chevron-left\"></i>\n      <i class=\"slide-control next fas fa-chevron-right\"></i>");
+    $Slides = document.querySelector('.slides');
+
+    window.onload = function () {
+      move(currentSlide = 2); // Autoplay
+
+      timerId = setInterval(function () {
+        return move(++currentSlide, DURATION);
+      }, 2000);
+    };
+
+    $container.onclick = function (_ref2) {
+      var target = _ref2.target;
+      if (!target.classList.contains('slide-control') || isMoving) return;
+      clearInterval(timerId);
+      var clickedBtn = target.classList.contains('prev') ? -1 : 1;
+      currentSlide += 1 * clickedBtn;
+      move(currentSlide, DURATION);
+    };
+
+    $container.ontransitionend = function () {
+      isMoving = false;
+      var clickedBtn = currentSlide === 1 ? 1 : currentSlide === pets.length + 1 ? -1 : 0;
+      if (!clickedBtn) return;
+      clickedBtn === -1 ? currentSlide = 1 : currentSlide += pets.length * currentSlide;
+      move(currentSlide);
+    };
+  };
+
+  carousel(document.querySelector('.slides-container'), pets);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getMainInfo);
+
+/***/ }),
+
 /***/ "./src/js/components/signin.js":
 /*!*************************************!*\
   !*** ./src/js/components/signin.js ***!
@@ -1919,6 +2062,149 @@ var getSignUpInfo = function getSignUpInfo() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getSignUpInfo);
+
+/***/ }),
+
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/landing */ "./src/js/views/landing.js");
+/* harmony import */ var _views_signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/signup */ "./src/js/views/signup.js");
+/* harmony import */ var _views_signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/signin */ "./src/js/views/signin.js");
+/* harmony import */ var _views_main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/main */ "./src/js/views/main.js");
+/* harmony import */ var _components_signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/signup */ "./src/js/components/signup.js");
+/* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
+/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/main */ "./src/js/components/main.js");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./model */ "./src/js/model.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./request */ "./src/js/request.js");
+/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// views
+
+
+
+ // components
+
+
+
+ // models
+
+ // axios requests
+
+ // cookies
+
+
+var user = new _model__WEBPACK_IMPORTED_MODULE_7__.User(); // check if token exists
+
+if (_utils_cookies__WEBPACK_IMPORTED_MODULE_9__.getCookie('token')) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
+
+var eventHandler = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var _getSignUpInfo, email, password, username, userInfo, _getSignInInfo, _email, _password, _userInfo;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            // redirect to landing
+            if (e.target.matches('.site-title')) {
+              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
+            } // redirect to signup page
+
+
+            if (e.target.matches('.signup-btn') || e.target.matches('.register-title')) {
+              (0,_views_signup__WEBPACK_IMPORTED_MODULE_1__.default)();
+            } // redirect to signin page
+
+
+            if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
+              (0,_views_signin__WEBPACK_IMPORTED_MODULE_2__.default)();
+            } // click register button from signup page
+
+
+            if (!e.target.matches('.register-btn')) {
+              _context.next = 10;
+              break;
+            }
+
+            e.preventDefault(); // validation required
+
+            _getSignUpInfo = (0,_components_signup__WEBPACK_IMPORTED_MODULE_4__.default)(), email = _getSignUpInfo.email, password = _getSignUpInfo.password, username = _getSignUpInfo.username;
+            _context.next = 8;
+            return _request__WEBPACK_IMPORTED_MODULE_8__.signup(email, password, username);
+
+          case 8:
+            userInfo = _context.sent;
+
+            if (userInfo) {
+              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_9__.setCookie('token', userInfo.data.token, {
+                secure: true,
+                'max-age': 3600 * 3
+              });
+              (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
+            }
+
+          case 10:
+            if (!e.target.matches('.login-btn')) {
+              _context.next = 17;
+              break;
+            }
+
+            e.preventDefault(); // validation required
+
+            _getSignInInfo = (0,_components_signin__WEBPACK_IMPORTED_MODULE_5__.default)(), _email = _getSignInInfo.email, _password = _getSignInInfo.password;
+            _context.next = 15;
+            return _request__WEBPACK_IMPORTED_MODULE_8__.signin(_email, _password);
+
+          case 15:
+            _userInfo = _context.sent;
+
+            if (_userInfo) {
+              user.updateUserInfoWithToken(_userInfo.data.payload.email, _userInfo.data.username, _userInfo.data.token);
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_9__.setCookie('token', _userInfo.data.token, {
+                secure: true,
+                'max-age': 3600 * 3
+              });
+
+              if (_userInfo.data.token) {
+                (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
+                (0,_components_main__WEBPACK_IMPORTED_MODULE_6__.default)();
+              }
+            }
+
+          case 17:
+            // click the login cred auto-saved button
+            if (e.target.matches('.login-form-checkbox')) ; // click logout button
+
+            if (e.target.matches('.logout')) {
+              _request__WEBPACK_IMPORTED_MODULE_8__.signout();
+              _utils_cookies__WEBPACK_IMPORTED_MODULE_9__.deleteCookie('token');
+              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
+            }
+
+          case 19:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function eventHandler(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+document.querySelector('body').addEventListener('click', eventHandler);
 
 /***/ }),
 
@@ -11351,6 +11637,16 @@ module.exports = __webpack_require__(/*! ../modules/_core */ "./node_modules/cor
 
 /***/ }),
 
+/***/ "./src/sass/style.scss":
+/*!*****************************!*\
+  !*** ./src/sass/style.scss ***!
+  \*****************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected \"{\".\n   ╷\n20 │ @import \"./components/_main\";\n   │                             ^\n   ╵\n  src/sass/style.scss 20:29  root stylesheet\n    at processResult (/Users/jihye/Documents/dev/animal-memorial/node_modules/webpack/lib/NormalModule.js:598:19)\n    at /Users/jihye/Documents/dev/animal-memorial/node_modules/webpack/lib/NormalModule.js:692:5\n    at /Users/jihye/Documents/dev/animal-memorial/node_modules/loader-runner/lib/LoaderRunner.js:399:11\n    at /Users/jihye/Documents/dev/animal-memorial/node_modules/loader-runner/lib/LoaderRunner.js:251:18\n    at context.callback (/Users/jihye/Documents/dev/animal-memorial/node_modules/loader-runner/lib/LoaderRunner.js:124:13)\n    at /Users/jihye/Documents/dev/animal-memorial/node_modules/sass-loader/dist/index.js:54:7\n    at Function.call$2 (/Users/jihye/Documents/dev/animal-memorial/node_modules/sass/sass.dart.js:91729:16)\n    at _render_closure1.call$2 (/Users/jihye/Documents/dev/animal-memorial/node_modules/sass/sass.dart.js:80373:12)\n    at _RootZone.runBinary$3$3 (/Users/jihye/Documents/dev/animal-memorial/node_modules/sass/sass.dart.js:27269:18)\n    at _FutureListener.handleError$1 (/Users/jihye/Documents/dev/animal-memorial/node_modules/sass/sass.dart.js:25797:19)");
+
+/***/ }),
+
 /***/ "./node_modules/regenerator-runtime/runtime.js":
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
@@ -12176,175 +12472,14 @@ try {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!***************************************************!*\
-  !*** ./node_modules/@babel/polyfill/lib/index.js ***!
-  \***************************************************/
-
-
-__webpack_require__(/*! ./noConflict */ "./node_modules/@babel/polyfill/lib/noConflict.js");
-
-var _global = _interopRequireDefault(__webpack_require__(/*! core-js/library/fn/global */ "./node_modules/core-js/library/fn/global.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-if (_global["default"]._babelPolyfill && typeof console !== "undefined" && console.warn) {
-  console.warn("@babel/polyfill is loaded more than once on this page. This is probably not desirable/intended " + "and may have consequences if different versions of the polyfills are applied sequentially. " + "If you do need to load the polyfill more than once, use @babel/polyfill/noConflict " + "instead to bypass the warning.");
-}
-
-_global["default"]._babelPolyfill = true;
-})();
-
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-var __webpack_exports__ = {};
-/*!*************************!*\
-  !*** ./src/js/index.js ***!
-  \*************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_landing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/landing */ "./src/js/views/landing.js");
-/* harmony import */ var _views_signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/signup */ "./src/js/views/signup.js");
-/* harmony import */ var _views_signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/signin */ "./src/js/views/signin.js");
-/* harmony import */ var _views_main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/main */ "./src/js/views/main.js");
-/* harmony import */ var _components_signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/signup */ "./src/js/components/signup.js");
-/* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
-/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./model */ "./src/js/model.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./request */ "./src/js/request.js");
-/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-// views
-
-
-
- // components
-
-
- // models
-
- // axios requests
-
- // cookies
-
-
-var user = new _model__WEBPACK_IMPORTED_MODULE_6__.User(); // check if token exists
-
-if (_utils_cookies__WEBPACK_IMPORTED_MODULE_8__.getCookie('token')) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
-
-var eventHandler = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var _getSignUpInfo, email, password, username, userInfo, _getSignInInfo, _email, _password, _userInfo;
-
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            // redirect to landing
-            if (e.target.matches('.site-title')) {
-              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
-            } // redirect to signup page
-
-
-            if (e.target.matches('.signup-btn') || e.target.matches('.register-title')) {
-              (0,_views_signup__WEBPACK_IMPORTED_MODULE_1__.default)();
-            } // redirect to signin page
-
-
-            if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
-              (0,_views_signin__WEBPACK_IMPORTED_MODULE_2__.default)();
-            } // click register button from signup page
-
-
-            if (!e.target.matches('.register-btn')) {
-              _context.next = 10;
-              break;
-            }
-
-            e.preventDefault(); // validation required
-
-            _getSignUpInfo = (0,_components_signup__WEBPACK_IMPORTED_MODULE_4__.default)(), email = _getSignUpInfo.email, password = _getSignUpInfo.password, username = _getSignUpInfo.username;
-            _context.next = 8;
-            return _request__WEBPACK_IMPORTED_MODULE_7__.signup(email, password, username);
-
-          case 8:
-            userInfo = _context.sent;
-
-            if (userInfo) {
-              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
-              _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.setCookie('token', userInfo.data.token, {
-                secure: true,
-                'max-age': 3600 * 3
-              });
-              (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
-            }
-
-          case 10:
-            if (!e.target.matches('.login-btn')) {
-              _context.next = 17;
-              break;
-            }
-
-            e.preventDefault(); // validation required
-
-            _getSignInInfo = (0,_components_signin__WEBPACK_IMPORTED_MODULE_5__.default)(), _email = _getSignInInfo.email, _password = _getSignInInfo.password;
-            _context.next = 15;
-            return _request__WEBPACK_IMPORTED_MODULE_7__.signin(_email, _password);
-
-          case 15:
-            _userInfo = _context.sent;
-
-            if (_userInfo) {
-              user.updateUserInfoWithToken(_userInfo.data.payload.email, _userInfo.data.username, _userInfo.data.token);
-              _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.setCookie('token', _userInfo.data.token, {
-                secure: true,
-                'max-age': 3600 * 3
-              });
-              if (_userInfo.data.token) (0,_views_main__WEBPACK_IMPORTED_MODULE_3__.default)();
-            }
-
-          case 17:
-            // click the login cred auto-saved button
-            if (e.target.matches('.login-form-checkbox')) ; // click logout button
-
-            if (e.target.matches('.logout')) {
-              _request__WEBPACK_IMPORTED_MODULE_7__.signout();
-              _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.deleteCookie('token');
-              (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
-            }
-
-          case 19:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function eventHandler(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-document.querySelector('body').addEventListener('click', eventHandler);
-})();
-
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!*****************************!*\
-  !*** ./src/sass/style.scss ***!
-  \*****************************/
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	__webpack_require__("./node_modules/@babel/polyfill/lib/index.js");
+/******/ 	__webpack_require__("./src/js/index.js");
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/sass/style.scss");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map

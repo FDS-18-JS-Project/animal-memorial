@@ -79,11 +79,21 @@ body {
   .pets-card-container {
     overflow: hidden;
     width: 1500px;
+<<<<<<< Updated upstream
+=======
+    /* carousel 요소의 width 셋팅이 완료될 때까지 감춘다. */
+>>>>>>> Stashed changes
     /* opacity: 0; */
 
     .slides {
       --currentSlide: 0;
+<<<<<<< Updated upstream
       --duration: 0;
+=======
+      /* 자바스크립트 추가 -> 슬라이드 변경 */
+      --duration: 0;
+      /* 자바스크립트 추가 -> 애니메이션 추가 */
+>>>>>>> Stashed changes
       display: flex;
       transition: transform calc(var(--duration) * 1ms) ease-out;
       transform: translate3D(calc(var(--currentSlide) * -535px), 0, 0);
