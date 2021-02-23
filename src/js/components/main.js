@@ -166,7 +166,11 @@ const displayMainPage = () => {
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
   <p class="slogan">Memorial for my Pet</p>
+<<<<<<< HEAD
   <div class="logo"><img src="/public/img/logo.png" alt="logo" /></div>
+=======
+  <div class="logo"><img src="/public/assets/img/logo.png" alt="logo"></div>
+>>>>>>> a3892bbbfeed1e8509114629e76ef059326e306c
   <nav>
     <ul class="menu">
       <li class="bookmark">북마크</li>
