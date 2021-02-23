@@ -27,10 +27,12 @@ const loginHandler = async e => {
 
   const userInfo = await request.signin(email, password);
   if (userInfo) {
+    console.log(userInfo);
     user.updateUserInfoWithToken(
       userInfo.data.payload.email,
       userInfo.data.username,
-      userInfo.data.token
+      userInfo.data.token,
+      userInfo.data.payload._id
     );
 
     Cookies.setCookie('token', userInfo.data.token, {

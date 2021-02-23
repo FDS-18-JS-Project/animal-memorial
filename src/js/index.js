@@ -1,10 +1,8 @@
-// components
-import { displaySignUpPage } from './components/signup';
+import displaySignUpPage from './components/signup';
 import { displayMainPage } from './components/main';
+
 import displayLandingPage from './components/landing';
 import { displaySignInPage } from './components/signin';
-import { displayAnimalPostPage } from './components/animal-post';
-
 // cookies
 import * as Cookies from './utils/cookies';
 

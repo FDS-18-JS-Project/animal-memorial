@@ -4,7 +4,7 @@ import { User } from '../model';
 import * as request from '../request';
 // cookies
 import * as Cookies from '../utils/cookies';
-import { displayMainPage } from './main';
+import displayMainPage from './main';
 
 const user = new User();
 
@@ -29,7 +29,13 @@ const registerHandler = async e => {
 
   const userInfo = await request.signup(email, password, username);
   if (userInfo) {
-    user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+    console.log(userInfo);
+    user.updateUserInfoAfterSignUp(
+      email,
+      username,
+      userInfo.data.token,
+      userInfo.data.user._id
+    );
     Cookies.setCookie('token', userInfo.data.token, {
       secure: true,
       'max-age': 3600 * 3
@@ -84,4 +90,4 @@ const displaySignUpPage = () => {
     .addEventListener('submit', registerHandler);
 };
 
-export { getSignUpInfo, displaySignUpPage };
+export default displaySignUpPage;

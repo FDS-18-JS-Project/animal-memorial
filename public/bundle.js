@@ -1872,6 +1872,120 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/js/components/animal-register.js":
+/*!**********************************************!*\
+  !*** ./src/js/components/animal-register.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var tmp = function tmp() {
+  var $animalRegisterForm = document.querySelector('.animal-register-form');
+  var $imgInput = document.querySelector('.img-input');
+  var $button = document.querySelector('.button');
+
+  var setThumbnail = function setThumbnail(e) {
+    var image = e.target.files[0];
+    var thubImage = document.createElement('img');
+    thubImage.setAttribute('src', window.URL.createObjectURL(image));
+    thubImage.style.width = '780px';
+    thubImage.style.backgroundRepeat = 'no-repeat';
+    thubImage.style.position = 'absolute';
+    thubImage.style.zIndex = '99';
+    document.querySelector('.img-container').appendChild(thubImage); // const reader = new FileReader();
+    // reader.onload = e => {
+    //   const img = document.createElement('img');
+    //   img.setAttribute('src', e.target.result);
+    //   img.style.width = '780px';
+    //   img.style.backgroundRepeat = 'no-repeat';
+    //   img.style.position = 'absolute';
+    //   img.style.zIndex = '99';
+    //   document.querySelector('.img-container').appendChild(img);
+    // };
+    // reader.readAsDataURL(e.target.files[0]);
+  };
+
+  function dragOver(e) {
+    var effectDrag = e.target.parentNode.style;
+
+    if (e.type === 'dragover') {
+      effectDrag.backgroundColor = 'rgba(151, 151, 157, 0.4)';
+      effectDrag.transition = 'all 0.3s';
+    } else {
+      effectDrag.backgroundColor = '#FFFFFF';
+    }
+  }
+
+  $imgInput.onchange = function (e) {
+    setThumbnail(e);
+  }; // TODO: 서버 보내기
+
+
+  $button.onclick = function (e) {
+    e.preventDefault();
+
+    var formDate = _toConsumableArray(document.forms)[0];
+
+    var image = window.URL.createObjectURL(formDate[0].files[0]);
+    var petName = formDate[1].value;
+    var deathDate = "".concat(formDate[2].value, ".").concat(formDate[3].value, ".").concat(formDate[4].value);
+    var favorites = ["".concat(formDate[5].value), "".concat(formDate[6].value), "".concat(formDate[7].value)];
+    console.log('image: ', image);
+    console.log('petName: ', petName);
+    console.log('deathDate: ', deathDate);
+    console.log('favorites: ', favorites);
+  };
+
+  $animalRegisterForm.onclick = function (_ref) {
+    var target = _ref.target;
+    if (!target.matches('div > input[type="text"]')) return;
+    target.previousElementSibling.classList.add('active');
+  };
+
+  $animalRegisterForm.onkeyup = function (e) {
+    if (!e.key === 'Tab') return;
+    if (!e.target.matches('div > input[type="text"]')) return;
+    e.target.previousElementSibling.classList.add('active');
+  };
+
+  $imgInput.addEventListener('dragover', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    dragOver(e);
+  });
+  $imgInput.addEventListener('dragleave', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    dragOver(e);
+  });
+};
+
+var displayAnimalRegisterPage = function displayAnimalRegisterPage() {
+  var markup = "<header class=\"header\">\n  <h1 class=\"offscreen\">\uB3D9\uBB3C \uCD94\uBAA8\uACF5\uC6D0</h1>\n  <p class=\"slogan\">Memorial for my Pet</p>\n  <div class=\"logo\"><img src=\"./img/logo.png\" alt=\"logo\"></div>\n  <nav>\n    <ul class=\"menu\">\n      <li class=\"bookmark\"><a href=\"#\">\uBD81\uB9C8\uD06C</a></li>\n      <li class=\"animal-register\"><a href=\"/public/html/animal-register.html\">\uB0B4 \uBC18\uB824\uACAC \uB4F1\uB85D</a></li>\n      <li class=\"logout\"><a href=\"/public/index.html\">\uB85C\uADF8\uC544\uC6C3</a></li>\n    </ul>\n  </nav>\n</header>\n<!-- animal register section -->\n<main class=\"animal-register-container\">\n  <h1 class=\"title\">\uB0B4 \uBC18\uB824\uACAC \uCD94\uBAA8 \uACF5\uAC04 \uB4F1\uB85D</h1>\n  <form action=\"#\" method=\"#\" class=\"animal-register-form\">\n    <!-- pet image -->\n    <div class=\"img-container\">\n      <label class=\"img-label\" for=\"animal-img\">\uB2F9\uC2E0\uC758 \uBC18\uB824\uACAC \uC774\uBBF8\uC9C0\uB97C \uB4F1\uB85D\uD574\uC8FC\uC138\uC694.</label>\n      <input class=\"img-input\" type=\"file\" id=\"animal-img\" name=\"animal-img\" accept=\"image/*\" required\n        autocomplete=\"off\">\n      <i class=\"img-icon fad fa-upload fa-9x\"></i>\n    </div>\n    <!-- pet name -->\n    <div class=\"name-container\">\n      <label class=\"name-label text-label\" for=\"animal-name\">\uBC18\uB824\uACAC \uC774\uB984</label>\n      <input class=\"name-input\" type=\"text\" id=\"animal-name\" name=\"animal-name\" required autocomplete=\"off\">\n    </div>\n    <!-- pet date of death -->\n    <div class=\"death-container\">\n      <label class=\"death-year-label text-label\" for=\"year\">\uAE30\uC77C</label>\n      <select class=\"death-year-select\" id=\"year\" name=\"year\" required>\n        <option value=\"\">\uB144\uB3C4</option>\n        <option value=\"2021\">2021</option>\n        <option value=\"2020\">2020</option>\n        <option value=\"2019\">2019</option>\n        <option value=\"2018\">2018</option>\n        <option value=\"2017\">2017</option>\n        <option value=\"2016\">2016</option>\n      </select>\n      <label class=\"death-month-label offscreen\" for=\"month\">\uAE30\uC77C \uC120\uD0DD \uD56D\uBAA9</label>\n      <select class=\"death-month-select\" id=\"month\" name=\"month\" required>\n        <option value=\"\">\uC6D4</option>\n        <option value=\"1\">1</option>\n        <option value=\"2\">2</option>\n        <option value=\"3\">3</option>\n        <option value=\"4\">4</option>\n        <option value=\"5\">5</option>\n        <option value=\"6\">6</option>\n        <option value=\"7\">7</option>\n        <option value=\"8\">8</option>\n        <option value=\"9\">9</option>\n        <option value=\"10\">10</option>\n        <option value=\"11\">11</option>\n        <option value=\"12\">12</option>\n      </select>\n      <label class=\"death-date-label offscreen\" for=\"date\">\uAE30\uC77C \uC120\uD0DD \uD56D\uBAA9</label>\n      <select class=\"death-date-select\" id=\"date\" name=\"date\" required>\n        <option value=\"\">\uC77C</option>\n        <option value=\"1\">1</option>\n        <option value=\"2\">2</option>\n        <option value=\"3\">3</option>\n        <option value=\"4\">4</option>\n        <option value=\"5\">5</option>\n        <option value=\"6\">6</option>\n        <option value=\"7\">7</option>\n        <option value=\"8\">8</option>\n        <option value=\"9\">9</option>\n        <option value=\"10\">10</option>\n        <option value=\"11\">11</option>\n        <option value=\"12\">12</option>\n        <option value=\"13\">13</option>\n        <option value=\"14\">14</option>\n        <option value=\"15\">15</option>\n        <option value=\"16\">16</option>\n        <option value=\"17\">17</option>\n        <option value=\"18\">18</option>\n        <option value=\"19\">19</option>\n        <option value=\"20\">20</option>\n        <option value=\"21\">21</option>\n        <option value=\"22\">22</option>\n        <option value=\"23\">23</option>\n        <option value=\"24\">24</option>\n        <option value=\"25\">25</option>\n        <option value=\"26\">26</option>\n        <option value=\"27\">27</option>\n        <option value=\"28\">28</option>\n        <option value=\"29\">29</option>\n        <option value=\"30\">30</option>\n        <option value=\"31\">31</option>\n      </select>\n    </div>\n    <!-- pet favorites -->\n    <div class=\"favorite-1st-container\">\n      <label class=\"favorit-1st-label text-label\" for=\"animal-favorit-1st\">\uC88B\uC544\uD588\uB358 \uAC83 1</label>\n      <input class=\"favorit-1st-input\" type=\"text\" id=\"animal-favorite-1st\" name=\"animal-favorite-1st\" required\n        autocomplete=\"off\">\n    </div>\n    <div class=\"favorite-2nd-container\">\n      <label class=\"favorit-2nd-label text-label\" for=\"animal-favorite-2nd\">\uC88B\uC544\uD588\uB358 \uAC83 2</label>\n      <input class=\"favorit-2nd-input\" type=\"text\" id=\"animal-favorite-2nd\" name=\"animal-favorite-2nd\"\n        autocomplete=\"off\">\n    </div>\n    <div class=\"favorite-3rd-container\">\n      <label class=\"favorit-3rd-label text-label\" for=\"animal-favorite-3rd\">\uC88B\uC544\uD588\uB358 \uAC83 3</label>\n      <input class=\"favorit-3rd-input\" type=\"text\" id=\"animal-favorite-3rd\" name=\"animal-favorite-3rd\"\n        autocomplete=\"off\">\n    </div>\n    <!-- animal register form submit button -->\n    <input type=\"submit\" class=\"animal-register-button\" value=\"\uB4F1\uB85D\">\n  </form>\n  <div style=\"font-size: 20px;\">\n    <i class=\"foot-1st fas fa-paw fa-6x\"></i>\n    <i class=\"foot-2nd fas fa-paw fa-8x\"></i>\n    <i class=\"foot-3rd fas fa-paw fa-10x\"></i>\n  </div>\n</main>\n<footer class=\"footer\">\n  <h2 class=\"offscreen\">\uD558\uB2E8\uC601\uC5ED</h2>\n  <p class=\"footer-title\">Memorial for my Pet</p>\n  <address class=\"footer-address\">\n    <i class=\"fas fa-home\"></i>\n    <span>\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uC131\uC218\uC774\uB85C 113 \uC81C\uAC15\uBE4C\uB529 7\uCE35</span>\n  </address>\n  <div class=\"git-links\">\n    <i class=\"fab fa-github\"></i>\n    <a href=\"https://github.com/dannylee9212\">Jaehoon Lee @dannylee9212</a>\n    <a href=\"https://github.com/jjhstoday\">Jihye Jang @jjhstoday</a>\n    <a href=\"https://github.com/Bernese-Corgi\">Jinyoung Choi @Bernese-Corgi</a>\n  </div>\n  <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>\n</footer>";
+  document.querySelector('body').innerHTML = markup;
+  document.querySelector('.animal-register-button').addEventListener('click');
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayAnimalRegisterPage);
+
+/***/ }),
+
 /***/ "./src/js/components/landing.js":
 /*!**************************************!*\
   !*** ./src/js/components/landing.js ***!
@@ -1901,12 +2015,12 @@ var displayLandingPage = function displayLandingPage() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "displayMainPage": () => (/* binding */ displayMainPage),
-/* harmony export */   "carousel": () => (/* binding */ carousel)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
 /* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
 /* harmony import */ var _landing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./landing */ "./src/js/components/landing.js");
+/* harmony import */ var _animal_register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animal-register */ "./src/js/components/animal-register.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1926,6 +2040,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
+
 var logout = function logout() {
   _request__WEBPACK_IMPORTED_MODULE_0__.signout(); // check whether
 
@@ -1933,64 +2048,105 @@ var logout = function logout() {
   (0,_landing__WEBPACK_IMPORTED_MODULE_2__.default)();
 };
 
-var carousel = function carousel($container, pets) {
-  var currentSlide = 0;
-  var isMoving = false;
-  var DURATION = 500;
-  var timerId = null;
-  var $Slides = null;
+var animalRegister = function animalRegister() {
+  (0,_animal_register__WEBPACK_IMPORTED_MODULE_3__.default)();
+};
 
-  var move = function move(currentSlide) {
-    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    if (duration) isMoving = true;
-    $Slides.style.setProperty('--duration', duration);
-    $Slides.style.setProperty('--currentSlide', currentSlide);
-  };
+var moveCarousel = function moveCarousel() {
+  var pets = [{
+    petName: '1',
+    deathDate: '2021.02.19',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '2',
+    deathDate: '2021.02.20',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '3',
+    deathDate: '2021.02.21',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '4',
+    deathDate: '2021.02.23',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '5',
+    deathDate: '2021.02.24',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '6',
+    deathDate: '2021.02.25',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }, {
+    petName: '7',
+    deathDate: '2021.02.26',
+    favorites: '산책하기',
+    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }];
 
-  document.addEventListener('DOMContentLoaded', function () {
+  var carousel = function carousel($container, pets) {
+    var currentSlide = 0;
+    var isMoving = false;
+    var DURATION = 500;
+    var timerId = null;
+    var $Slides = null;
+
+    var move = function move(currentSlide) {
+      var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      if (duration) isMoving = true;
+      $Slides.style.setProperty('--duration', duration);
+      $Slides.style.setProperty('--currentSlide', currentSlide);
+    };
+
     $container.innerHTML = "\n    <div class=\"pets-card-container\">\n      <div class=\"slides\">\n      ".concat([pets[pets.length - 2], pets[pets.length - 1]].concat(_toConsumableArray(pets), [pets[0], pets[1]]).map(function (_ref) {
       var petName = _ref.petName,
           deathDate = _ref.deathDate,
           favorites = _ref.favorites,
           image = _ref.image;
-      return "<a href=\"#\" class=\"pets-card\">\n          <img src=\"".concat(image, "\" />\n          <div class=\"name\">\n            <span class=\"title\">\uC774\uB984</span>\n            <span class=\"desc\">").concat(petName, "</span>\n          </div>\n          <div class=\"death-date\">\n            <span class=\"title\">\uAE30\uC77C</span>\n            <span class=\"desc\">").concat(deathDate, "</span>\n          </div>\n          <div class=\"favorite\">\n            <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n            <span class=\"desc\">").concat(favorites, "</span>\n          </div>\n        </a>");
-    }).join(''), "\n      </div>\n    </div>\n    <i class=\"slide-control prev fas fa-chevron-left\"></i>\n    <i class=\"slide-control next fas fa-chevron-right\"></i>");
+      return " < a href = \"#\"\n    class = \"pets-card\" >\n      <\n      img src = \"".concat(image, "\" / >\n      <\n      div class = \"name\" >\n      <\n      span class = \"title\" > \uC774\uB984 < /span> <\n      span class = \"desc\" > $ {\n        petName\n      } < /span> <\n      /div> <\n      div class = \"death-date\" >\n      <\n      span class = \"title\" > \uAE30\uC77C < /span> <\n      span class = \"desc\" > $ {\n        deathDate\n      } < /span> <\n      /div> <\n      div class = \"favorite\" >\n      <\n      span class = \"title\" > \uC88B\uC544\uD588\uB358 \uAC83 < /span> <\n      span class = \"desc\" > $ {\n        favorites\n      } < /span> <\n      /div> <\n      /a>");
+    }).join(''), " <\n      /div> <\n      /div> <\n      i class = \"slide-control prev fas fa-chevron-left\" > < /i> <\n      i class = \"slide-control next fas fa-chevron-right\" > < /i>");
     $Slides = document.querySelector('.slides');
-  });
-
-  window.onload = function () {
-    move(currentSlide = 2); // Autoplay
-
+    move(currentSlide = 2);
     timerId = setInterval(function () {
       return move(++currentSlide, DURATION);
     }, 2000);
+
+    $container.onclick = function (_ref2) {
+      var target = _ref2.target;
+      if (!target.classList.contains('slide-control') || isMoving) return;
+      clearInterval(timerId);
+      timerId = null;
+      var clickedBtn = target.classList.contains('prev') ? -1 : 1;
+      currentSlide += 1 * clickedBtn;
+      move(currentSlide, DURATION);
+    };
+
+    $container.ontransitionend = function () {
+      isMoving = false;
+      var clickedBtn = currentSlide === 1 ? 1 : currentSlide === pets.length + 1 ? -1 : 0;
+      if (!clickedBtn) return;
+      currentSlide = clickedBtn === -1 ? 1 : pets.length + 1;
+      move(currentSlide);
+    };
   };
 
-  $container.onclick = function (_ref2) {
-    var target = _ref2.target;
-    if (!target.classList.contains('slide-control') || isMoving) return; // clearInterval(timerId);
-
-    var clickedBtn = target.classList.contains('prev') ? -1 : 1;
-    currentSlide += 1 * clickedBtn;
-    move(currentSlide, DURATION);
-  };
-
-  $container.ontransitionend = function () {
-    isMoving = false;
-    var clickedBtn = currentSlide === 1 ? 1 : currentSlide === pets.length + 1 ? -1 : 0;
-    if (!clickedBtn) return;
-    clickedBtn === -1 ? currentSlide = 1 : currentSlide += pets.length * currentSlide;
-    move(currentSlide);
-  };
+  carousel(document.querySelector('.slides-container'), pets);
 };
 
 var displayMainPage = function displayMainPage() {
   var markup = "<header class=\"header\">\n  <h1 class=\"offscreen\">\uB3D9\uBB3C \uCD94\uBAA8\uACF5\uC6D0</h1>\n  <p class=\"slogan\">Memorial for my Pet</p>\n  <div class=\"logo\"><img src=\"../img/logo.png\" alt=\"logo\"></div>\n  <nav>\n    <ul class=\"menu\">\n      <li class=\"bookmark\">\uBD81\uB9C8\uD06C</li>\n      <li class=\"animal-register\">\uB0B4 \uBC18\uB824\uACAC \uB4F1\uB85D</li>\n      <li class=\"logout\">\uB85C\uADF8\uC544\uC6C3</li>\n    </ul>\n  </nav>\n</header>\n<main class=\"main\">\n  <section class=\"poster\">\n    <p class=\"poster-title\">\uC548\uB155,\n      \uB098\uC758 \uCE5C\uAD6C.</p>\n  </section>\n  <section class=\"attention\">\n    <h2 class=\"attention-title\">\uC774 \uC544\uC774\uB4E4\uC5D0\uAC8C\uB3C4 \uAD00\uC2EC\uC744 \uC8FC\uC138\uC694.</h2>\n    <div class=\"attention-card-container\">\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n      <a href=\"#\" class=\"attention-card\">\n        <img src=\"\" alt=\"\">\n        <p class=\"name\">\uCF54\uCF54</p>\n      </a>\n    </div>\n  </section>\n  <section class=\"pets\">\n    <h2 class=\"pets-title\">\uC774\uB7F0 \uC544\uC774\uB4E4\uB3C4 \uC788\uB2F5\uB2C8\uB2E4.</h2>\n    <div class=\"slides-container\">\n      <!-- <div class=\"pets-card-container\">\n        <div class=\"slides\">\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">1</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">2</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">3</span>\n            </div>\n            <div class=\"date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">4</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">5</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">6</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n          <a href=\"#\" class=\"pets-card\">\n            <img src=\"\" alt=\"\">\n            <div class=\"name\">\n              <span class=\"title\">\uC774\uB984</span>\n              <span class=\"desc\">7</span>\n            </div>\n            <div class=\"death-date\">\n              <span class=\"title\">\uAE30\uC77C</span>\n              <span class=\"desc\">2021.02.19</span>\n            </div>\n            <div class=\"favorite\">\n              <span class=\"title\">\uC88B\uC544\uD588\uB358 \uAC83</span>\n              <span class=\"desc\">\uBA38\u314F\u3134\u3147\uB985\u3148\uB450\uD6C4\uB9CC\uC73C,\u3139\uBB38\u3147\u314D,\u3161\u315C.\u3147,\uB204\uB77C\u3163\u3153\u3142\uC8FC\uB2E4\u3153\u3141\u3134;\uC544/\u315C\u3141\uB0B2 \u3161\u3141\u314C \u314A\uD478\u3160\u3153\u3134\uC6B7\uB78D\uC9C7\uB77C\u3150</span>\n            </div>\n          </a>\n        </div>\n      </div>\n      <i class=\"slide-control prev fas fa-chevron-left\"></i>\n      <i class=\"slide-control next fas fa-chevron-right\"></i> -->\n    </div>\n  </section>\n</main>\n<footer class=\"footer\">\n  <h2 class=\"offscreen\">\uD558\uB2E8\uC601\uC5ED</h2>\n  <p class=\"footer-title\">Memorial for my Pet</p>\n  <address class=\"footer-address\">\n    <i class=\"fas fa-home\"></i>\n    <span>\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uC131\uC218\uC774\uB85C 113 \uC81C\uAC15\uBE4C\uB529 7\uCE35</span>\n  </address>\n  <div class=\"git-links\">\n    <i class=\"fab fa-github\"></i>\n    <a href=\"https://github.com/dannylee9212\">Jaehoon Lee @dannylee9212</a>\n    <a href=\"https://github.com/jjhstoday\">Jihye Jang @jjhstoday</a>\n    <a href=\"https://github.com/Bernese-Corgi\">Jinyoung Choi @Bernese-Corgi</a>\n  </div>\n  <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>\n</footer>";
   document.querySelector('body').innerHTML = markup;
   document.querySelector('.logout').addEventListener('click', logout);
+  document.querySelector('.animal-register').addEventListener('click', animalRegister);
 };
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayMainPage);
 
 /***/ }),
 
@@ -2050,7 +2206,8 @@ var loginHandler = /*#__PURE__*/function () {
             userInfo = _context.sent;
 
             if (userInfo) {
-              user.updateUserInfoWithToken(userInfo.data.payload.email, userInfo.data.username, userInfo.data.token);
+              console.log(userInfo);
+              user.updateUserInfoWithToken(userInfo.data.payload.email, userInfo.data.username, userInfo.data.token, userInfo.data.payload._id);
               _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.setCookie('token', userInfo.data.token, {
                 secure: true,
                 'max-age': 3600 * 3
@@ -2091,8 +2248,7 @@ var displaySignInPage = function displaySignInPage() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getSignUpInfo": () => (/* binding */ getSignUpInfo),
-/* harmony export */   "displaySignUpPage": () => (/* binding */ displaySignUpPage)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model */ "./src/js/model.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
@@ -2140,12 +2296,13 @@ var registerHandler = /*#__PURE__*/function () {
             userInfo = _context.sent;
 
             if (userInfo) {
-              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token);
+              console.log(userInfo);
+              user.updateUserInfoAfterSignUp(email, username, userInfo.data.token, userInfo.data.user._id);
               _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.setCookie('token', userInfo.data.token, {
                 secure: true,
                 'max-age': 3600 * 3
               });
-              (0,_main__WEBPACK_IMPORTED_MODULE_3__.displayMainPage)();
+              (0,_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
           case 6:
@@ -2167,7 +2324,7 @@ var displaySignUpPage = function displaySignUpPage() {
   document.querySelector('.register-form').addEventListener('submit', registerHandler);
 };
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displaySignUpPage);
 
 /***/ }),
 
@@ -2181,8 +2338,7 @@ var displaySignUpPage = function displaySignUpPage() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "User": () => (/* binding */ User),
-/* harmony export */   "Pet": () => (/* binding */ Pet),
-/* harmony export */   "comments": () => (/* binding */ comments)
+/* harmony export */   "Pet": () => (/* binding */ Pet)
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2191,9 +2347,10 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var User = /*#__PURE__*/function () {
-  function User(username, email, token, bookmark) {
+  function User(id, username, email, token, bookmark) {
     _classCallCheck(this, User);
 
+    this.id = id;
     this.username = username;
     this.email = email;
     this.token = token;
@@ -2202,18 +2359,20 @@ var User = /*#__PURE__*/function () {
 
   _createClass(User, [{
     key: "updateUserInfoAfterSignUp",
-    value: function updateUserInfoAfterSignUp(email, username, token) {
+    value: function updateUserInfoAfterSignUp(email, username, token, id) {
       this.username = username;
       this.email = email;
       this.token = token;
+      this.id = id;
       return this;
     }
   }, {
     key: "updateUserInfoWithToken",
-    value: function updateUserInfoWithToken(email, username, token) {
+    value: function updateUserInfoWithToken(email, username, token, id) {
       this.username = username;
       this.email = email;
       this.token = token;
+      this.id = id;
       return this;
     }
   }, {
@@ -2221,26 +2380,57 @@ var User = /*#__PURE__*/function () {
     value: function getToken() {
       return this.token;
     }
+  }, {
+    key: "getUserName",
+    value: function getUserName() {
+      return this.username;
+    }
   }]);
 
   return User;
 }();
-var Pet = function Pet(petName, deathDate, favorites, image) {
-  _classCallCheck(this, Pet);
+var Pet = /*#__PURE__*/function () {
+  function Pet(petName, deathDate, favorites, image, petId) {
+    _classCallCheck(this, Pet);
 
-  this.petName = petName;
-  this.deathDate = deathDate;
-  this.favorites = favorites;
-  this.image = image;
-  this.comments = [];
-};
-var comments = function comments(_comments, pet, owner) {
-  _classCallCheck(this, comments);
+    this.petId = petId;
+    this.petName = petName;
+    this.deathDate = deathDate;
+    this.favorites = favorites;
+    this.image = image;
+    this.comments = [];
+  }
 
-  this.comments = _comments;
-  this.pet = pet;
-  this.owner = owner;
-};
+  _createClass(Pet, [{
+    key: "getPetName",
+    value: function getPetName() {
+      return this.petName;
+    }
+  }, {
+    key: "getPetDeathDate",
+    value: function getPetDeathDate() {
+      return this.deathDate;
+    }
+  }, {
+    key: "getPetFavorite",
+    value: function getPetFavorite() {
+      return this.favorites;
+    }
+  }, {
+    key: "getPetImg",
+    value: function getPetImg() {
+      return this.image;
+    }
+  }]);
+
+  return Pet;
+}(); // export class Comments {
+//   constructor(comments, pet, owner) {
+//     this.comments = comments;
+//     this.pet = pet;
+//     this.owner = owner;
+//   }
+// }
 
 /***/ }),
 
@@ -2255,7 +2445,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "signin": () => (/* binding */ signin),
 /* harmony export */   "signup": () => (/* binding */ signup),
-/* harmony export */   "signout": () => (/* binding */ signout)
+/* harmony export */   "signout": () => (/* binding */ signout),
+/* harmony export */   "getPetInfo": () => (/* binding */ getPetInfo),
+/* harmony export */   "postComment": () => (/* binding */ postComment)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2380,6 +2572,86 @@ var signout = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
+var getPetInfo = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(petId) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'get',
+              url: URL_GET_PETS,
+              headers: {
+                'content-type': 'application/json'
+              },
+              data: {
+                petId: petId
+              }
+            });
+
+          case 3:
+            res = _context4.sent;
+            return _context4.abrupt("return", res);
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.error(_context4.t0);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function getPetInfo(_x6) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+var postComment = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(userId, comment) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'post',
+              url: URL_COMMENT,
+              data: {
+                userId: userId,
+                comment: comment
+              }
+            });
+
+          case 3:
+            res = _context5.sent;
+            return _context5.abrupt("return", res);
+
+          case 7:
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](0);
+            console.error(_context5.t0);
+
+          case 10:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[0, 7]]);
+  }));
+
+  return function postComment(_x7, _x8) {
+    return _ref5.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -2394,11 +2666,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "URL_LOGIN": () => (/* binding */ URL_LOGIN),
 /* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER),
-/* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT)
+/* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT),
+/* harmony export */   "URL_GET_PETS": () => (/* binding */ URL_GET_PETS)
 /* harmony export */ });
 var URL_LOGIN = 'http://localhost:8080/login';
 var URL_REGISTER = 'http://localhost:8080/signup';
 var URL_LOGOUT = 'http://localhost:8080/logout';
+var URL_GET_PETS = 'http://localhost:8080/pets';
 
 /***/ }),
 
@@ -2449,7 +2723,6 @@ var setCookie = function setCookie(name, value) {
     }
   }
 
-  console.log(updatedCookie);
   document.cookie = "".concat(updatedCookie);
 };
 
@@ -12379,7 +12652,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_landing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/landing */ "./src/js/components/landing.js");
 /* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
 /* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
-// components
 
 
 
@@ -12397,12 +12669,16 @@ var eventHandler = function eventHandler(e) {
 
 
   if (e.target.matches('.signup-btn') || e.target.matches('.register-title')) {
-    (0,_components_signup__WEBPACK_IMPORTED_MODULE_0__.displaySignUpPage)();
+    (0,_components_signup__WEBPACK_IMPORTED_MODULE_0__.default)();
   } // redirect to signin page
 
 
   if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
     (0,_components_signin__WEBPACK_IMPORTED_MODULE_3__.displaySignInPage)();
+  }
+
+  if (e.target.matches('.animal-register-form .button')) {
+    displayAnimalPostPage();
   }
 };
 
