@@ -79,10 +79,9 @@ body {
   .pets-card-container {
     overflow: hidden;
     width: 1500px;
-    /* opacity: 0; */
 
     .slides {
-      --currentSlide: 0;
+      --currentSlide: 0
       --duration: 0;
       display: flex;
       transition: transform calc(var(--duration) * 1ms) ease-out;
