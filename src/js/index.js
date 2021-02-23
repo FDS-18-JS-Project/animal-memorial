@@ -3,6 +3,7 @@ import displayLandingPage from './views/landing';
 import displaySignUpPage from './views/signup';
 import displaySignInPage from './views/signin';
 import displayMainPage from './views/main';
+import displayAnimalPostPage from './views/animal-post';
 
 // components
 import getSignUpInfo from './components/signup';
