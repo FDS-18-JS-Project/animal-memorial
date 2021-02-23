@@ -23,6 +23,10 @@ export class User {
   getToken() {
     return this.token;
   }
+
+  getUserName() {
+    return this.username;
+  }
 }
 
 export class Pet {
@@ -33,12 +37,28 @@ export class Pet {
     this.image = image;
     this.comments = [];
   }
-}
 
-export class comments {
-  constructor(comments, pet, owner) {
-    this.comments = comments;
-    this.pet = pet;
-    this.owner = owner;
+  getPetName() {
+    return this.petName;
+  }
+
+  getPetDeathDate() {
+    return this.deathDate;
+  }
+
+  getPetFavorite() {
+    return this.favorites;
+  }
+
+  getPetImg() {
+    return this.image;
   }
 }
+
+// export class Comments {
+//   constructor(comments, pet, owner) {
+//     this.comments = comments;
+//     this.pet = pet;
+//     this.owner = owner;
+//   }
+// }

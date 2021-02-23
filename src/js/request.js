@@ -45,3 +45,35 @@ export const signout = async () => {
     console.error(error);
   }
 };
+
+export const getPetInfo = async petId => {
+  try {
+    const res = await axios({
+      method: 'get',
+      url: URL_GET_PETS,
+      headers: { 'content-type': 'application/json' },
+      data: {
+        petId
+      }
+    });
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postComment = async (userId, comment) => {
+  try {
+    const res = await axios({
+      method: 'post',
+      url: URL_COMMENT,
+      data: {
+        userId,
+        comment
+      }
+    });
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
