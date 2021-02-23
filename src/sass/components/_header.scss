@@ -4,16 +4,20 @@
   color: $white_font;
   padding: 10px 50px;
 
-  .brand {
+  .slogan {
     font-size: 20px;
     font-weight: $medium;
     margin: 10px;
   }
 
+  .logo>img {
+      width: 50px;
+  }
+  
   .menu {
     @include flex(center, center, row, nowrap);
 
-    a {
+    li {
       margin-left: 10px;
       padding: 10px;
       text-decoration: none;

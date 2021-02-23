@@ -454,10 +454,13 @@ caption {
   color: #FFFCF9;
   padding: 10px 50px;
 }
-.header .brand {
+.header .slogan {
   font-size: 20px;
   font-weight: 500;
   margin: 10px;
+}
+.header .logo > img {
+  width: 50px;
 }
 .header .menu {
   display: flex;
@@ -465,7 +468,7 @@ caption {
   align-items: center;
   flex-flow: row nowrap;
 }
-.header .menu a {
+.header .menu li {
   margin-left: 10px;
   padding: 10px;
   text-decoration: none;
@@ -732,28 +735,28 @@ body {
 }
 
 .img-container {
-  height: 300px;
-  border: 2px dashed rgba(24, 24, 24, 0.3);
+  height: 450px;
+  border: 4px dashed rgba(24, 24, 24, 0.2);
   margin-bottom: 90px;
   position: relative;
+  overflow: hidden;
 }
 .img-container .img-label {
   font-size: 18px;
   position: absolute;
-  bottom: 40px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0.6;
 }
 .img-container .img-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 40px auto 0;
-  width: 200px;
-  height: 200px;
+  display: block;
+  width: 780px;
+  height: 450px;
+  top: 0;
+  position: absolute;
   opacity: 0;
+  z-index: 99;
 }
 .img-container .img-icon {
   padding: 30px;
@@ -762,7 +765,7 @@ body {
   width: 200px;
   height: 200px;
   position: absolute;
-  bottom: 70px;
+  bottom: 160px;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0.3;
@@ -801,7 +804,7 @@ body {
   font-size: 15px;
   top: -25px;
   left: 5px;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.4);
 }
 .death-container .death-year-select,
 .death-container .death-month-select {
@@ -870,7 +873,7 @@ body {
 
 .foot-1st {
   position: absolute;
-  bottom: 0;
+  bottom: -100px;
   right: 40px;
   opacity: 0.2;
   transform: rotate(8.71deg);
@@ -878,7 +881,7 @@ body {
 
 .foot-2nd {
   position: absolute;
-  bottom: -200px;
+  bottom: -300px;
   right: 100px;
   opacity: 0.2;
   transform: rotate(-24.84deg);
@@ -886,7 +889,7 @@ body {
 
 .foot-3rd {
   position: absolute;
-  bottom: -450px;
+  bottom: -550px;
   right: 140px;
   opacity: 0.2;
   transform: rotate(6.43deg);

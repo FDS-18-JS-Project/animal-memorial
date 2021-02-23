@@ -150,7 +150,7 @@ const displayMainPage = () => {
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
   <p class="slogan">Memorial for my Pet</p>
-  <div class="logo"><img src="../img/logo.png" alt="logo"></div>
+  <div class="logo"><img src="/public/assets/img/logo.png" alt="logo"></div>
   <nav>
     <ul class="menu">
       <li class="bookmark">북마크</li>
