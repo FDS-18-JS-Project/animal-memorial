@@ -84,15 +84,11 @@
   
     .desc {
       display: block;
-      height: 3.6em;
-      overflow: hidden;
-      white-space: normal;
-      line-height: 1.2;
+      overflow: auto;
+      max-height: 180px;
+      line-height: 1.5;
       text-align: left;
-      word-wrap: break-word;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      font-size: 0.9em;
     }
   }
 }
@@ -132,7 +128,7 @@
   .pet {
     font-size: 20px;
     display: block;
-    text-indent: 5px;
+    padding-left: 5px;
     margin-top: 10px;
 
     a:hover {
@@ -161,15 +157,19 @@
   background: transparent;
   border: 1px solid rgba($color: $black, $alpha: 0.0);
   border-bottom: 1px solid rgba($color: $black, $alpha: 0.1);
-  border-radius: 5px;
   padding: 8px;
   width: 100%;
   margin: 20px;
+
+  &:hover {
+    border-bottom: 1px solid rgba($color: $black, $alpha: 0.4);
+    transition: 500ms;
+  }
   
   &:focus {
     outline: none;
     border: 1px solid rgba($color: $black, $alpha: 0);
-    border-bottom: 1px solid rgba($color: $black, $alpha: 0.3);
+    border-bottom: 1px solid rgba($color: $black, $alpha: 0.8);
     border-radius: 0px;
     transition: 100ms;
   }
@@ -177,7 +177,6 @@
   &::placeholder {
     font-size: 16px;
     color: rgba($color: $black, $alpha: 0.4);
-    text-indent: 0;
   }
 }
 
