@@ -1,35 +1,35 @@
 import axios from 'axios';
+import { URL_LOGIN, URL_REGISTER } from './utils/constants';
 
-const signin = async (email, password) => {
+export const signin = async (email, password) => {
   try {
-    const token = await axios({
+    const userInfo = await axios({
       method: 'post',
-      url: 'http://localhost:8080/login',
+      url: URL_LOGIN,
       data: {
         email,
         password
       }
     });
-    return token;
+    return userInfo;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
-const signup = async (email, password, username) => {
+
+export const signup = async (email, password, username) => {
   try {
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:8080/signup',
+      url: URL_REGISTER,
       data: {
         email,
         password,
         username
       }
     });
-    if (res.ok) window.location.href = 'http://localhost:9000/public/main.html';
+    return res;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
-
-export { signin, signup };

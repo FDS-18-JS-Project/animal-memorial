@@ -1,50 +1,57 @@
 // TODO: section 1 - attention list server fetch
 
-
 // section 2 - pets list
 // TODO: server fetch
-const pets = [{
+const pets = [
+  {
     petName: '1',
     deathDate: '2021.02.19',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
   },
   {
     petName: '2',
     deathDate: '2021.02.20',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
   },
   {
     petName: '3',
     deathDate: '2021.02.21',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
   },
   {
     petName: '4',
     deathDate: '2021.02.23',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
   },
   {
     petName: '5',
     deathDate: '2021.02.24',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
   },
   {
     petName: '6',
     deathDate: '2021.02.25',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
   },
   {
     petName: '7',
     deathDate: '2021.02.26',
     favorites: '산책하기',
-    image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  },
+    image:
+      'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
+  }
 ];
 
 const carousel = ($container, pets) => {
@@ -66,7 +73,20 @@ const carousel = ($container, pets) => {
     $container.innerHTML = `
     <div class="pets-card-container">
       <div class="slides">
-      ${[pets[pets.length - 2], pets[pets.length - 1], ...pets, pets[0], pets[1]].map(({ petName, deathDate, favorites, image }) => `<a href="#" class="pets-card">
+      ${[
+        pets[pets.length - 2],
+        pets[pets.length - 1],
+        ...pets,
+        pets[0],
+        pets[1]
+      ]
+        .map(
+          ({
+            petName,
+            deathDate,
+            favorites,
+            image
+          }) => `<a href="#" class="pets-card">
           <img src="${image}" />
           <div class="name">
             <span class="title">이름</span>
@@ -80,7 +100,9 @@ const carousel = ($container, pets) => {
             <span class="title">좋아했던 것</span>
             <span class="desc">${favorites}</span>
           </div>
-        </a>`).join('')}
+        </a>`
+        )
+        .join('')}
       </div>
     </div>
     <i class="slide-control prev fas fa-chevron-left"></i>
@@ -109,11 +131,14 @@ const carousel = ($container, pets) => {
   $container.ontransitionend = () => {
     isMoving = false;
 
-    const clickedBtn = currentSlide === 1 ? 1 : currentSlide === pets.length + 1 ? -1 : 0;
+    const clickedBtn =
+      currentSlide === 1 ? 1 : currentSlide === pets.length + 1 ? -1 : 0;
 
     if (!clickedBtn) return;
 
-    clickedBtn === -1 ? currentSlide = 1 : currentSlide += pets.length * currentSlide;
+    clickedBtn === -1
+      ? (currentSlide = 1)
+      : (currentSlide += pets.length * currentSlide);
     move(currentSlide);
   };
 };
