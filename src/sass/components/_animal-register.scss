@@ -33,34 +33,35 @@ body {
     margin: 30px 0 0 0;
   }
 
-  div > label.active {
+  div>label.active {
     @include label-focus;
   }
 }
 
 .img-container {
-  height: 300px;
-  border: 2px dashed rgba(24, 24, 24, 0.3);
+  height: 450px;
+  border: 4px dashed rgba(24, 24, 24, 0.2);
   margin-bottom: 90px;
   position: relative;
+  overflow: hidden;
 
   .img-label {
     font-size: 18px;
     position: absolute;
-    bottom: 40px;
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.6;
   }
 
   .img-input {
-    @include flex-center-center;
-  
-    padding: 0;
-    margin: 40px auto 0;
-    width: 200px;
-    height: 200px;
+    display: block;
+    width: 780px;
+    height: 450px;
+    top: 0;
+    position: absolute;
     opacity: 0;
+    z-index: 99;
   }
 
   .img-icon {
@@ -70,7 +71,7 @@ body {
     width: 200px;
     height: 200px;
     position: absolute;
-    bottom: 70px;
+    bottom: 160px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.3;
@@ -100,7 +101,7 @@ body {
     font-size: 15px;
     top: -25px;
     left: 5px;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.4);
   }
 
   .death-year-select,
@@ -123,10 +124,10 @@ body {
 
   .favorit-1st-label,
   .favorit-2nd-label,
-  .favorit-3rd-label{
+  .favorit-3rd-label {
     @include label;
   }
-  
+
   .favorit-1st-input,
   .favorit-2nd-input,
   .favorit-3rd-input {
@@ -135,14 +136,13 @@ body {
 }
 
 .foot-1st {
-  @include foot(0, 40px, 8.71deg);
+  @include foot(-100px, 40px, 8.71deg);
 }
 
 .foot-2nd {
-  @include foot(-200px, 100px, -24.84deg);
+  @include foot(-300px, 100px, -24.84deg);
 }
 
 .foot-3rd {
-  @include foot(-450px, 140px, 6.43deg);
+  @include foot(-550px, 140px, 6.43deg);
 }
-

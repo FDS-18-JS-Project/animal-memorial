@@ -4,7 +4,7 @@ import { User } from '../model';
 import * as request from '../request';
 // cookies
 import * as Cookies from '../utils/cookies';
-import { displayMainPage } from './main';
+import displayMainPage from './main';
 
 const user = new User();
 
