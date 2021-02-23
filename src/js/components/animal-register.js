@@ -1,3 +1,5 @@
+import { logout } from '../utils/common';
+
 const displayAnimalRegisterPage = () => {
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
@@ -220,6 +222,7 @@ function animalRegister() {
   });
 }
 animalRegister();
+document.querySelector('.logout').addEventListener('click', logout);
 // document.querySelector('.animal-register-button').addEventListener('click', );
 }
 

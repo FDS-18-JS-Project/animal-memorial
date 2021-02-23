@@ -1,17 +1,11 @@
-// axios requests
-import * as request from '../request';
-// cookies
-import * as Cookies from '../utils/cookies';
-// page
-import displayLandingPage from './landing';
+// // axios requests
+// import * as request from '../request';
+// // cookies
+// import * as Cookies from '../utils/cookies';
+// // page
+// import displayLandingPage from './landing';
 import displayAnimalRegisterPage from './animal-register';
-
-const logout = () => {
-  request.signout();
-  // check whether
-  Cookies.deleteCookie('token');
-  displayLandingPage();
-};
+import { logout } from '../utils/common';
 
 const animalRegister = () => {
   displayAnimalRegisterPage();
@@ -324,4 +318,4 @@ const displayMainPage = () => {
   document.querySelector('.animal-register').addEventListener('click', animalRegister);
 };
 
-export default displayMainPage;
+export { displayMainPage };
