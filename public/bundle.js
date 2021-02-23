@@ -2005,7 +2005,8 @@ var comments = function comments(_comments, pet, owner) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "signin": () => (/* binding */ signin),
-/* harmony export */   "signup": () => (/* binding */ signup)
+/* harmony export */   "signup": () => (/* binding */ signup),
+/* harmony export */   "signout": () => (/* binding */ signout)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2095,6 +2096,41 @@ var signup = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+var signout = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'get',
+              url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_LOGOUT
+            });
+
+          case 3:
+            res = _context3.sent;
+            return _context3.abrupt("return", res);
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            console.error(_context3.t0);
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+
+  return function signout() {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -2108,10 +2144,12 @@ var signup = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "URL_LOGIN": () => (/* binding */ URL_LOGIN),
-/* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER)
+/* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER),
+/* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT)
 /* harmony export */ });
 var URL_LOGIN = 'http://localhost:8080/login';
 var URL_REGISTER = 'http://localhost:8080/signup';
+var URL_LOGOUT = 'http://localhost:8080/logout';
 
 /***/ }),
 
@@ -12275,6 +12313,7 @@ var eventHandler = /*#__PURE__*/function () {
             if (e.target.matches('.login-form-checkbox')) ; // click logout button
 
             if (e.target.matches('.logout')) {
+              _request__WEBPACK_IMPORTED_MODULE_7__.signout();
               _utils_cookies__WEBPACK_IMPORTED_MODULE_8__.deleteCookie('token');
               (0,_views_landing__WEBPACK_IMPORTED_MODULE_0__.default)();
             }

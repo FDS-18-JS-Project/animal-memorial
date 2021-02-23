@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URL_LOGIN, URL_REGISTER } from './utils/constants';
+import { URL_LOGIN, URL_REGISTER, URL_LOGOUT } from './utils/constants';
 
 export const signin = async (email, password) => {
   try {
@@ -27,6 +27,18 @@ export const signup = async (email, password, username) => {
         password,
         username
       }
+    });
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const signout = async () => {
+  try {
+    const res = await axios({
+      method: 'get',
+      url: URL_LOGOUT
     });
     return res;
   } catch (error) {

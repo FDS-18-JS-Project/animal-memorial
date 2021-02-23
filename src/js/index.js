@@ -87,6 +87,7 @@ const eventHandler = async e => {
 
   // click logout button
   if (e.target.matches('.logout')) {
+    request.signout();
     Cookies.deleteCookie('token');
     displayLandingPage();
   }
