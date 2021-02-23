@@ -703,7 +703,7 @@ body {
   border-radius: 5px;
   margin: auto;
 }
-.animal-register-form .button {
+.animal-register-form .animal-register-button {
   cursor: pointer;
   outline: none;
   border: none;
@@ -718,7 +718,7 @@ body {
   align-items: center;
   margin-top: 30px;
 }
-.animal-register-form .button:hover {
+.animal-register-form .animal-register-button:hover {
   background-color: #7F4B4F;
   color: #181818;
   border-radius: 50px;
@@ -988,10 +988,9 @@ body {
 .pets .pets-card-container {
   overflow: hidden;
   width: 1500px;
-  /* opacity: 0; */
 }
 .pets .pets-card-container .slides {
-  --currentSlide: 0;
+  --currentSlide: 0
   --duration: 0;
   display: flex;
   transition: transform calc(var(--duration) * 1ms) ease-out;

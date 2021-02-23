@@ -1,6 +1,6 @@
 // components
 import { displaySignUpPage } from './components/signup';
-import { displayMainPage } from './components/main';
+import displayMainPage from './components/main';
 import displayLandingPage from './components/landing';
 import { displaySignInPage } from './components/signin';
 // cookies

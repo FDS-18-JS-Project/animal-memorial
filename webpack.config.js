@@ -24,7 +24,6 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-<<<<<<< Updated upstream
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
@@ -36,10 +35,6 @@ module.exports = {
             }
           }
         ]
-=======
-        test: /.(png|jpg)$/,
-        loader: 'url-loader'
->>>>>>> Stashed changes
       }
     ]
   },
