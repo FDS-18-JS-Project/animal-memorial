@@ -62,14 +62,15 @@ export const getPetInfo = async petId => {
   }
 };
 
-export const postComment = async (userId, comment) => {
+export const postComment = async (comment, userId, petId) => {
   try {
     const res = await axios({
       method: 'post',
       url: URL_COMMENT,
       data: {
+        comment,
         userId,
-        comment
+        petId
       }
     });
     return res;

@@ -51,7 +51,7 @@ const addNewComment = () => {
   $commentDate.textContent = `${pastCommentDate(writtenDate)}`;
 
   const user = new User();
-  postComment(user.getUserName(), $commentInput.value);
+  postComment(user.userId(), $commentInput.value);
 
   // username 렌더링
   $userName.textContent = user.getUserName();
