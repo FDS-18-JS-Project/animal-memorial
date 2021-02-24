@@ -122,6 +122,7 @@ const displayMainPage = () => {
 </header>
 <main class="main">
   <section class="poster">
+    <div class="poster-effect"></div>
     <p class="poster-title">안녕,
       나의 친구.</p>
   </section>
