@@ -4,7 +4,9 @@ import {
   URL_REGISTER,
   URL_LOGOUT,
   URL_PETS,
-  URL_USER_DATA
+  URL_USER_DATA,
+  URL_GET_PETS,
+  URL_COMMENT
 } from './utils/constants';
 
 export const signin = async (email, password) => {
@@ -104,3 +106,37 @@ export const getPetsInfo = async token => {
 //     console.error(error);
 //   }
 // };
+
+
+export const getPetInfo = async petId => {
+  try {
+    const res = await axios({
+      method: 'get',
+      url: URL_GET_PETS,
+      params: {
+        petId
+      }
+    });
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+export const postComment = async (comment, userId, petId) => {
+  try {
+    const res = await axios({
+      method: 'post',
+      url: URL_COMMENT,
+      data: {
+        comment,
+        userId,
+        petId
+      }
+    });
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};

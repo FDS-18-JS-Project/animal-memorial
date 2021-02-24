@@ -2383,8 +2383,7 @@ var displaySignUpPage = function displaySignUpPage() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "User": () => (/* binding */ User),
-/* harmony export */   "Pet": () => (/* binding */ Pet),
-/* harmony export */   "comments": () => (/* binding */ comments)
+/* harmony export */   "Pet": () => (/* binding */ Pet)
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2423,31 +2422,62 @@ var User = /*#__PURE__*/function () {
       return this.token;
     }
   }, {
+<<<<<<< HEAD
+    key: "getUserName",
+    value: function getUserName() {
+      return this.username;
+=======
     key: "getUserId",
     value: function getUserId() {
       return this.id;
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
     }
   }]);
 
   return User;
 }();
-var Pet = function Pet(petName, deathDate, favorites, image, petId) {
-  _classCallCheck(this, Pet);
+var Pet = /*#__PURE__*/function () {
+  function Pet(petName, deathDate, favorites, image, petId) {
+    _classCallCheck(this, Pet);
 
-  this.petId = petId;
-  this.petName = petName;
-  this.deathDate = deathDate;
-  this.favorites = favorites;
-  this.image = image;
-  this.comments = [];
-};
-var comments = function comments(_comments, pet, owner) {
-  _classCallCheck(this, comments);
+    this.petId = petId;
+    this.petName = petName;
+    this.deathDate = deathDate;
+    this.favorites = favorites;
+    this.image = image;
+    this.comments = [];
+  }
 
-  this.comments = _comments;
-  this.pet = pet;
-  this.owner = owner;
-};
+  _createClass(Pet, [{
+    key: "getPetName",
+    value: function getPetName() {
+      return this.petName;
+    }
+  }, {
+    key: "getPetDeathDate",
+    value: function getPetDeathDate() {
+      return this.deathDate;
+    }
+  }, {
+    key: "getPetFavorite",
+    value: function getPetFavorite() {
+      return this.favorites;
+    }
+  }, {
+    key: "getPetImg",
+    value: function getPetImg() {
+      return this.image;
+    }
+  }]);
+
+  return Pet;
+}(); // export class Comments {
+//   constructor(comments, pet, owner) {
+//     this.comments = comments;
+//     this.pet = pet;
+//     this.owner = owner;
+//   }
+// }
 
 /***/ }),
 
@@ -2463,7 +2493,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "signin": () => (/* binding */ signin),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "signout": () => (/* binding */ signout),
+<<<<<<< HEAD
+/* harmony export */   "getPetInfo": () => (/* binding */ getPetInfo),
+/* harmony export */   "postComment": () => (/* binding */ postComment)
+=======
 /* harmony export */   "getUserData": () => (/* binding */ getUserData)
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2588,8 +2623,13 @@ var signout = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
+<<<<<<< HEAD
+var getPetInfo = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(petId) {
+=======
 var getUserData = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(userId, token) {
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
     var res;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
@@ -2599,10 +2639,19 @@ var getUserData = /*#__PURE__*/function () {
             _context4.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_0___default()({
               method: 'get',
+<<<<<<< HEAD
+              url: URL_GET_PETS,
+              headers: {
+                'content-type': 'application/json'
+              },
+              data: {
+                petId: petId
+=======
               url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_USER_DATA + '/' + userId,
               headers: {
                 'content-type': 'application/json',
                 'Authorization': token
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
               }
             });
 
@@ -2623,6 +2672,51 @@ var getUserData = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 7]]);
   }));
 
+<<<<<<< HEAD
+  return function getPetInfo(_x6) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+var postComment = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(userId, comment) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'post',
+              url: URL_COMMENT,
+              data: {
+                userId: userId,
+                comment: comment
+              }
+            });
+
+          case 3:
+            res = _context5.sent;
+            return _context5.abrupt("return", res);
+
+          case 7:
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](0);
+            console.error(_context5.t0);
+
+          case 10:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[0, 7]]);
+  }));
+
+  return function postComment(_x7, _x8) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+=======
   return function getUserData(_x6, _x7) {
     return _ref4.apply(this, arguments);
   };
@@ -2674,6 +2768,7 @@ var logout = function logout() {
   _cookies__WEBPACK_IMPORTED_MODULE_1__.deleteCookie('token');
   (0,_components_landing__WEBPACK_IMPORTED_MODULE_2__.default)();
 };
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
 
 /***/ }),
 
@@ -2689,14 +2784,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "URL_LOGIN": () => (/* binding */ URL_LOGIN),
 /* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER),
 /* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT),
+<<<<<<< HEAD
+/* harmony export */   "URL_GET_PETS": () => (/* binding */ URL_GET_PETS)
+=======
 /* harmony export */   "URL_POST_PETS": () => (/* binding */ URL_POST_PETS),
 /* harmony export */   "URL_USER_DATA": () => (/* binding */ URL_USER_DATA)
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
 /* harmony export */ });
 var URL_LOGIN = 'http://localhost:8080/login';
 var URL_REGISTER = 'http://localhost:8080/signup';
 var URL_LOGOUT = 'http://localhost:8080/logout';
+<<<<<<< HEAD
+var URL_GET_PETS = 'http://localhost:8080/pets';
+=======
 var URL_POST_PETS = 'http://localhost:8080/pets';
 var URL_USER_DATA = 'http://localhost:8080/userdata';
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
 
 /***/ }),
 
@@ -12692,6 +12795,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
  // check if token exists
 
+<<<<<<< HEAD
+if (_utils_cookies__WEBPACK_IMPORTED_MODULE_4__.getCookie('token')) (0,_components_main__WEBPACK_IMPORTED_MODULE_1__.displayMainPage)();
+=======
 if (_utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token')) {
   var getUserInfo = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
@@ -12730,6 +12836,7 @@ if (_utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token')) {
   getUserInfo();
   (0,_components_main__WEBPACK_IMPORTED_MODULE_1__.displayMainPage)();
 }
+>>>>>>> 22a2cfb62a4c59cecc7a40faf89bf3ca3822e658
 
 var eventHandler = function eventHandler(e) {
   // redirect to landing
@@ -12745,6 +12852,10 @@ var eventHandler = function eventHandler(e) {
 
   if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
     (0,_components_signin__WEBPACK_IMPORTED_MODULE_3__.displaySignInPage)();
+  }
+
+  if (e.target.matches('.animal-register-form .button')) {
+    displayAnimalPostPage();
   }
 };
 

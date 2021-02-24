@@ -26,6 +26,10 @@ export class User {
   getUserId() {
     return this.id;
   }
+
+  getUserInfo() {
+    return this.username;
+  }
 }
 
 export class Pet {
@@ -46,6 +50,15 @@ export class Pet {
     this.image = image;
     this.comments = comments;
   }
+
+  getPetId() {
+    return this.petId;
+  }
+
+  addComment(comment) {
+    this.comments = [comment, ...this.comments];
+    return this.comments;
+  }
 }
 
 export class Pets {
@@ -61,13 +74,5 @@ export class Pets {
 
   getPetsInfo() {
     return this.pets;
-  }
-}
-
-export class comments {
-  constructor(comments, pet, owner) {
-    this.comments = comments;
-    this.pet = pet;
-    this.owner = owner;
   }
 }
