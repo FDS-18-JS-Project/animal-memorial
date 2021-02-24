@@ -2,6 +2,7 @@ import displaySignUpPage from './components/signup';
 import displayMainPage from './components/main';
 import displayLandingPage from './components/landing';
 import { displaySignInPage } from './components/signin';
+import { displayAnimalPostPage } from './components/animal-post';
 
 import { saveUserInfo, getPetsInfo } from './utils/common';
 // cookies
@@ -52,8 +53,9 @@ const eventHandler = e => {
     displaySignInPage();
   }
 
-  if (e.target.matches('.animal-register-form .button')) {
+  if (e.target.matches('.animal-register-button')) {
     displayAnimalPostPage();
+    // renderPetInfo();
   }
 };
 
