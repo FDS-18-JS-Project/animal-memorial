@@ -48,6 +48,10 @@ const eventHandler = e => {
   if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
     displaySignInPage();
   }
+
+  if (e.target.matches('.animal-register-form .button')) {
+    displayAnimalPostPage();
+  }
 };
 
 document.body.addEventListener('click', eventHandler);

@@ -2388,9 +2388,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "User": () => (/* binding */ User),
 /* harmony export */   "Pet": () => (/* binding */ Pet),
-/* harmony export */   "Pets": () => (/* binding */ Pets),
-/* harmony export */   "comments": () => (/* binding */ comments)
+/* harmony export */   "Pets": () => (/* binding */ Pets)
 /* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2432,6 +2443,11 @@ var User = /*#__PURE__*/function () {
     value: function getUserId() {
       return this.id;
     }
+  }, {
+    key: "getUserInfo",
+    value: function getUserInfo() {
+      return this.username;
+    }
   }]);
 
   return User;
@@ -2457,6 +2473,17 @@ var Pet = /*#__PURE__*/function () {
       this.favorites = favorites;
       this.image = image;
       this.comments = comments;
+    }
+  }, {
+    key: "getPetId",
+    value: function getPetId() {
+      return this.petId;
+    }
+  }, {
+    key: "addComment",
+    value: function addComment(comment) {
+      this.comments = [comment].concat(_toConsumableArray(this.comments));
+      return this.comments;
     }
   }]);
 
@@ -2487,13 +2514,6 @@ var Pets = /*#__PURE__*/function () {
 
   return Pets;
 }();
-var comments = function comments(_comments, pet, owner) {
-  _classCallCheck(this, comments);
-
-  this.comments = _comments;
-  this.pet = pet;
-  this.owner = owner;
-};
 
 /***/ }),
 
@@ -2511,7 +2531,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "signout": () => (/* binding */ signout),
 /* harmony export */   "getUserData": () => (/* binding */ getUserData),
 /* harmony export */   "postPetInfo": () => (/* binding */ postPetInfo),
-/* harmony export */   "getPetsInfo": () => (/* binding */ getPetsInfo)
+/* harmony export */   "getPetsInfo": () => (/* binding */ getPetsInfo),
+/* harmony export */   "getPetInfo": () => (/* binding */ getPetInfo),
+/* harmony export */   "postComment": () => (/* binding */ postComment)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2761,6 +2783,84 @@ var getPetsInfo = /*#__PURE__*/function () {
     return _ref6.apply(this, arguments);
   };
 }();
+var getPetInfo = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(petId) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            _context7.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'get',
+              url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_GET_PETS,
+              params: {
+                petId: petId
+              }
+            });
+
+          case 3:
+            res = _context7.sent;
+            return _context7.abrupt("return", res);
+
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
+            console.error(_context7.t0);
+
+          case 10:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7, null, [[0, 7]]);
+  }));
+
+  return function getPetInfo(_x15) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+var postComment = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(comment, userId, petId) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.prev = 0;
+            _context8.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'post',
+              url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_COMMENT,
+              data: {
+                comment: comment,
+                userId: userId,
+                petId: petId
+              }
+            });
+
+          case 3:
+            res = _context8.sent;
+            return _context8.abrupt("return", res);
+
+          case 7:
+            _context8.prev = 7;
+            _context8.t0 = _context8["catch"](0);
+            console.error(_context8.t0);
+
+          case 10:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, null, [[0, 7]]);
+  }));
+
+  return function postComment(_x16, _x17, _x18) {
+    return _ref8.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -2907,14 +3007,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "URL_LOGIN": () => (/* binding */ URL_LOGIN),
 /* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER),
 /* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT),
+/* harmony export */   "URL_POST_PETS": () => (/* binding */ URL_POST_PETS),
 /* harmony export */   "URL_PETS": () => (/* binding */ URL_PETS),
-/* harmony export */   "URL_USER_DATA": () => (/* binding */ URL_USER_DATA)
+/* harmony export */   "URL_USER_DATA": () => (/* binding */ URL_USER_DATA),
+/* harmony export */   "URL_GET_PETS": () => (/* binding */ URL_GET_PETS),
+/* harmony export */   "URL_COMMENT": () => (/* binding */ URL_COMMENT)
 /* harmony export */ });
 var URL_LOGIN = 'http://localhost:8080/login';
 var URL_REGISTER = 'http://localhost:8080/signup';
 var URL_LOGOUT = 'http://localhost:8080/logout';
+var URL_POST_PETS = 'http://localhost:8080/pets';
 var URL_PETS = 'http://localhost:8080/pets';
 var URL_USER_DATA = 'http://localhost:8080/userdata';
+var URL_GET_PETS = 'http://localhost:8080/pets';
+var URL_COMMENT = 'http://localhost:8080/comments';
 
 /***/ }),
 
@@ -12991,6 +13097,10 @@ var eventHandler = function eventHandler(e) {
 
   if (e.target.matches('.signin-btn') || e.target.matches('.login-title')) {
     (0,_components_signin__WEBPACK_IMPORTED_MODULE_3__.displaySignInPage)();
+  }
+
+  if (e.target.matches('.animal-register-form .button')) {
+    displayAnimalPostPage();
   }
 };
 

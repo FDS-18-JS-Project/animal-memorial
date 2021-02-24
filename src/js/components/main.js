@@ -256,19 +256,19 @@ const displayMainPage = () => {
         <div class="pets-card-container">
           <div class="slides">
           ${[
-            pets[pets.length - 2],
-            pets[pets.length - 1],
-            ...pets,
-            pets[0],
-            pets[1]
-          ]
-            .map(
-              ({
-                petName,
-                deathDate,
-                favorites,
-                image
-              }) => `<a href="#" class="pets-card">
+          pets[pets.length - 2],
+          pets[pets.length - 1],
+          ...pets,
+          pets[0],
+          pets[1]
+        ]
+          .map(
+            ({
+              petName,
+              deathDate,
+              favorites,
+              image
+            }) => `<a href="#" class="pets-card">
               <img src="${image}" />
               <div class="name">
                 <span class="title">이름</span>
@@ -283,8 +283,8 @@ const displayMainPage = () => {
                 <span class="desc">${favorites}</span>
               </div>
             </a>`
-            )
-            .join('')}
+          )
+          .join('')}
           </div>
         </div>
         <i class="slide-control prev fas fa-chevron-left"></i>
