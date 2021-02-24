@@ -2,6 +2,7 @@ import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
 import { Pet, Pets } from '../model';
+import displayMainPage from '../components/main';
 
 const pet = new Pet();
 const pets = new Pets();
@@ -209,6 +210,9 @@ const displayAnimalRegisterPage = () => {
   document
     .querySelector('.animal-register-button')
     .addEventListener('click', animalRegisterHandler);
+  
+  document.querySelector('.slogan').addEventListener('click', displayMainPage);
+  document.querySelector('.logo').addEventListener('click', displayMainPage);
 
   // document.querySelector('.animal-register-button').addEventListener('click', );
 };
