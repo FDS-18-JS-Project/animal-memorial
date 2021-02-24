@@ -37,6 +37,31 @@ export class Pet {
     this.image = image;
     this.comments = [];
   }
+
+  updatePetInfo(petId, petName, deathDate, favorites, image, comments) {
+    this.petId = petId;
+    this.petName = petName;
+    this.deathDate = deathDate;
+    this.favorites = favorites;
+    this.image = image;
+    this.comments = comments;
+  }
+}
+
+export class Pets {
+  constructor(pets, userid) {
+    this.userId = userid;
+    this.pets = pets;
+  }
+
+  updatePetsInfo(pets) {
+    this.pets = pets;
+    return this.pets;
+  }
+
+  getPetsInfo() {
+    return this.pets;
+  }
 }
 
 export class comments {

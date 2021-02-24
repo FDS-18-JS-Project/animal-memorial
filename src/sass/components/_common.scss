@@ -94,7 +94,7 @@ caption {
     margin-top: 10px;
   }
 
-  .date>.desc {
+  .date > .desc {
     font-size: 0.9em;
   }
 
@@ -172,7 +172,6 @@ caption {
   opacity: 0.6;
   transform: translate3d(10px, 16px, 0);
   transition: all 0.5s;
-
 }
 
 @mixin label-focus {

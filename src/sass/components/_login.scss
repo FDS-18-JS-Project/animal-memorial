@@ -11,18 +11,28 @@
     @include form;
     margin-top: 40px;
     box-sizing: border-box;
-
+    .form-field {
+      position: relative;
+    }
     .username,
     .password,
     .email {
       line-height: 40px;
-      margin-bottom: 40px;
       padding-left: 20px;
+      @include input;
     }
-    .login-form-checkbox {
-      transform: scale(1.7);
-      margin-right: 10px;
-      margin-left: 5px;
+    .error-message {
+      display: block;
+      padding: 15px 10px;
+      color: red;
+      font-weight: bold;
+    }
+    label {
+      @include label;
+    }
+
+    div > label.active {
+      @include label-focus;
     }
 
     .login-btn,
