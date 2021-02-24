@@ -15,22 +15,22 @@ export const useData = pets => {
   const $petsImg = document.querySelector('.pets-container>img');
   const $petsName = document.querySelector('.pets-info>.name>.desc');
   const $petsDeathDate = document.querySelector('.pets-info>.death-date>.desc');
-  const $petsFavorite = document.querySelector('.pets-info>.favorite>.desc');
-
-  // const $petsFavoriteList = document.createElement('li');
-  // $petsFavorite.appendChild($petsFavoriteList);
-  console.log($petsImg, $petsName, $petsDeathDate, $petsFavorite);
+  const $petsFavoriteList = document.querySelector('.pets-info>.favorite>.desc');
+  console.log($petsImg, $petsName, $petsDeathDate, $petsFavoriteList);
 
   // localStorage.setItem('petId', petInfo.data.pet._id);
-
   $petsImg.setAttribute('src', pets.image);
   $petsName.textContent = pets.name;
   $petsDeathDate.textContent = pets.deathDate;
 
-  // TODO: favorite - list로 구분 or ',' 쉼표 써서 구분
-  // favorites.map()
-  // $petsFavoriteList.textContent = pets.favorites;
+  // * favorites
+  const _favorites = pets.favorites;
 
+  _favorites.forEach(content => {
+    const $petsFavoriteItem = document.createElement('li');
+    $petsFavoriteList.appendChild($petsFavoriteItem);
+    $petsFavoriteItem.textContent = content;
+  });
 };
 // const userInfoId = localStorage.getItem('userId');
 // console.log(userInfoId);
@@ -192,9 +192,7 @@ const displayAnimalPostPage = () => {
   </div>
   <div class="favorite">
     <span class="title">좋아했던 것</span>
-    <ul>
-      <li class="desc"></li>
-    </ul>
+    <ul class="desc"></ul>
   </div>
 </div>
 </div>
