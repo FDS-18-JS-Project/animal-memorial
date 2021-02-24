@@ -27,7 +27,7 @@ export class User {
     return this.token;
   }
 
-  getUserName() {
+  getUserInfo() {
     return this.username;
   }
 }
@@ -42,27 +42,21 @@ export class Pet {
     this.comments = [];
   }
 
-  getPetName() {
-    return this.petName;
+  updatePetInfo(petId, petName, deathDate, favorites, image) {
+    this.petId = petId;
+    this.petName = petName;
+    this.deathDate = deathDate;
+    this.favorites = favorites;
+    this.image = image;
+    return this;
   }
 
-  getPetDeathDate() {
-    return this.deathDate;
+  getPetId() {
+    return this.petId;
   }
 
-  getPetFavorite() {
-    return this.favorites;
-  }
-
-  getPetImg() {
-    return this.image;
+  addComment(comment) {
+    this.comments = [comment, ...this.comments];
+    return this.comments;
   }
 }
-
-// export class Comments {
-//   constructor(comments, pet, owner) {
-//     this.comments = comments;
-//     this.pet = pet;
-//     this.owner = owner;
-//   }
-// }

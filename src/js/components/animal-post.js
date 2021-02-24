@@ -1,12 +1,63 @@
-import { postComment } from '../request';
-import User from '../model';
+import { getPetInfo, postComment } from '../request';
+import { User, Pet } from '../model';
+import * as request from '../request';
+// import { doc } from 'prettier';
 
+//
+const user = new User();
+const pet = new Pet();
+
+
+// Comment
 const $commentInput = document.querySelector('.comment-input');
 const $commentBtn = document.querySelector('.comment-submit');
 const $commentList = document.querySelector('.comments-list');
-const $commentCount = document.querySelector('.comment-count>.count');
+
+// Pet Info
+// TODO: 2021-02-22T15:00:00.000Z라고 오면 자르는 메서드 추가해야함
+const dateToString = date => date.replace('-', '. ');
+
+// const petInfo1 = await request.obtainPetInfo(petInfo);
+// const petInfo = await request.getPetInfo(petInfo1.pet._id);
+// pet.updatePetInfo(petInfo.params._id);
+
+// TODO: 함수 이름 다시 셍각해보기
+const petInfoHandler = async () => {
+  const $petsImg = document.querySelector('.pets-container>img');
+  const $petsName = document.querySelector('.pets-info>.name>.desc');
+  const $petsDeathDate = document.querySelector('.pets-info>.death-date>.desc');
+  const $petsFavorite = document.querySelector('.pets-info>.favorite>.desc');
+
+  const petInfo = await request.getPetInfo();
+  // const petId = pet.getPetId();
+  const { petName, deathDate, favorites, image } = {
+    petInfo.params.name,
+    petInfo.params.deathDate,
+    petInfo.params.favorites,
+    petInfo.params.image
+  }
+
+  $petsImg.setAttribute('src', image);
+  $petsName.textContent = petName;
+  $petsDeathDate.textContent = dateToString(deathDate);
+
+  // TODO: favorite - list로 구분 or ',' 쉼표 써서 구분
+  favorites.map()
+};
+
+// User Info
+const $petList = document.querySelector('.owner>.pet-list');
+
+const $petListItem = document.createElement('li');
+const $petListLink = document.createElement('a');
+
+$petList.appendChild($petListItem);
+$petList.appendChild($petListLink);
+
+
 
 const countComment = () => {
+  const $commentCount = document.querySelector('.comment-count>.count');
   $commentCount.textContent = $commentList.childElementCount;
 };
 
@@ -29,7 +80,7 @@ const pastCommentDate = (writtenDate = new Date()) => {
   if (pastYear >= 1) return `• ${pastYear}년 전`;
 };
 
-const addNewComment = () => {
+const newComment = async () => {
   if (!$commentInput.value) return;
 
   const $commentRow = document.createElement('div');
@@ -50,8 +101,7 @@ const addNewComment = () => {
   const writtenDate = new Date();
   $commentDate.textContent = `${pastCommentDate(writtenDate)}`;
 
-  const user = new User();
-  postComment(user.userId(), $commentInput.value);
+  const addNewComment = await request.postComment(pet.addComment($commentInput.value), user.userId(), pet.getPetId());
 
   // username 렌더링
   $userName.textContent = user.getUserName();
@@ -111,11 +161,13 @@ const displayAnimalPostPage = () => {
   document.querySelector('body').innerHTML = markup;
 };
 
-
-
 $commentBtn.addEventListener('click', () => {
-  addNewComment();
+  newComment();
   countComment();
 });
+
+// $commentBtn.addEventListener('submit', addNewComment);
+
+document.addEventListener('DOMContentLoaded',);
 
 export default displayAnimalPostPage;

@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { URL_LOGIN, URL_REGISTER, URL_LOGOUT } from './utils/constants';
+import {
+  URL_LOGIN,
+  URL_REGISTER,
+  URL_LOGOUT,
+  URL_GET_PETS,
+  URL_COMMENT
+} from './utils/constants';
 
 export const signin = async (email, password) => {
   try {
@@ -51,8 +57,7 @@ export const getPetInfo = async petId => {
     const res = await axios({
       method: 'get',
       url: URL_GET_PETS,
-      headers: { 'content-type': 'application/json' },
-      data: {
+      params: {
         petId
       }
     });
