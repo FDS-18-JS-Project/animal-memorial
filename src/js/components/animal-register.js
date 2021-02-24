@@ -2,6 +2,7 @@ import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
 import { Pet, Pets } from '../model';
+import { useData } from './animal-post';
 
 const pet = new Pet();
 const pets = new Pets();
@@ -59,6 +60,7 @@ const animalRegisterHandler = async e => {
       petInfo.data.pet.favorites,
       petInfo.data.pet.image
     );
+    useData(petInfo.data.pet);
 
     pets.updatePetInfo(pet, userInfoId);
     // displayMainPage(); TODO: 포스트 페이지로 이동
