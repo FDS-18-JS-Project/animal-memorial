@@ -1885,7 +1885,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/common */ "./src/js/utils/common.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
-/* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/signin */ "./src/js/components/signin.js");
+/* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1908,7 +1908,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var animalRegisterHandler = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var _obtainPetInfo, petName, deathDate, favorites, image;
+    var _obtainPetInfo, petName, deathDate, favorites, image, userInfoId, token, petInfo;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -1916,8 +1916,14 @@ var animalRegisterHandler = /*#__PURE__*/function () {
           case 0:
             e.preventDefault(); // validation required
 
-            _obtainPetInfo = obtainPetInfo(), petName = _obtainPetInfo.petName, deathDate = _obtainPetInfo.deathDate, favorites = _obtainPetInfo.favorites, image = _obtainPetInfo.image; // const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userId);
+            _obtainPetInfo = obtainPetInfo(), petName = _obtainPetInfo.petName, deathDate = _obtainPetInfo.deathDate, favorites = _obtainPetInfo.favorites, image = _obtainPetInfo.image;
+            userInfoId = localStorage.getItem('userId');
+            token = _utils_cookies__WEBPACK_IMPORTED_MODULE_2__.getCookie('token');
+            _context.next = 6;
+            return _request__WEBPACK_IMPORTED_MODULE_1__.postPetInfo(petName, deathDate, favorites, image, userInfoId, token);
 
+          case 6:
+            petInfo = _context.sent;
             console.log('petInfo: ', petInfo);
 
             if (petInfo) {
@@ -1934,7 +1940,7 @@ var animalRegisterHandler = /*#__PURE__*/function () {
               // displayMainPage();
             }
 
-          case 4:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -2463,7 +2469,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "signin": () => (/* binding */ signin),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "signout": () => (/* binding */ signout),
-/* harmony export */   "getUserData": () => (/* binding */ getUserData)
+/* harmony export */   "getUserData": () => (/* binding */ getUserData),
+/* harmony export */   "postPetInfo": () => (/* binding */ postPetInfo)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2626,26 +2633,54 @@ var getUserData = /*#__PURE__*/function () {
   return function getUserData(_x6, _x7) {
     return _ref4.apply(this, arguments);
   };
-}(); // export const postPetInfo = async (petName, deathDate, favorites, image, userId) => {
-//   //TODO:
-//   console.log('petInfo: ', petName, deathDate, favorites, image, userId);
-//   try {
-//     const petInfo = await axios({
-//       method: 'post',
-//       url: URL_POST_PETS,
-//       data: {
-//         petName,
-//         deathDate,
-//         favorites,
-//         image,
-//         userId
-//       }
-//     });
-//     return petInfo;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+}();
+var postPetInfo = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(name, deathDate, favorites, image, userId, token) {
+    var petInfo;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            console.log('petInfo: ', name, deathDate, favorites, image, userId, token);
+            _context5.prev = 1;
+            _context5.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'post',
+              url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_PETS,
+              headers: {
+                'content-type': 'application/json',
+                'Authorization': token
+              },
+              data: {
+                name: name,
+                deathDate: deathDate,
+                favorites: favorites,
+                image: image,
+                userId: userId
+              }
+            });
+
+          case 4:
+            petInfo = _context5.sent;
+            return _context5.abrupt("return", petInfo);
+
+          case 8:
+            _context5.prev = 8;
+            _context5.t0 = _context5["catch"](1);
+            console.error(_context5.t0);
+
+          case 11:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[1, 8]]);
+  }));
+
+  return function postPetInfo(_x8, _x9, _x10, _x11, _x12, _x13) {
+    return _ref5.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -2689,13 +2724,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "URL_LOGIN": () => (/* binding */ URL_LOGIN),
 /* harmony export */   "URL_REGISTER": () => (/* binding */ URL_REGISTER),
 /* harmony export */   "URL_LOGOUT": () => (/* binding */ URL_LOGOUT),
-/* harmony export */   "URL_POST_PETS": () => (/* binding */ URL_POST_PETS),
+/* harmony export */   "URL_PETS": () => (/* binding */ URL_PETS),
 /* harmony export */   "URL_USER_DATA": () => (/* binding */ URL_USER_DATA)
 /* harmony export */ });
 var URL_LOGIN = 'http://localhost:8080/login';
 var URL_REGISTER = 'http://localhost:8080/signup';
 var URL_LOGOUT = 'http://localhost:8080/logout';
-var URL_POST_PETS = 'http://localhost:8080/pets';
+var URL_PETS = 'http://localhost:8080/pets';
 var URL_USER_DATA = 'http://localhost:8080/userdata';
 
 /***/ }),
@@ -12706,15 +12741,12 @@ if (_utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token')) {
             case 2:
               userInfo = _context.sent;
               user = new _model__WEBPACK_IMPORTED_MODULE_6__.User();
-              console.log(userInfo);
 
               if (userInfo) {
                 user.updateUserInfo(userInfo.data.payload.email, userInfo.data.payload.username, userInfo.data.payload._id);
               }
 
-              console.log(user.getUserData());
-
-            case 7:
+            case 5:
             case "end":
               return _context.stop();
           }

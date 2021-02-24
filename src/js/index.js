@@ -14,7 +14,6 @@ if (Cookies.getCookie('token')) {
   const getUserInfo = async () => {
     const userInfo = await request.getUserData(localStorage.getItem('userId'), Cookies.getCookie('token'));
     const user = new User();
-    console.log(userInfo);
 
     if (userInfo) {
       user.updateUserInfo(
@@ -23,7 +22,6 @@ if (Cookies.getCookie('token')) {
         userInfo.data.payload._id
       );
     }
-    console.log(user.getUserData())
   }
   getUserInfo();
 

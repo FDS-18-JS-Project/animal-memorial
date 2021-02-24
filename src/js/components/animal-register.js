@@ -1,7 +1,6 @@
 import { logout } from '../utils/common';
 import * as request from '../request';
-import { userId } from '../components/signin';
-
+import * as Cookies from '../utils/cookies';
 
 const animalRegisterHandler = async e => {
   e.preventDefault();
@@ -10,8 +9,10 @@ const animalRegisterHandler = async e => {
 
   const { petName, deathDate, favorites, image } = obtainPetInfo();
 
-  
-  // const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userId);
+  const userInfoId = localStorage.getItem('userId');
+  const token = Cookies.getCookie('token');
+
+  const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userInfoId, token);
   console.log('petInfo: ', petInfo);
 
   if (petInfo) {
