@@ -123,6 +123,9 @@ const animalRegister = () => {
 };
 
 const displayAnimalRegisterPage = () => {
+  const now = new Date();
+  const mixDate = now.toISOString().slice(0, 10);
+
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
   <p class="slogan">Memorial for my Pet</p>
@@ -154,7 +157,7 @@ const displayAnimalRegisterPage = () => {
     <!-- pet date of death -->
     <div class="death-container">
       <label class="death-label text-label" for="animal-death">기일</label>
-      <input class="death-input" type="date" for="animal-death" name="animal-death" required autocomplete="off">
+      <input class="death-input" type="date" for="animal-death" name="animal-death" required autocomplete="off" max="${mixDate}">
     </div>
     <!-- pet favorites -->
     <div class="favorite-1st-container">
