@@ -1,3 +1,114 @@
+import { logout } from '../utils/common';
+import * as request from '../request';
+import { userId } from './signin';
+
+const animalRegisterHandler = async e => {
+  e.preventDefault();
+
+  // validation required
+
+  const { petName, deathDate, favorites, image } = obtainPetInfo();
+
+  // const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userId);
+  console.log('petInfo: ', petInfo);
+
+  if (petInfo) {
+    console.log(petInfo);
+    // user.updateUserInfoAfterSignUp(
+    //   email,
+    //   username,
+    //   userInfo.data.token,
+    //   userInfo.data.user._id
+    // );
+    // Cookies.setCookie('token', userInfo.data.token, {
+    //   secure: true,
+    //   'max-age': 3600 * 3
+    // });
+    // displayMainPage();
+  }
+};
+
+const obtainPetInfo = () => {
+  const formDate = [...document.forms][0];
+  const image = window.URL.createObjectURL(formDate[0].files[0]);
+  const petName = formDate[1].value;
+  const deathDate = formDate[2].value;
+  const favorites = [
+    `${formDate[3].value}`,
+    `${formDate[4].value}`,
+    `${formDate[5].value}`
+  ];
+
+  return {
+    petName,
+    deathDate,
+    favorites,
+    image
+  };
+};
+
+const dragOver = e => {
+  const effectDrag = e.target.parentNode.style;
+
+  if (e.type === 'dragover') {
+    effectDrag.backgroundColor = 'rgba(151, 151, 157, 0.4)';
+    effectDrag.transition = 'all 0.3s';
+  } else {
+    effectDrag.backgroundColor = '#FFFFFF';
+  }
+};
+
+const setThumbnail = e => {
+  const image = e.target.files[0];
+  const thubImage = document.createElement('img');
+
+  thubImage.setAttribute('src', window.URL.createObjectURL(image));
+  thubImage.style.width = '780px';
+  thubImage.style.backgroundRepeat = 'no-repeat';
+  thubImage.style.position = 'absolute';
+  thubImage.style.zIndex = '99';
+
+  document.querySelector('.img-container').appendChild(thubImage);
+};
+
+const animalRegister = () => {
+  const $animalRegisterForm = document.querySelector('.animal-register-form');
+  const $imgInput = document.querySelector('.img-input');
+
+  $imgInput.onchange = e => {
+    setThumbnail(e);
+  };
+
+  // $button.onclick = e => {
+  //   e.preventDefault();
+  //   obtainPetInfo();
+  // };
+
+  $animalRegisterForm.onclick = ({ target }) => {
+    if (!target.matches('div > input[type="text"]')) return;
+    target.previousElementSibling.classList.add('active');
+  };
+
+  $animalRegisterForm.onkeyup = e => {
+    if (!e.key === 'Tab') return;
+    if (!e.target.matches('div > input[type="text"]')) return;
+
+    e.target.previousElementSibling.classList.add('active');
+  };
+
+  $imgInput.addEventListener('dragover', e => {
+    e.stopPropagation();
+    e.preventDefault();
+    dragOver(e);
+  });
+
+  $imgInput.addEventListener('dragleave', e => {
+    e.stopPropagation();
+    e.preventDefault();
+    dragOver(e);
+  });
+};
+
 const displayAnimalRegisterPage = () => {
   const markup = `<header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
@@ -29,67 +140,8 @@ const displayAnimalRegisterPage = () => {
     </div>
     <!-- pet date of death -->
     <div class="death-container">
-      <label class="death-year-label text-label" for="year">기일</label>
-      <select class="death-year-select" id="year" name="year" required>
-        <option value="">년도</option>
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
-        <option value="2017">2017</option>
-        <option value="2016">2016</option>
-      </select>
-      <label class="death-month-label offscreen" for="month">기일 선택 항목</label>
-      <select class="death-month-select" id="month" name="month" required>
-        <option value="">월</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-      </select>
-      <label class="death-date-label offscreen" for="date">기일 선택 항목</label>
-      <select class="death-date-select" id="date" name="date" required>
-        <option value="">일</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28">28</option>
-        <option value="29">29</option>
-        <option value="30">30</option>
-        <option value="31">31</option>
-      </select>
+      <label class="death-label text-label" for="animal-death">기일</label>
+      <input class="death-input" type="date" for="animal-death" name="animal-death" required autocomplete="off">
     </div>
     <!-- pet favorites -->
     <div class="favorite-1st-container">
@@ -133,97 +185,13 @@ const displayAnimalRegisterPage = () => {
 </footer>`;
 
   document.querySelector('body').innerHTML = markup;
-  function animalRegister() {
-    const $animalRegisterForm = document.querySelector('.animal-register-form');
-    const $imgInput = document.querySelector('.img-input');
-    const $button = document.querySelector('.animal-register-button');
 
-    const setThumbnail = e => {
-      const image = e.target.files[0];
-      const thubImage = document.createElement('img');
-      thubImage.setAttribute('src', window.URL.createObjectURL(image));
-      thubImage.style.width = '780px';
-      thubImage.style.backgroundRepeat = 'no-repeat';
-      thubImage.style.position = 'absolute';
-      thubImage.style.zIndex = '99';
-      document.querySelector('.img-container').appendChild(thubImage);
-
-      // const reader = new FileReader();
-
-      // reader.onload = e => {
-      //   const img = document.createElement('img');
-      //   img.setAttribute('src', e.target.result);
-      //   img.style.width = '780px';
-      //   img.style.backgroundRepeat = 'no-repeat';
-      //   img.style.position = 'absolute';
-      //   img.style.zIndex = '99';
-      //   document.querySelector('.img-container').appendChild(img);
-      // };
-
-      // reader.readAsDataURL(e.target.files[0]);
-    };
-
-    function dragOver(e) {
-      const effectDrag = e.target.parentNode.style;
-
-      if (e.type === 'dragover') {
-        effectDrag.backgroundColor = 'rgba(151, 151, 157, 0.4)';
-        effectDrag.transition = 'all 0.3s';
-      } else {
-        effectDrag.backgroundColor = '#FFFFFF';
-      }
-    }
-
-    $imgInput.onchange = e => {
-      setThumbnail(e);
-    };
-
-    // TODO: 서버 보내기
-    $button.onclick = e => {
-      e.preventDefault();
-      const formDate = [...document.forms][0];
-
-      const image = window.URL.createObjectURL(formDate[0].files[0]);
-      const petName = formDate[1].value;
-      const deathDate = `${formDate[2].value}.${formDate[3].value}.${formDate[4].value}`;
-      const favorites = [
-        `${formDate[5].value}`,
-        `${formDate[6].value}`,
-        `${formDate[7].value}`
-      ];
-
-      console.log('image: ', image);
-      console.log('petName: ', petName);
-      console.log('deathDate: ', deathDate);
-      console.log('favorites: ', favorites);
-    };
-
-    $animalRegisterForm.onclick = ({ target }) => {
-      if (!target.matches('div > input[type="text"]')) return;
-
-      target.previousElementSibling.classList.add('active');
-    };
-
-    $animalRegisterForm.onkeyup = e => {
-      if (!e.key === 'Tab') return;
-      if (!e.target.matches('div > input[type="text"]')) return;
-
-      e.target.previousElementSibling.classList.add('active');
-    };
-
-    $imgInput.addEventListener('dragover', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      dragOver(e);
-    });
-
-    $imgInput.addEventListener('dragleave', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      dragOver(e);
-    });
-  }
   animalRegister();
+  document.querySelector('.logout').addEventListener('click', logout);
+  document
+    .querySelector('.animal-register-button')
+    .addEventListener('click', animalRegisterHandler);
+
   // document.querySelector('.animal-register-button').addEventListener('click', );
 };
 

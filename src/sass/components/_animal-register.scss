@@ -87,6 +87,8 @@ body {
 
   .name-input {
     @include input;
+    color: rgba(0, 0, 0, 0.6);
+
   }
 }
 
@@ -96,7 +98,7 @@ body {
   justify-content: space-between;
   position: relative;
 
-  .death-year-label {
+  .death-label {
     position: absolute;
     font-size: 15px;
     top: -25px;
@@ -104,15 +106,9 @@ body {
     color: rgba(0, 0, 0, 0.4);
   }
 
-  .death-year-select,
-  .death-month-select {
+  .death-input {
     @include input;
-    margin-right: 10px;
-    color: rgba(0, 0, 0, 0.6);
-  }
 
-  .death-date-select {
-    @include input;
     color: rgba(0, 0, 0, 0.6);
   }
 }
@@ -132,6 +128,7 @@ body {
   .favorit-2nd-input,
   .favorit-3rd-input {
     @include input;
+    color: rgba(0, 0, 0, 0.6);
   }
 }
 
