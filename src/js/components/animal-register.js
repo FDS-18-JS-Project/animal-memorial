@@ -1,6 +1,9 @@
 import { logout } from '../utils/common';
 import * as request from '../request';
-import { userId } from './signin';
+import * as Cookies from '../utils/cookies';
+import { Pet } from '../model';
+
+const pet = new Pet;
 
 const animalRegisterHandler = async e => {
   e.preventDefault();
@@ -9,22 +12,22 @@ const animalRegisterHandler = async e => {
 
   const { petName, deathDate, favorites, image } = obtainPetInfo();
 
-  // const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userId);
-  console.log('petInfo: ', petInfo);
+  const userInfoId = localStorage.getItem('userId');
+  const token = Cookies.getCookie('token');
+
+  const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userInfoId, token);
 
   if (petInfo) {
     console.log(petInfo);
-    // user.updateUserInfoAfterSignUp(
-    //   email,
-    //   username,
-    //   userInfo.data.token,
-    //   userInfo.data.user._id
-    // );
-    // Cookies.setCookie('token', userInfo.data.token, {
-    //   secure: true,
-    //   'max-age': 3600 * 3
-    // });
-    // displayMainPage();
+    pet.updatePetInfo(
+      petInfo.data.pet._id,
+      petInfo.data.pet.name,
+      petInfo.data.pet.deathDate,
+      petInfo.data.pet.favorites,
+      petInfo.data.pet.image
+    );
+    console.log(pet);
+    // displayMainPage(); TODO: 포스트 페이지로 이동
   }
 };
 
@@ -78,12 +81,7 @@ const animalRegister = () => {
   $imgInput.onchange = e => {
     setThumbnail(e);
   };
-
-  // $button.onclick = e => {
-  //   e.preventDefault();
-  //   obtainPetInfo();
-  // };
-
+  
   $animalRegisterForm.onclick = ({ target }) => {
     if (!target.matches('div > input[type="text"]')) return;
     target.previousElementSibling.classList.add('active');

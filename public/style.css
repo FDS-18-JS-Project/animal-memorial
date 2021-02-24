@@ -608,6 +608,12 @@ body {
   margin-top: 40px;
   box-sizing: border-box;
 }
+.login-container .login-form .form-field,
+.login-container .register-form .form-field,
+.register-container .login-form .form-field,
+.register-container .register-form .form-field {
+  position: relative;
+}
 .login-container .login-form .username,
 .login-container .login-form .password,
 .login-container .login-form .email,
@@ -621,16 +627,42 @@ body {
 .register-container .register-form .password,
 .register-container .register-form .email {
   line-height: 40px;
-  margin-bottom: 40px;
   padding-left: 20px;
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border-color: rgba(24, 24, 24, 0.3);
+  outline: none;
 }
-.login-container .login-form .login-form-checkbox,
-.login-container .register-form .login-form-checkbox,
-.register-container .login-form .login-form-checkbox,
-.register-container .register-form .login-form-checkbox {
-  transform: scale(1.7);
-  margin-right: 10px;
-  margin-left: 5px;
+.login-container .login-form .error-message,
+.login-container .register-form .error-message,
+.register-container .login-form .error-message,
+.register-container .register-form .error-message {
+  display: block;
+  padding: 15px 10px;
+  color: red;
+  font-weight: bold;
+}
+.login-container .login-form label,
+.login-container .register-form label,
+.register-container .login-form label,
+.register-container .register-form label {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0.6;
+  transform: translate3d(10px, 16px, 0);
+  transition: all 0.5s;
+}
+.login-container .login-form div > label.active,
+.login-container .register-form div > label.active,
+.register-container .login-form div > label.active,
+.register-container .register-form div > label.active {
+  font-size: 15px;
+  opacity: 0.4;
+  transform: translate3d(5px, -25px, 0);
 }
 .login-container .login-form .login-btn,
 .login-container .login-form .register-btn,
@@ -1056,6 +1088,228 @@ body {
 }
 .pets .slide-control.next {
   right: -70px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(24, 24, 24, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(24, 24, 24, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #7F4B4F;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+.post-container {
+  background: #FFFFFF;
+}
+
+.pets-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-flow: row nowrap;
+  background-color: #FFE5B3;
+  height: 300px;
+  padding: 60px;
+}
+.pets-container .img {
+  background: url(https://source.unsplash.com/random);
+  width: 600px;
+  height: 400px;
+  margin-top: 100px;
+  z-index: 1;
+}
+
+.pets-info {
+  font-size: 25px;
+  color: #181818;
+  width: 50%;
+  margin-left: 60px;
+}
+.pets-info .name,
+.pets-info .death-date,
+.pets-info .favorite {
+  margin-bottom: 10px;
+}
+.pets-info .title {
+  display: inline-block;
+  color: rgba(24, 24, 24, 0.5);
+  font-size: 0.8em;
+}
+.pets-info .desc {
+  font-weight: 700;
+  color: rgba(24, 24, 24, 0.8);
+}
+.pets-info .name {
+  margin-top: 10px;
+}
+.pets-info .death-date > .desc {
+  font-size: 0.8em;
+}
+.pets-info .favorite .title {
+  display: block;
+  margin-bottom: 2px;
+}
+.pets-info .favorite .desc {
+  display: block;
+  overflow: auto;
+  max-height: 180px;
+  line-height: 1.5;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.column-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: space-between;
+  flex-flow: row nowrap;
+  padding: 0;
+}
+
+.owner-container {
+  width: 30%;
+  padding: 25px 60px;
+}
+
+.owner-row {
+  display: block;
+  font-size: 16px;
+  margin: 40px 25px;
+  padding: 30px;
+  background-color: #FFFFFF;
+  color: #181818;
+  border-left: 1px solid rgba(24, 24, 24, 0.3);
+  transition: 400ms;
+}
+.owner-row:hover {
+  transform: translateY(-5px);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 1px 1px 10px rgba(24, 24, 24, 0.1);
+}
+.owner-row .owner {
+  font-size: 30px;
+  font-weight: 700;
+}
+.owner-row .pet-item {
+  font-size: 20px;
+  display: block;
+  padding-left: 5px;
+  margin-top: 10px;
+}
+.owner-row .pet-item a:hover {
+  background-color: rgba(255, 229, 179, 0.5);
+  border-radius: 5px;
+}
+
+.comment-container {
+  width: 50%;
+  padding: 60px;
+  background-color: rgba(255, 229, 179, 0.2);
+}
+
+.new-comment {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-flow: row wrap;
+  font-size: 30px;
+}
+
+.comment-input {
+  resize: none;
+  font-size: 20px;
+  overflow: auto;
+  background: transparent;
+  border: 1px solid rgba(24, 24, 24, 0);
+  border-bottom: 1px solid rgba(24, 24, 24, 0.1);
+  padding: 8px;
+  width: 100%;
+  margin: 20px;
+}
+.comment-input:hover {
+  border-bottom: 1px solid rgba(24, 24, 24, 0.4);
+  transition: 500ms;
+}
+.comment-input:focus {
+  outline: none;
+  border: 1px solid rgba(24, 24, 24, 0);
+  border-bottom: 1px solid rgba(24, 24, 24, 0.8);
+  border-radius: 0px;
+  transition: 100ms;
+}
+.comment-input::placeholder {
+  font-size: 16px;
+  color: rgba(24, 24, 24, 0.4);
+}
+
+.comment-submit {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  padding: 20px 40px;
+  background-color: #7F4B4F;
+  color: #FFFCF9;
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+  padding: 15px 30px;
+}
+
+.comment-submit:hover {
+  background-color: #181818;
+  color: #FFFCF9;
+  border-radius: 50px;
+  border: 0;
+}
+
+.comments-list {
+  max-height: 500px;
+  overflow: auto;
+}
+
+.comment-count {
+  padding: 10px;
+  font-size: 16px;
+}
+.comment-count .count {
+  color: #7F4B4F;
+}
+
+.comment-row {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: rgba(24, 24, 24, 0.8);
+}
+.comment-row .username {
+  font-size: 20px;
+  font-weight: 700;
+  display: inline-block;
+}
+.comment-row .date {
+  color: rgba(24, 24, 24, 0.5);
+}
+.comment-row .content {
+  margin: 5px 0;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=style.css.map*/

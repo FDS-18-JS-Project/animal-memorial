@@ -74,5 +74,7 @@ export class Pets {
 
   getPetsInfo() {
     return this.pets;
+    // this.comments = comments;
+    return this;
   }
 }

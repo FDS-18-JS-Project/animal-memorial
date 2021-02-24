@@ -6,9 +6,24 @@ import { displaySignInPage } from './components/signin';
 import { saveUserInfo, getPetsInfo } from './utils/common';
 // cookies
 import * as Cookies from './utils/cookies';
+import * as request from './request';
+import { User } from './model';
 
 // check if token exists
 if (Cookies.getCookie('token')) {
+  const getUserInfo = async () => {
+    const userInfo = await request.getUserData(localStorage.getItem('userId'), Cookies.getCookie('token'));
+    const user = new User();
+
+    if (userInfo) {
+      user.updateUserInfo(
+        userInfo.data.payload.email,
+        userInfo.data.payload.username,
+        userInfo.data.payload._id
+      );
+    }
+  }
+  getUserInfo();
   const rebootHandler = async () => {
     saveUserInfo();
     const pets = await getPetsInfo();

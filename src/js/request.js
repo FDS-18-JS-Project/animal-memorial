@@ -70,6 +70,30 @@ export const getUserData = async (userId, token) => {
   }
 };
 
+export const postPetInfo = async (name, deathDate, favorites, image, userId, token) => {
+  console.log('petInfo: ', name, deathDate, favorites, image, userId, token);
+  try {
+    const petInfo = await axios({
+      method: 'post',
+      url: URL_PETS,
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': token
+      },
+      data: {
+        name,
+        deathDate,
+        favorites,
+        image,
+        userId
+      }
+    });
+    return petInfo;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getPetsInfo = async token => {
   try {
     const petsInfo = await axios({
@@ -86,28 +110,6 @@ export const getPetsInfo = async token => {
   }
 };
 
-// export const postPetInfo = async (petName, deathDate, favorites, image, userId) => {
-//   //TODO:
-//   console.log('petInfo: ', petName, deathDate, favorites, image, userId);
-//   try {
-//     const petInfo = await axios({
-//       method: 'post',
-//       url: URL_POST_PETS,
-//       data: {
-//         petName,
-//         deathDate,
-//         favorites,
-//         image,
-//         userId
-//       }
-//     });
-//     return petInfo;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-
 export const getPetInfo = async petId => {
   try {
     const res = await axios({
@@ -122,7 +124,6 @@ export const getPetInfo = async petId => {
     console.error(error);
   }
 };
-
 
 export const postComment = async (comment, userId, petId) => {
   try {
