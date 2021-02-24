@@ -28,7 +28,7 @@ body {
   }
 
   .animal-register-button:hover {
-    @include button-hover($color-secondary, $black);
+    @include button-hover($color-secondary, $white_font);
 
     margin: 30px 0 0 0;
   }
