@@ -88,7 +88,7 @@ const displaySignUpPage = () => {
           name="email"
           id="email"
           class="email"
-        />
+        />                                                                                                                                                                                                                                                                                                                                          
         <span class="error-message"></span>
       </div>
       <button class="register-btn">아이디 등록</button>

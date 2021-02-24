@@ -62,8 +62,8 @@ export class Pet {
 }
 
 export class Pets {
-  constructor(pets, userid) {
-    this.userId = userid;
+  constructor(pets, userId) {
+    this.userId = userId;
     this.pets = pets;
   }
 
@@ -72,9 +72,12 @@ export class Pets {
     return this.pets;
   }
 
+  updatePetInfo(pet, userId) {
+    this.userId = userId;
+    this.pets = [...this.pets, pet];
+  }
+
   getPetsInfo() {
     return this.pets;
-    // this.comments = comments;
-    return this;
   }
 }

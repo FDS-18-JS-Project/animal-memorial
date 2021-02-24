@@ -1,35 +1,10 @@
 import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
-import { Pet } from '../model';
+import { Pet, Pets } from '../model';
 
-const pet = new Pet;
-
-const animalRegisterHandler = async e => {
-  e.preventDefault();
-
-  // validation required
-
-  const { petName, deathDate, favorites, image } = obtainPetInfo();
-
-  const userInfoId = localStorage.getItem('userId');
-  const token = Cookies.getCookie('token');
-
-  const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userInfoId, token);
-
-  if (petInfo) {
-    console.log(petInfo);
-    pet.updatePetInfo(
-      petInfo.data.pet._id,
-      petInfo.data.pet.name,
-      petInfo.data.pet.deathDate,
-      petInfo.data.pet.favorites,
-      petInfo.data.pet.image
-    );
-    console.log(pet);
-    // displayMainPage(); TODO: 포스트 페이지로 이동
-  }
-};
+const pet = new Pet();
+const pets = new Pets();
 
 const obtainPetInfo = () => {
   const formDate = [...document.forms][0];
@@ -48,6 +23,46 @@ const obtainPetInfo = () => {
     favorites,
     image
   };
+};
+
+const animalRegisterHandler = async e => {
+  e.preventDefault();
+
+  // validation required
+
+  const { petName, deathDate, favorites, image } = obtainPetInfo();
+  console.log(petName, deathDate, favorites, image);
+
+  const userInfoId = localStorage.getItem('userId');
+  const token = Cookies.getCookie('token');
+
+  // "name": "vix",
+  // "deathDate": "{{todayDate}}",
+  // "favorites": ["hello", "hi"],
+  // "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80",
+  // "userId": "6033045a763ded265cf9efae"
+
+  const petInfo = await request.postPetInfo(
+    petName,
+    deathDate,
+    favorites,
+    image,
+    userInfoId,
+    token
+  );
+
+  if (petInfo) {
+    pet.updatePetInfo(
+      petInfo.data.pet._id,
+      petInfo.data.pet.name,
+      petInfo.data.pet.deathDate,
+      petInfo.data.pet.favorites,
+      petInfo.data.pet.image
+    );
+
+    pets.updatePetInfo(pet, userInfoId);
+    // displayMainPage(); TODO: 포스트 페이지로 이동
+  }
 };
 
 const dragOver = e => {
@@ -81,7 +96,7 @@ const animalRegister = () => {
   $imgInput.onchange = e => {
     setThumbnail(e);
   };
-  
+
   $animalRegisterForm.onclick = ({ target }) => {
     if (!target.matches('div > input[type="text"]')) return;
     target.previousElementSibling.classList.add('active');
@@ -123,7 +138,7 @@ const displayAnimalRegisterPage = () => {
 <!-- animal register section -->
 <main class="animal-register-container">
   <h1 class="title">내 반려견 추모 공간 등록</h1>
-  <form action="#" method="#" class="animal-register-form">
+  <form action="#" method="#" class="animal-register-form" enctype="multipart/form-data">
     <!-- pet image -->
     <div class="img-container">
       <label class="img-label" for="animal-img">당신의 반려견 이미지를 등록해주세요.</label>
@@ -185,7 +200,9 @@ const displayAnimalRegisterPage = () => {
   document.querySelector('body').innerHTML = markup;
 
   animalRegister();
+
   document.querySelector('.logout').addEventListener('click', logout);
+
   document
     .querySelector('.animal-register-button')
     .addEventListener('click', animalRegisterHandler);

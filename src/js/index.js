@@ -12,7 +12,10 @@ import { User } from './model';
 // check if token exists
 if (Cookies.getCookie('token')) {
   const getUserInfo = async () => {
-    const userInfo = await request.getUserData(localStorage.getItem('userId'), Cookies.getCookie('token'));
+    const userInfo = await request.getUserData(
+      localStorage.getItem('userId'),
+      Cookies.getCookie('token')
+    );
     const user = new User();
 
     if (userInfo) {
@@ -22,7 +25,7 @@ if (Cookies.getCookie('token')) {
         userInfo.data.payload._id
       );
     }
-  }
+  };
   getUserInfo();
   const rebootHandler = async () => {
     saveUserInfo();

@@ -70,7 +70,14 @@ export const getUserData = async (userId, token) => {
   }
 };
 
-export const postPetInfo = async (name, deathDate, favorites, image, userId, token) => {
+export const postPetInfo = async (
+  name,
+  deathDate,
+  favorites,
+  image,
+  userId,
+  token
+) => {
   console.log('petInfo: ', name, deathDate, favorites, image, userId, token);
   try {
     const petInfo = await axios({
@@ -78,7 +85,7 @@ export const postPetInfo = async (name, deathDate, favorites, image, userId, tok
       url: URL_PETS,
       headers: {
         'content-type': 'application/json',
-        'Authorization': token
+        Authorization: 'Bearer ' + token
       },
       data: {
         name,

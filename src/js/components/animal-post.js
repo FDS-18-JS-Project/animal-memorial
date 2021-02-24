@@ -1,4 +1,3 @@
-import { getPetInfo, postComment } from '../request';
 import { User, Pet } from '../model';
 import * as request from '../request';
 // import { doc } from 'prettier';
@@ -21,6 +20,7 @@ const dateToString = date => date.replace('-', '. ');
 // const petInfo = await request.getPetInfo(petInfo1.pet._id);
 // pet.updatePetInfo(petInfo.params._id);
 
+
 // TODO: 함수 이름 다시 셍각해보기
 const petInfoHandler = async () => {
   const $petsImg = document.querySelector('.pets-container>img');
@@ -29,6 +29,9 @@ const petInfoHandler = async () => {
   const $petsFavorite = document.querySelector('.pets-info>.favorite>.desc');
 
   const petInfo = await request.getPetInfo();
+
+
+
   // const petId = pet.getPetId();
   const { petName, deathDate, favorites, image } = {
     petInfo.params.name,
