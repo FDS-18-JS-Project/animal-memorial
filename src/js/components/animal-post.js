@@ -1,9 +1,8 @@
-import { getPetInfo, postComment } from '../request';
 import { User, Pet } from '../model';
 import * as request from '../request';
 // import { doc } from 'prettier';
 
-//
+//!
 const user = new User();
 const pet = new Pet();
 
@@ -22,7 +21,7 @@ const dateToString = date => date.replace('-', '. ');
 // pet.updatePetInfo(petInfo.params._id);
 
 // TODO: 함수 이름 다시 셍각해보기
-const petInfoHandler = async () => {
+const renderPetInfo = async () => {
   const $petsImg = document.querySelector('.pets-container>img');
   const $petsName = document.querySelector('.pets-info>.name>.desc');
   const $petsDeathDate = document.querySelector('.pets-info>.death-date>.desc');
@@ -30,12 +29,19 @@ const petInfoHandler = async () => {
 
   const petInfo = await request.getPetInfo();
   // const petId = pet.getPetId();
-  const { petName, deathDate, favorites, image } = {
-    petInfo.params.name,
-    petInfo.params.deathDate,
-    petInfo.params.favorites,
-    petInfo.params.image
-  }
+  const { petId, petName, deathDate, favorites, image } = {
+    petInfo.data.pet._id,
+    petInfo.data.pet.name,
+    petInfo.data.pet.deathDate,
+    petInfo.data.pet.favorites,
+    petInfo.data.pet.image
+  };
+
+  localStorage.setItem('petId', petId);
+  // const petName = petInfo.params.pets.name;
+  // const deathDate = petInfo.params.pets.deathDate;
+  // const favorites = petInfo.params.pets.favorites;
+  // const image = petInfo.params.pets.image;
 
   $petsImg.setAttribute('src', image);
   $petsName.textContent = petName;
@@ -126,9 +132,33 @@ const displayAnimalPostPage = () => {
   </nav>
 </header>
 <main class="post-container">
-  <div class="pets-container"></div>
+<div class="pets-container">
+<img src="" alt="">
+<div class="pets-info">
+  <div class="name">
+    <span class="title">이름</span>
+    <p class="desc"></p>
+  </div>
+  <div class="death-date">
+    <span class="title">기일</span>
+    <time class="desc"></time>
+  </div>
+  <div class="favorite">
+    <span class="title">좋아했던 것</span>
+    <ul>
+      <li class="desc"></li>
+    </ul>
+  </div>
+</div>
+</div>
   <div class="column-container">
-    <div class="owner-container"></div>
+  <div class="owner-container">
+  <div class="owner-row">
+    <div class="owner"></div>
+    <ul class="pet-list">
+    </ul>
+  </div>
+</div>
     <div class="comment-container">
       <div class="new-comment">
         <textarea class="comment-input" name="comment-input" id="commentInput" rows="4"
