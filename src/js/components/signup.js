@@ -4,7 +4,10 @@ import { User } from '../model';
 import * as request from '../request';
 // cookies
 import * as Cookies from '../utils/cookies';
-import { displayMainPage } from './main';
+
+// components
+import displayMainPage from './main';
+import { moveLabelInForm } from '../utils/common';
 
 const user = new User();
 
@@ -58,30 +61,36 @@ const displaySignUpPage = () => {
       >
     </div>
     <form class="register-form">
-      <label for="username" class="offscreen">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        class="username"
-        placeholder="Username"
-      />
-      <label for="password" class="offscreen">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        class="password"
-        placeholder="Password"
-      />
-      <label for="email" class="offscreen">Email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        class="email"
-        placeholder="Email"
-      />
+      <div class="form-field">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="username"
+        />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="password"
+        />
+        <span class="error-message"></span>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="email"
+        />
+        <span class="error-message"></span>
+      </div>
       <button class="register-btn">아이디 등록</button>
     </form>
   </main>`;
@@ -91,6 +100,8 @@ const displaySignUpPage = () => {
   document
     .querySelector('.register-form')
     .addEventListener('submit', registerHandler);
+
+  moveLabelInForm('register-form');
 };
 
 export default displaySignUpPage;

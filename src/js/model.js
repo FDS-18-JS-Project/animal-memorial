@@ -42,13 +42,13 @@ export class Pet {
     this.comments = [];
   }
 
-  updatePetInfo(petId, petName, deathDate, favorites, image) {
+  updatePetInfo(petId, petName, deathDate, favorites, image, comments) {
     this.petId = petId;
     this.petName = petName;
     this.deathDate = deathDate;
     this.favorites = favorites;
     this.image = image;
-    return this;
+    this.comments = comments;
   }
 
   getPetId() {
@@ -58,5 +58,21 @@ export class Pet {
   addComment(comment) {
     this.comments = [comment, ...this.comments];
     return this.comments;
+  }
+}
+
+export class Pets {
+  constructor(pets, userid) {
+    this.userId = userid;
+    this.pets = pets;
+  }
+
+  updatePetsInfo(pets) {
+    this.pets = pets;
+    return this.pets;
+  }
+
+  getPetsInfo() {
+    return this.pets;
   }
 }
