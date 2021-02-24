@@ -20,6 +20,7 @@ const dateToString = date => date.replace('-', '. ');
 // const petInfo = await request.getPetInfo(petInfo1.pet._id);
 // pet.updatePetInfo(petInfo.params._id);
 
+
 // TODO: 함수 이름 다시 셍각해보기
 const renderPetInfo = async () => {
   const $petsImg = document.querySelector('.pets-container>img');
@@ -28,6 +29,9 @@ const renderPetInfo = async () => {
   const $petsFavorite = document.querySelector('.pets-info>.favorite>.desc');
 
   const petInfo = await request.getPetInfo();
+
+
+
   // const petId = pet.getPetId();
   const { petId, petName, deathDate, favorites, image } = {
     petInfo.data.pet._id,
