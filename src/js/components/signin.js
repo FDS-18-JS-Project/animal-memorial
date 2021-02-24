@@ -7,6 +7,7 @@ import * as Cookies from '../utils/cookies';
 import { displayMainPage } from './main';
 
 const user = new User();
+let userId;
 
 const getSignInInfo = () => {
   const email = document.querySelector('.email').value;
@@ -28,12 +29,14 @@ const loginHandler = async e => {
   const userInfo = await request.signin(email, password);
   if (userInfo) {
     console.log(userInfo);
-    user.updateUserInfoWithToken(
+    user.updateUserInfo(
       userInfo.data.payload.email,
       userInfo.data.username,
-      userInfo.data.token,
-      userInfo.data.payload._id
+      userInfo.data.payload._id,
+      userInfo.data.token
     );
+    userId = userInfo.data.payload._id;
+    localStorage.setItem('userId', userId);
 
     Cookies.setCookie('token', userInfo.data.token, {
       secure: true,
@@ -90,4 +93,4 @@ const displaySignInPage = () => {
     .addEventListener('submit', loginHandler);
 };
 
-export { getSignInInfo, displaySignInPage };
+export { getSignInInfo, displaySignInPage, userId };

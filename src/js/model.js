@@ -7,7 +7,7 @@ export class User {
     this.bookmark = bookmark;
   }
 
-  updateUserInfoAfterSignUp(email, username, token, id) {
+  updateUserInfo(email, username, id, token) {
     this.username = username;
     this.email = email;
     this.token = token;
@@ -15,16 +15,16 @@ export class User {
     return this;
   }
 
-  updateUserInfoWithToken(email, username, token, id) {
-    this.username = username;
-    this.email = email;
-    this.token = token;
-    this.id = id;
+  getUserData() {
     return this;
   }
 
   getToken() {
     return this.token;
+  }
+
+  getUserId() {
+    return this.id;
   }
 }
 
