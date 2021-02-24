@@ -791,6 +791,7 @@ body {
   border-radius: 5px;
   border-color: rgba(24, 24, 24, 0.3);
   outline: none;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .death-container {
@@ -799,27 +800,14 @@ body {
   justify-content: space-between;
   position: relative;
 }
-.death-container .death-year-label {
+.death-container .death-label {
   position: absolute;
   font-size: 15px;
   top: -25px;
   left: 5px;
   color: rgba(0, 0, 0, 0.4);
 }
-.death-container .death-year-select,
-.death-container .death-month-select {
-  width: 100%;
-  height: 50px;
-  font-size: 18px;
-  padding-left: 10px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  border-color: rgba(24, 24, 24, 0.3);
-  outline: none;
-  margin-right: 10px;
-  color: rgba(0, 0, 0, 0.6);
-}
-.death-container .death-date-select {
+.death-container .death-input {
   width: 100%;
   height: 50px;
   font-size: 18px;
@@ -869,6 +857,7 @@ body {
   border-radius: 5px;
   border-color: rgba(24, 24, 24, 0.3);
   outline: none;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .foot-1st {

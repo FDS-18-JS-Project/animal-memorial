@@ -4,7 +4,7 @@ import { User } from '../model';
 import * as request from '../request';
 // cookies
 import * as Cookies from '../utils/cookies';
-import displayMainPage from './main';
+import { displayMainPage } from './main';
 
 const user = new User();
 
@@ -28,14 +28,17 @@ const registerHandler = async e => {
   const { email, password, username } = getSignUpInfo();
 
   const userInfo = await request.signup(email, password, username);
+
   if (userInfo) {
     console.log(userInfo);
-    user.updateUserInfoAfterSignUp(
+    user.updateUserInfo(
       email,
       username,
-      userInfo.data.token,
-      userInfo.data.user._id
+      userInfo.data.user._id,
+      userInfo.data.token
     );
+
+    localStorage.setItem('userId', userInfo.data.user._id);
     Cookies.setCookie('token', userInfo.data.token, {
       secure: true,
       'max-age': 3600 * 3
