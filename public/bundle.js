@@ -1886,6 +1886,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/common */ "./src/js/utils/common.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
 /* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model */ "./src/js/model.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1906,6 +1907,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var pet = new _model__WEBPACK_IMPORTED_MODULE_3__.Pet();
+
 var animalRegisterHandler = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
     var _obtainPetInfo, petName, deathDate, favorites, image, userInfoId, token, petInfo;
@@ -1924,23 +1927,14 @@ var animalRegisterHandler = /*#__PURE__*/function () {
 
           case 6:
             petInfo = _context.sent;
-            console.log('petInfo: ', petInfo);
 
             if (petInfo) {
-              console.log(petInfo); // user.updateUserInfoAfterSignUp(
-              //   email,
-              //   username,
-              //   userInfo.data.token,
-              //   userInfo.data.user._id
-              // );
-              // Cookies.setCookie('token', userInfo.data.token, {
-              //   secure: true,
-              //   'max-age': 3600 * 3
-              // });
-              // displayMainPage();
+              console.log(petInfo);
+              pet.updatePetInfo(petInfo.data.pet._id, petInfo.data.pet.name, petInfo.data.pet.deathDate, petInfo.data.pet.favorites, petInfo.data.pet.image);
+              console.log(pet); // displayMainPage(); TODO: 포스트 페이지로 이동
             }
 
-          case 9:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -1996,11 +1990,7 @@ var animalRegister = function animalRegister() {
 
   $imgInput.onchange = function (e) {
     setThumbnail(e);
-  }; // $button.onclick = e => {
-  //   e.preventDefault();
-  //   obtainPetInfo();
-  // };
-
+  };
 
   $animalRegisterForm.onclick = function (_ref2) {
     var target = _ref2.target;
@@ -2067,7 +2057,7 @@ var displayLandingPage = function displayLandingPage() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "displayMainPage": () => (/* binding */ displayMainPage)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _animal_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animal-register */ "./src/js/components/animal-register.js");
 /* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/common */ "./src/js/utils/common.js");
@@ -2192,7 +2182,7 @@ var displayMainPage = function displayMainPage() {
   document.querySelector('.animal-register').addEventListener('click', animalRegister);
 };
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayMainPage);
 
 /***/ }),
 
@@ -2213,6 +2203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
 /* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
 /* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main */ "./src/js/components/main.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/common */ "./src/js/utils/common.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2221,6 +2212,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // axios requests
 
  // cookies
+
+ // components
 
 
 
@@ -2262,7 +2255,7 @@ var loginHandler = /*#__PURE__*/function () {
                 secure: true,
                 'max-age': 3600 * 3
               });
-              if (userInfo.data.token) (0,_main__WEBPACK_IMPORTED_MODULE_3__.displayMainPage)();
+              if (userInfo.data.token) (0,_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
           case 6:
@@ -2280,9 +2273,10 @@ var loginHandler = /*#__PURE__*/function () {
 
 
 var displaySignInPage = function displaySignInPage() {
-  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n<main class=\"login-container\">\n  <h2 class=\"offscreen\">login</h2>\n  <div class=\"title-group\">\n    <button class=\"login-title login-active\"\n      >\uB85C\uADF8\uC778</button\n    >\n    <button class=\"register-title\">\uD68C\uC6D0\uAC00\uC785</button>\n  </div>\n  <form class=\"login-form\">\n    <label for=\"email\" class=\"offscreen\">Email</label>\n    <input\n      type=\"email\"\n      name=\"email\"\n      id=\"email\"\n      class=\"email\"\n      placeholder=\"Email\"\n    />\n    <label for=\"password\" class=\"offscreen\">Password</label>\n    <input\n      type=\"password\"\n      name=\"password\"\n      id=\"password\"\n      class=\"password\"\n      placeholder=\"Password\"\n    />\n    <label for=\"checkbox\"\n      ><input\n        type=\"checkbox\"\n        id=\"checkbox\"\n        class=\"login-form-checkbox\"\n      />\uC544\uC774\uB514 \uC800\uC7A5</label\n    >\n    <button class=\"login-btn\">\uB85C\uADF8\uC778</button>\n  </form>\n</main>";
+  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n<main class=\"login-container\">\n  <h2 class=\"offscreen\">login</h2>\n  <div class=\"title-group\">\n    <button class=\"login-title login-active\"\n      >\uB85C\uADF8\uC778</button\n    >\n    <button class=\"register-title\">\uD68C\uC6D0\uAC00\uC785</button>\n  </div>\n  <form class=\"login-form\">\n    <div class=\"form-field\">\n      <label for=\"email\">Email</label>\n      <input\n        type=\"email\"\n        name=\"email\"\n        id=\"email\"\n        class=\"email\"\n      />\n      <span class=\"error-message\"></span>\n    </div>  \n    <div class=\"form-field\">\n      <label for=\"password\">Password</label>\n      <input\n        type=\"password\"\n        name=\"password\"\n        id=\"password\"\n        class=\"password\"\n      />\n      <span class=\"error-message\"></span>\n    </div>\n    <button class=\"login-btn\">\uB85C\uADF8\uC778</button>\n  </form>\n</main>";
   document.querySelector('body').innerHTML = markup;
   document.querySelector('.login-form').addEventListener('submit', loginHandler);
+  (0,_utils_common__WEBPACK_IMPORTED_MODULE_4__.moveLabelInForm)('login-form');
 };
 
 
@@ -2304,6 +2298,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
 /* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/cookies */ "./src/js/utils/cookies.js");
 /* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main */ "./src/js/components/main.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/common */ "./src/js/utils/common.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2312,6 +2307,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // axios requests
 
  // cookies
+
+ // components
 
 
 
@@ -2353,7 +2350,7 @@ var registerHandler = /*#__PURE__*/function () {
                 secure: true,
                 'max-age': 3600 * 3
               });
-              (0,_main__WEBPACK_IMPORTED_MODULE_3__.displayMainPage)();
+              (0,_main__WEBPACK_IMPORTED_MODULE_3__.default)();
             }
 
           case 6:
@@ -2370,9 +2367,10 @@ var registerHandler = /*#__PURE__*/function () {
 }();
 
 var displaySignUpPage = function displaySignUpPage() {
-  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n  <main class=\"register-container\">\n    <h2 class=\"offscreen\">Register</h2>\n    <div class=\"title-group\">\n      <button class=\"login-title\">\uB85C\uADF8\uC778</button>\n      <button class=\"register-title login-active\"\n        >\uD68C\uC6D0\uAC00\uC785</button\n      >\n    </div>\n    <form class=\"register-form\">\n      <label for=\"username\" class=\"offscreen\">Username</label>\n      <input\n        type=\"text\"\n        name=\"username\"\n        id=\"username\"\n        class=\"username\"\n        placeholder=\"Username\"\n      />\n      <label for=\"password\" class=\"offscreen\">Password</label>\n      <input\n        type=\"password\"\n        name=\"password\"\n        id=\"password\"\n        class=\"password\"\n        placeholder=\"Password\"\n      />\n      <label for=\"email\" class=\"offscreen\">Email</label>\n      <input\n        type=\"email\"\n        name=\"email\"\n        id=\"email\"\n        class=\"email\"\n        placeholder=\"Email\"\n      />\n      <button class=\"register-btn\">\uC544\uC774\uB514 \uB4F1\uB85D</button>\n    </form>\n  </main>";
+  var markup = "<h1 class=\"site-title\">Memorial for My Pet</h1>\n  <main class=\"register-container\">\n    <h2 class=\"offscreen\">Register</h2>\n    <div class=\"title-group\">\n      <button class=\"login-title\">\uB85C\uADF8\uC778</button>\n      <button class=\"register-title login-active\"\n        >\uD68C\uC6D0\uAC00\uC785</button\n      >\n    </div>\n    <form class=\"register-form\">\n      <div class=\"form-field\">\n        <label for=\"username\">Username</label>\n        <input\n          type=\"text\"\n          name=\"username\"\n          id=\"username\"\n          class=\"username\"\n        />\n        <span class=\"error-message\"></span>\n      </div>\n      <div class=\"form-field\">\n        <label for=\"password\">Password</label>\n        <input\n          type=\"password\"\n          name=\"password\"\n          id=\"password\"\n          class=\"password\"\n        />\n        <span class=\"error-message\"></span>\n      </div>\n      <div class=\"form-field\">\n        <label for=\"email\">Email</label>\n        <input\n          type=\"email\"\n          name=\"email\"\n          id=\"email\"\n          class=\"email\"\n        />\n        <span class=\"error-message\"></span>\n      </div>\n      <button class=\"register-btn\">\uC544\uC774\uB514 \uB4F1\uB85D</button>\n    </form>\n  </main>";
   document.querySelector('body').innerHTML = markup;
   document.querySelector('.register-form').addEventListener('submit', registerHandler);
+  (0,_utils_common__WEBPACK_IMPORTED_MODULE_4__.moveLabelInForm)('register-form');
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displaySignUpPage);
@@ -2390,6 +2388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "User": () => (/* binding */ User),
 /* harmony export */   "Pet": () => (/* binding */ Pet),
+/* harmony export */   "Pets": () => (/* binding */ Pets),
 /* harmony export */   "comments": () => (/* binding */ comments)
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2437,16 +2436,57 @@ var User = /*#__PURE__*/function () {
 
   return User;
 }();
-var Pet = function Pet(petName, deathDate, favorites, image, petId) {
-  _classCallCheck(this, Pet);
+var Pet = /*#__PURE__*/function () {
+  function Pet(petName, deathDate, favorites, image, petId) {
+    _classCallCheck(this, Pet);
 
-  this.petId = petId;
-  this.petName = petName;
-  this.deathDate = deathDate;
-  this.favorites = favorites;
-  this.image = image;
-  this.comments = [];
-};
+    this.petId = petId;
+    this.petName = petName;
+    this.deathDate = deathDate;
+    this.favorites = favorites;
+    this.image = image;
+    this.comments = [];
+  }
+
+  _createClass(Pet, [{
+    key: "updatePetInfo",
+    value: function updatePetInfo(petId, petName, deathDate, favorites, image, comments) {
+      this.petId = petId;
+      this.petName = petName;
+      this.deathDate = deathDate;
+      this.favorites = favorites;
+      this.image = image;
+      this.comments = comments;
+    }
+  }]);
+
+  return Pet;
+}();
+var Pets = /*#__PURE__*/function () {
+  function Pets(pets, userid) {
+    _classCallCheck(this, Pets);
+
+    this.userId = userid;
+    this.pets = pets;
+  }
+
+  _createClass(Pets, [{
+    key: "updatePetsInfo",
+    value: function updatePetsInfo(pets) {
+      this.pets = pets;
+      return this.pets;
+    }
+  }, {
+    key: "getPetsInfo",
+    value: function getPetsInfo() {
+      return this.pets; // this.comments = comments;
+
+      return this;
+    }
+  }]);
+
+  return Pets;
+}();
 var comments = function comments(_comments, pet, owner) {
   _classCallCheck(this, comments);
 
@@ -2470,7 +2510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "signout": () => (/* binding */ signout),
 /* harmony export */   "getUserData": () => (/* binding */ getUserData),
-/* harmony export */   "postPetInfo": () => (/* binding */ postPetInfo)
+/* harmony export */   "postPetInfo": () => (/* binding */ postPetInfo),
+/* harmony export */   "getPetsInfo": () => (/* binding */ getPetsInfo)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2609,7 +2650,7 @@ var getUserData = /*#__PURE__*/function () {
               url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_USER_DATA + '/' + userId,
               headers: {
                 'content-type': 'application/json',
-                'Authorization': token
+                Authorization: token
               }
             });
 
@@ -2681,6 +2722,45 @@ var postPetInfo = /*#__PURE__*/function () {
     return _ref5.apply(this, arguments);
   };
 }();
+var getPetsInfo = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(token) {
+    var petsInfo;
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.prev = 0;
+            _context6.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              method: 'get',
+              url: _utils_constants__WEBPACK_IMPORTED_MODULE_1__.URL_PETS,
+              headers: {
+                'content-type': 'application/json',
+                Authorization: token
+              }
+            });
+
+          case 3:
+            petsInfo = _context6.sent;
+            return _context6.abrupt("return", petsInfo);
+
+          case 7:
+            _context6.prev = 7;
+            _context6.t0 = _context6["catch"](0);
+            console.error(_context6.t0);
+
+          case 10:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, null, [[0, 7]]);
+  }));
+
+  return function getPetsInfo(_x14) {
+    return _ref6.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -2693,11 +2773,32 @@ var postPetInfo = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */   "logout": () => (/* binding */ logout),
+/* harmony export */   "moveLabelInForm": () => (/* binding */ moveLabelInForm),
+/* harmony export */   "getPetsInfo": () => (/* binding */ getPetsInfo),
+/* harmony export */   "saveUserInfo": () => (/* binding */ saveUserInfo)
 /* harmony export */ });
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../request */ "./src/js/request.js");
 /* harmony import */ var _cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cookies */ "./src/js/utils/cookies.js");
-/* harmony import */ var _components_landing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/landing */ "./src/js/components/landing.js");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model */ "./src/js/model.js");
+/* harmony import */ var _components_landing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/landing */ "./src/js/components/landing.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -2707,8 +2808,90 @@ var logout = function logout() {
   localStorage.removeItem('userId');
   localStorage.removeItem('petId');
   _cookies__WEBPACK_IMPORTED_MODULE_1__.deleteCookie('token');
-  (0,_components_landing__WEBPACK_IMPORTED_MODULE_2__.default)();
+  (0,_components_landing__WEBPACK_IMPORTED_MODULE_3__.default)();
 };
+var moveLabelInForm = function moveLabelInForm(formName) {
+  document.querySelector(".".concat(formName)).addEventListener('click', function (e) {
+    if (!e.target.matches('input')) return;
+    e.target.previousElementSibling.classList.add('active');
+  });
+  document.querySelector(".".concat(formName)).addEventListener('keyup', function (e) {
+    if (!e.key === 'Tab') return;
+    if (!e.target.matches('div > input')) return;
+    e.target.previousElementSibling.classList.add('active');
+  });
+};
+var getPetsInfo = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var petsInfo, pets, petsData;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _request__WEBPACK_IMPORTED_MODULE_0__.getPetsInfo(_cookies__WEBPACK_IMPORTED_MODULE_1__.getCookie('token'));
+
+          case 2:
+            petsInfo = _context.sent;
+            pets = new _model__WEBPACK_IMPORTED_MODULE_2__.Pets();
+
+            if (!petsInfo) {
+              _context.next = 8;
+              break;
+            }
+
+            petsData = _toConsumableArray(petsInfo.data.pets).map(function (petInfo) {
+              var pet = new _model__WEBPACK_IMPORTED_MODULE_2__.Pet();
+              pet.updatePetInfo(petInfo._id, petInfo.name, petInfo.deathDate, petInfo.favorites, petInfo.image, petInfo.comments);
+              return pet;
+            });
+            pets.updatePetsInfo(petsData);
+            return _context.abrupt("return", pets.getPetsInfo());
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function getPetsInfo() {
+    return _ref.apply(this, arguments);
+  };
+}();
+var saveUserInfo = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var userInfo, user;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return _request__WEBPACK_IMPORTED_MODULE_0__.getUserData(localStorage.getItem('userId'), _cookies__WEBPACK_IMPORTED_MODULE_1__.getCookie('token'));
+
+          case 2:
+            userInfo = _context2.sent;
+            user = new _model__WEBPACK_IMPORTED_MODULE_2__.User();
+
+            if (userInfo) {
+              user.updateUserInfo(userInfo.data.payload.email, userInfo.data.payload.username, userInfo.data.payload._id);
+            }
+
+            localStorage.setItem('userId', userInfo.data.payload._id);
+
+          case 6:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function saveUserInfo() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -12710,9 +12893,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/main */ "./src/js/components/main.js");
 /* harmony import */ var _components_landing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/landing */ "./src/js/components/landing.js");
 /* harmony import */ var _components_signin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/signin */ "./src/js/components/signin.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./request */ "./src/js/request.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/common */ "./src/js/utils/common.js");
 /* harmony import */ var _utils_cookies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/cookies */ "./src/js/utils/cookies.js");
-/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./model */ "./src/js/model.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./request */ "./src/js/request.js");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./model */ "./src/js/model.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -12720,9 +12904,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
- // request
 
  // cookies
+
 
 
  // check if token exists
@@ -12736,11 +12920,11 @@ if (_utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token')) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _request__WEBPACK_IMPORTED_MODULE_4__.getUserData(localStorage.getItem('userId'), _utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token'));
+              return _request__WEBPACK_IMPORTED_MODULE_6__.getUserData(localStorage.getItem('userId'), _utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token'));
 
             case 2:
               userInfo = _context.sent;
-              user = new _model__WEBPACK_IMPORTED_MODULE_6__.User();
+              user = new _model__WEBPACK_IMPORTED_MODULE_7__.User();
 
               if (userInfo) {
                 user.updateUserInfo(userInfo.data.payload.email, userInfo.data.payload.username, userInfo.data.payload._id);
@@ -12760,7 +12944,37 @@ if (_utils_cookies__WEBPACK_IMPORTED_MODULE_5__.getCookie('token')) {
   }();
 
   getUserInfo();
-  (0,_components_main__WEBPACK_IMPORTED_MODULE_1__.displayMainPage)();
+
+  var rebootHandler = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var pets;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              (0,_utils_common__WEBPACK_IMPORTED_MODULE_4__.saveUserInfo)();
+              _context2.next = 3;
+              return (0,_utils_common__WEBPACK_IMPORTED_MODULE_4__.getPetsInfo)();
+
+            case 3:
+              pets = _context2.sent;
+              console.log(pets);
+              (0,_components_main__WEBPACK_IMPORTED_MODULE_1__.default)();
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function rebootHandler() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  rebootHandler();
 }
 
 var eventHandler = function eventHandler(e) {

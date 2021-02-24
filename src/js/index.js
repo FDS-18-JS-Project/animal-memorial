@@ -1,12 +1,12 @@
 import displaySignUpPage from './components/signup';
-import { displayMainPage } from './components/main';
-
+import displayMainPage from './components/main';
 import displayLandingPage from './components/landing';
 import { displaySignInPage } from './components/signin';
-// request
-import * as request from './request';
+
+import { saveUserInfo, getPetsInfo } from './utils/common';
 // cookies
 import * as Cookies from './utils/cookies';
+import * as request from './request';
 import { User } from './model';
 
 // check if token exists
@@ -24,8 +24,14 @@ if (Cookies.getCookie('token')) {
     }
   }
   getUserInfo();
+  const rebootHandler = async () => {
+    saveUserInfo();
+    const pets = await getPetsInfo();
+    console.log(pets);
 
-  displayMainPage();
+    displayMainPage();
+  };
+  rebootHandler();
 }
 const eventHandler = e => {
   // redirect to landing

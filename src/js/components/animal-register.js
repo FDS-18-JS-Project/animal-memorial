@@ -1,6 +1,9 @@
 import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
+import { Pet } from '../model';
+
+const pet = new Pet;
 
 const animalRegisterHandler = async e => {
   e.preventDefault();
@@ -13,21 +16,18 @@ const animalRegisterHandler = async e => {
   const token = Cookies.getCookie('token');
 
   const petInfo = await request.postPetInfo(petName, deathDate, favorites, image, userInfoId, token);
-  console.log('petInfo: ', petInfo);
 
   if (petInfo) {
     console.log(petInfo);
-    // user.updateUserInfoAfterSignUp(
-    //   email,
-    //   username,
-    //   userInfo.data.token,
-    //   userInfo.data.user._id
-    // );
-    // Cookies.setCookie('token', userInfo.data.token, {
-    //   secure: true,
-    //   'max-age': 3600 * 3
-    // });
-    // displayMainPage();
+    pet.updatePetInfo(
+      petInfo.data.pet._id,
+      petInfo.data.pet.name,
+      petInfo.data.pet.deathDate,
+      petInfo.data.pet.favorites,
+      petInfo.data.pet.image
+    );
+    console.log(pet);
+    // displayMainPage(); TODO: 포스트 페이지로 이동
   }
 };
 
@@ -36,17 +36,21 @@ const obtainPetInfo = () => {
   const image = window.URL.createObjectURL(formDate[0].files[0]);
   const petName = formDate[1].value;
   const deathDate = formDate[2].value;
-  const favorites = [`${formDate[3].value}`, `${formDate[4].value}`, `${formDate[5].value}`];
+  const favorites = [
+    `${formDate[3].value}`,
+    `${formDate[4].value}`,
+    `${formDate[5].value}`
+  ];
 
   return {
-    petName, 
-    deathDate, 
-    favorites, 
+    petName,
+    deathDate,
+    favorites,
     image
   };
 };
 
-const dragOver = (e) => {
+const dragOver = e => {
   const effectDrag = e.target.parentNode.style;
 
   if (e.type === 'dragover') {
@@ -55,7 +59,7 @@ const dragOver = (e) => {
   } else {
     effectDrag.backgroundColor = '#FFFFFF';
   }
-}
+};
 
 const setThumbnail = e => {
   const image = e.target.files[0];
@@ -73,41 +77,35 @@ const setThumbnail = e => {
 const animalRegister = () => {
   const $animalRegisterForm = document.querySelector('.animal-register-form');
   const $imgInput = document.querySelector('.img-input');
-  
+
   $imgInput.onchange = e => {
     setThumbnail(e);
   };
-  
-  // $button.onclick = e => {
-  //   e.preventDefault();
-  //   obtainPetInfo();
-  // };
   
   $animalRegisterForm.onclick = ({ target }) => {
     if (!target.matches('div > input[type="text"]')) return;
     target.previousElementSibling.classList.add('active');
   };
-  
+
   $animalRegisterForm.onkeyup = e => {
     if (!e.key === 'Tab') return;
     if (!e.target.matches('div > input[type="text"]')) return;
-  
+
     e.target.previousElementSibling.classList.add('active');
   };
-  
+
   $imgInput.addEventListener('dragover', e => {
     e.stopPropagation();
     e.preventDefault();
     dragOver(e);
   });
-  
+
   $imgInput.addEventListener('dragleave', e => {
     e.stopPropagation();
     e.preventDefault();
     dragOver(e);
   });
 };
-
 
 const displayAnimalRegisterPage = () => {
   const markup = `<header class="header">
@@ -184,13 +182,15 @@ const displayAnimalRegisterPage = () => {
   <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>
 </footer>`;
 
-document.querySelector('body').innerHTML = markup;
+  document.querySelector('body').innerHTML = markup;
 
-animalRegister();
-document.querySelector('.logout').addEventListener('click', logout);
-document.querySelector('.animal-register-button').addEventListener('click', animalRegisterHandler);
+  animalRegister();
+  document.querySelector('.logout').addEventListener('click', logout);
+  document
+    .querySelector('.animal-register-button')
+    .addEventListener('click', animalRegisterHandler);
 
-// document.querySelector('.animal-register-button').addEventListener('click', );
-}
+  // document.querySelector('.animal-register-button').addEventListener('click', );
+};
 
 export default displayAnimalRegisterPage;

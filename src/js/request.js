@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { URL_LOGIN, URL_REGISTER, URL_LOGOUT, URL_PETS, URL_USER_DATA } from './utils/constants';
+import {
+  URL_LOGIN,
+  URL_REGISTER,
+  URL_LOGOUT,
+  URL_PETS,
+  URL_USER_DATA
+} from './utils/constants';
 
 export const signin = async (email, password) => {
   try {
@@ -53,7 +59,7 @@ export const getUserData = async (userId, token) => {
       url: URL_USER_DATA + '/' + userId,
       headers: {
         'content-type': 'application/json',
-        'Authorization': token
+        Authorization: token
       }
     });
     return res;
@@ -81,6 +87,22 @@ export const postPetInfo = async (name, deathDate, favorites, image, userId, tok
       }
     });
     return petInfo;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getPetsInfo = async token => {
+  try {
+    const petsInfo = await axios({
+      method: 'get',
+      url: URL_PETS,
+      headers: {
+        'content-type': 'application/json',
+        Authorization: token
+      }
+    });
+    return petsInfo;
   } catch (error) {
     console.error(error);
   }
