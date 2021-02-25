@@ -42,7 +42,7 @@
 
     .login-btn:hover,
     .register-btn:hover {
-      @include button-hover($color-secondary, $white_font)
+      @include button-hover($color-secondary, $white_font);
     }
 
     // .error-message {

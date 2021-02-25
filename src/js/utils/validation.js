@@ -16,17 +16,15 @@ export const reset = spanEl => {
 export const createErrorForEmptyId = (e, spanEl) => {
   const $span = spanEl;
 
-  if(!e.target[0].value)
-  $span.textContent = errorMessage.emptyIdError;
+  if (!e.target[0].value) $span.textContent = errorMessage.emptyIdError;
   e.preventDefault();
-  return;
 };
 
 export const createErrorForEmptyEmail = (e, spanEl) => {
   const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   const $span = spanEl;
-  
-  if(!e.target.value.match(regExpEm)) {
+
+  if (!e.target.value.match(regExpEm)) {
     $span.textContent = errorMessage.emptyEmailError;
   } else reset($span);
 };
@@ -34,23 +32,22 @@ export const createErrorForEmptyEmail = (e, spanEl) => {
 export const createErrorForEmptyPw = (e, spanEl) => {
   const $span = spanEl;
 
-  if(!e.target[1].value)
-  $span.textContent = errorMessage.emptyPwError;
+  if (!e.target[1].value) $span.textContent = errorMessage.emptyPwError;
   e.preventDefault();
-  return;
 };
 
 export const createErrorForSignupNameError = (e, spanEl) => {
   const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
   const $span = spanEl;
-
-  if(!e.target[0].value) {
+  console.log(e.target);
+  if (!e.target.value) {
     e.preventDefault();
     $span.textContent = errorMessage.signupNameError;
     return;
-  };
+  }
 
-  if(!(e.target.value).match(regExpName)) $span.textContent = errorMessage.signupNameError;
+  if (!e.target.value.match(regExpName))
+    $span.textContent = errorMessage.signupNameError;
   else reset($span);
 };
 
@@ -58,13 +55,14 @@ export const createErrorForSignupPwError = (e, spanEl) => {
   const regExpPw = /^[a-z0-9]{4,15}$/;
   const $span = spanEl;
 
-  if(!e.target[1].value) {
+  if (!e.target.value) {
     e.preventDefault();
     $span.textContent = errorMessage.signupPwError;
     return;
-  };
+  }
 
-  if(!(e.target.value).match(regExpPw)) $span.textContent = errorMessage.signupPwError;
+  if (!e.target.value.match(regExpPw))
+    $span.textContent = errorMessage.signupPwError;
   else reset($span);
 };
 
@@ -72,12 +70,13 @@ export const createErrorForSignupEmailError = (e, spanEl) => {
   const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   const $span = spanEl;
 
-  if(!e.target[2].value) {
+  if (!e.target.value) {
     e.preventDefault();
     $span.textContent = errorMessage.emptyEmailError;
     return;
-  };
+  }
 
-  if(!(e.target.value).match(regExpEm)) $span.textContent = errorMessage.emptyEmailError;
+  if (!e.target.value.match(regExpEm))
+    $span.textContent = errorMessage.emptyEmailError;
   else reset($span);
 };

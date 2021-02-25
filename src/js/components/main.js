@@ -11,14 +11,19 @@ const animalRegister = () => {
 };
 
 const renderAttentionPets = ($container, pets) => {
-  $container.innerHTML = `${[...pets].filter((_, i, pets) => i > pets.length - 5 ).map(({ name, image }) => `<a href="#" class="attention-card">
+  $container.innerHTML = `${[...pets]
+    .filter((_, i, pets) => i > pets.length - 5)
+    .map(
+      ({ name, image }) => `<a href="#" class="attention-card">
     <img src="${image}" alt="">
     <p class="name">${name}</p>
-  </a>`).join('')}`;
+  </a>`
+    )
+    .join('')}`;
 };
 
 const renderAllPets = ($container, pets) => {
-  console.log('petList: ', pets)
+  console.log('petList: ', pets);
   let currentSlide = 0;
   let isMoving = false;
   const DURATION = 500;
@@ -37,19 +42,19 @@ const renderAllPets = ($container, pets) => {
     <div class="pets-card-container">
       <div class="slides">
       ${[
-      pets[pets.length - 2],
-      pets[pets.length - 1],
-      ...pets,
-      pets[0],
-      pets[1]
-    ]
-      .map(
-        ({
-          name,
-          deathDate,
-          favorites,
-          image
-        }) => `<a href="#" class="pets-card">
+        pets[pets.length - 2],
+        pets[pets.length - 1],
+        ...pets,
+        pets[0],
+        pets[1]
+      ]
+        .map(
+          ({
+            name,
+            deathDate,
+            favorites,
+            image
+          }) => `<a href="#" class="pets-card">
           <img src="${image}" />
           <div class="name">
             <span class="title">이름</span>
@@ -64,8 +69,8 @@ const renderAllPets = ($container, pets) => {
             <span class="desc">${favorites}</span>
           </div>
         </a>`
-      )
-      .join('')}
+        )
+        .join('')}
       </div>
     </div>
     <i class="slide-control prev fas fa-chevron-left"></i>

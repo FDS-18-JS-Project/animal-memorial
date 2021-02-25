@@ -10,7 +10,12 @@ import displayMainPage from './main';
 import { moveLabelInForm } from '../utils/common';
 
 // validation
-import { createErrorForEmptyId, createErrorForEmptyEmail, createErrorForEmptyPw, reset } from '../utils/validation';
+import {
+  createErrorForEmptyId,
+  createErrorForEmptyEmail,
+  createErrorForEmptyPw,
+  reset
+} from '../utils/validation';
 
 const user = new User();
 
@@ -41,7 +46,7 @@ const loginHandler = async e => {
       userInfo.data.token
     );
     const userId = userInfo.data.payload._id;
-    const username = userInfo.data.payload.username;
+    const { username } = userInfo.data.payload;
     localStorage.setItem('userId', userId);
     localStorage.setItem('username', username);
 
@@ -63,7 +68,6 @@ const checkValidationUsingSubmit = e => {
   createErrorForEmptyId(e, document.querySelector('.error-message-email'));
   createErrorForEmptyPw(e, document.querySelector('.error-message-pw'));
 };
-
 
 // eslint-disable-next-line no-undef
 const displaySignInPage = () => {
@@ -106,7 +110,9 @@ const displaySignInPage = () => {
 
   document.querySelector('body').innerHTML = markup;
 
-  document.querySelector('.email').addEventListener('keyup', checkValidationUsingKeyup);
+  document
+    .querySelector('.email')
+    .addEventListener('keyup', checkValidationUsingKeyup);
   document.querySelector('.login-form').addEventListener('submit', e => {
     checkValidationUsingSubmit(e);
     loginHandler(e);

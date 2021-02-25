@@ -10,7 +10,12 @@ import displayMainPage from './main';
 import { moveLabelInForm } from '../utils/common';
 
 // validation
-import { createErrorForSignupNameError, createErrorForSignupPwError, createErrorForSignupEmailError, reset } from '../utils/validation';
+import {
+  createErrorForSignupNameError,
+  createErrorForSignupPwError,
+  createErrorForSignupEmailError,
+  reset
+} from '../utils/validation';
 
 const user = new User();
 
@@ -35,7 +40,7 @@ const registerHandler = async e => {
 
   const userInfo = await request.signup(email, password, username);
 
-  if (userInfo.status === 200) {
+  if (userInfo || userInfo.status === 200) {
     user.updateUserInfo(
       email,
       username,
@@ -55,21 +60,39 @@ const registerHandler = async e => {
 
 // validation
 const checkValidationName = e => {
-  createErrorForSignupNameError(e, document.querySelector('.error-message-signup-name'));
+  createErrorForSignupNameError(
+    e,
+    document.querySelector('.error-message-signup-name')
+  );
 };
 
 const checkValidationPw = e => {
-  createErrorForSignupPwError(e, document.querySelector('.error-message-signup-pw'));
+  createErrorForSignupPwError(
+    e,
+    document.querySelector('.error-message-signup-pw')
+  );
 };
 
 const checkValidationEmail = e => {
-  createErrorForSignupEmailError(e, document.querySelector('.error-message-signup-email'));
+  createErrorForSignupEmailError(
+    e,
+    document.querySelector('.error-message-signup-email')
+  );
 };
 
 const checkValidationUsingSubmit = e => {
-  createErrorForSignupNameError(e, document.querySelector('.error-message-signup-name'));
-  createErrorForSignupPwError(e, document.querySelector('.error-message-signup-pw'));
-  createErrorForSignupEmailError(e, document.querySelector('.error-message-signup-email'));
+  createErrorForSignupNameError(
+    e,
+    document.querySelector('.error-message-signup-name')
+  );
+  createErrorForSignupPwError(
+    e,
+    document.querySelector('.error-message-signup-pw')
+  );
+  createErrorForSignupEmailError(
+    e,
+    document.querySelector('.error-message-signup-email')
+  );
 };
 
 const displaySignUpPage = () => {
@@ -124,14 +147,20 @@ const displaySignUpPage = () => {
 
   document.querySelector('body').innerHTML = markup;
 
-  document.querySelector('.username').addEventListener('keyup', checkValidationName);
-  document.querySelector('.password').addEventListener('keyup', checkValidationPw);
-  document.querySelector('.email').addEventListener('keyup', checkValidationEmail);
-  
+  document
+    .querySelector('.username')
+    .addEventListener('keyup', checkValidationName);
+  document
+    .querySelector('.password')
+    .addEventListener('keyup', checkValidationPw);
+  document
+    .querySelector('.email')
+    .addEventListener('keyup', checkValidationEmail);
+
   document.querySelector('.register-form').addEventListener('submit', e => {
-      checkValidationUsingSubmit(e);
-      registerHandler(e);
-    });
+    checkValidationUsingSubmit(e);
+    registerHandler(e);
+  });
 
   moveLabelInForm('register-form');
 };
