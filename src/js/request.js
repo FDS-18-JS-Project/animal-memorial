@@ -21,7 +21,8 @@ export const signin = async (email, password) => {
     });
     return userInfo;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -38,7 +39,8 @@ export const signup = async (email, password, username) => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -50,7 +52,8 @@ export const signout = async () => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -66,7 +69,8 @@ export const getUserData = async (userId, token) => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 // export const patchPetImage = async (petId, imgFormData) => {
@@ -113,7 +117,8 @@ export const postPetInfo = async (imgFormData, userId, token) => {
     });
     return petInfo;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -129,22 +134,26 @@ export const getPetsInfo = async token => {
     });
     return petsInfo;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
-export const getPetInfo = async petId => {
+export const getPetInfo = async (petId, token) => {
+  console.log(petId, token);
   try {
     const res = await axios({
       method: 'get',
-      url: URL_PET,
-      params: {
-        petId
+      url: URL_PET + '/' + petId,
+      headers: {
+        'content-type': 'application/json',
+        Authorization: 'Bearer ' + token
       }
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -161,6 +170,7 @@ export const postComment = async (comment, userId, petId) => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };

@@ -44,6 +44,7 @@ caption {
   color: $font-color;
   font-size: $font-size;
   font-weight: $font-weight;
+  transition: 300ms;
 }
 
 @mixin button-hover($bg-color, $font-color) {

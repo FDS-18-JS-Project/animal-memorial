@@ -32,8 +32,7 @@ const registerHandler = async e => {
 
   const userInfo = await request.signup(email, password, username);
 
-  if (userInfo) {
-    console.log(userInfo);
+  if (userInfo.status === 200) {
     user.updateUserInfo(
       email,
       username,

@@ -2,8 +2,8 @@ import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
 import { Pet, Pets } from '../model';
-import { useData } from './animal-post';
-import displayMainPage from '../components/main';
+import displayMainPage from './main';
+import { displayAnimalPostPage } from './animal-post'
 
 const pet = new Pet();
 const pets = new Pets();
@@ -51,6 +51,9 @@ const animalRegisterHandler = async e => {
     // useData(petInfo.data.pet);
 
     pets.updatePetInfo(pet, userInfoId);
+
+    localStorage.setItem('petId', petInfo.data.pet._id);
+    displayAnimalPostPage();
   }
 };
 

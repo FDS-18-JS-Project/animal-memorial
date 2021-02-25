@@ -13,7 +13,6 @@ import { moveLabelInForm } from '../utils/common';
 import { createErrorForEmptyId, createErrorForEmptyEmail, createErrorForEmptyPw } from '../utils/validation';
 
 const user = new User();
-let userId;
 
 const getSignInInfo = () => {
   const email = document.querySelector('.email').value;
@@ -33,7 +32,7 @@ const loginHandler = async e => {
   const { email, password } = getSignInInfo();
 
   const userInfo = await request.signin(email, password);
-  if (userInfo) {
+  if (userInfo.status === 200) {
     console.log(userInfo);
     user.updateUserInfo(
       userInfo.data.payload.email,
@@ -41,7 +40,7 @@ const loginHandler = async e => {
       userInfo.data.payload._id,
       userInfo.data.token
     );
-    userId = userInfo.data.payload._id;
+    const userId = userInfo.data.payload._id;
     localStorage.setItem('userId', userId);
 
     Cookies.setCookie('token', userInfo.data.token, {
@@ -127,4 +126,4 @@ const displaySignInPage = () => {
   moveLabelInForm('login-form');
 };
 
-export { getSignInInfo, displaySignInPage, userId };
+export { getSignInInfo, displaySignInPage };
