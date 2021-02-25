@@ -30,11 +30,6 @@ export class User {
   getUserInfo() {
     return this.username;
   }
-
-  getUserDataWithUserId(userId) {
-    this.userId = userId;
-    return this;
-  }
 }
 
 export class Pet {

@@ -2,8 +2,8 @@ import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
 import { Pet, Pets } from '../model';
-import { useData } from './animal-post';
-import displayMainPage from '../components/main';
+import displayMainPage from './main';
+import { displayAnimalPostPage } from './animal-post'
 
 const pet = new Pet();
 const pets = new Pets();
@@ -54,10 +54,14 @@ const animalRegisterHandler = async e => {
       petInfo.data.pet.deathDate,
       petInfo.data.pet.favorites
     );
-    useData(petInfo.data.pet);
 
-    pets.updatePetInfo(pet, userInfoId);
+    localStorage.setItem('petId', petInfo.data.pet._id);
+    // pets.updatePetInfo(pet, userInfoId);
+
+    // 펫 데이타를 가져오기
+
     // displayMainPage(); TODO: 포스트 페이지로 이동
+    displayAnimalPostPage();
   }
 };
 

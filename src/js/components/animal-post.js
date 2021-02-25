@@ -6,69 +6,60 @@ import displayMainPage from '../components/main';
 import displayAnimalRegisterPage from './animal-register';
 // import { doc } from 'prettier';
 
-// ? date 렌더링 함수
-//! 함수 이름 다시 고려해보깅
+// Pet And Owner Information
+// date 형식 변환 함수
 const dateToString = date => date.replaceAll('-', '.').slice(0, 10);
 
-// ? animal-register와 연결
-export const useData = pets => {
-  // ? Pet Information
-  console.log('pets: ', pets);
-  console.log('pets._id: ', pets._id);
+// 추모 반려견 정보 렌더링
+const renderPetInfo = pet => {
+  // Pet Information
+  const $petImg = document.querySelector('.pets-container>img');
+  const $petName = document.querySelector('.pets-info>.name>.desc');
+  const $petDeathDate = document.querySelector('.pets-info>.death-date>.desc');
+  const $petFavoriteList = document.querySelector('.pets-info>.favorite>.desc');
 
-  const $petsImg = document.querySelector('.pets-container>img');
-  const $petsName = document.querySelector('.pets-info>.name>.desc');
-  const $petsDeathDate = document.querySelector('.pets-info>.death-date>.desc');
-  const $petsFavoriteList = document.querySelector('.pets-info>.favorite>.desc');
-  console.log($petsImg, $petsName, $petsDeathDate, $petsFavoriteList);
+  $petImg.setAttribute('src', pet.image);
+  $petName.textContent = pet.name;
+  $petDeathDate.textContent = dateToString(pet.deathDate);
 
-  // localStorage.setItem('petId', petInfo.data.pet._id);
-  $petsImg.setAttribute('src', pets.image);
-  $petsName.textContent = pets.name;
-  $petsDeathDate.textContent = dateToString(pets.deathDate);
-
-  // ? favorites
-  const _favorites = pets.favorites;
+  // favorites
+  const _favorites = pet.favorites;
 
   _favorites.forEach(content => {
-    const $petsFavoriteItem = document.createElement('li');
-    $petsFavoriteList.appendChild($petsFavoriteItem);
-    $petsFavoriteItem.textContent = content;
+    const $petFavoriteItem = document.createElement('li');
+    $petFavoriteList.appendChild($petFavoriteItem);
+    $petFavoriteItem.textContent = content;
   });
-
-  // const $ownerName = document.querySelector('.owner-row>.owner');
-  // const $ownerPetList = document.querySelector('.pet-list');
-
-  // const $ownerPetItem = document.createElement('li');
-  // const $ownerPetLink = document.createElement('a');
-
-  // $ownerPetList.appendChild($ownerPetItem);
-  // $ownerPetList.appendChild($ownerPetLink);
-
-  // $ownerName.innerHTML = 'test';
-  // $ownerPetLink.innerHTML = 'test2';
-
-  // const { owner } = pets;
 };
 
-// Todo: request user information
-const requestUserInfo = async () => {
-  const userId = localStorage.getItem('userId');
+// 보호자 정보 렌더링
+const renderOwnerInfo = owner => {
+  const $ownerName = document.querySelector('.owner-name');
+  const $ownerEmail = document.querySelector('.owner-email');
+
+  $ownerName.textContent = owner.username;
+  $ownerEmail.textContent = owner.email;
+};
+
+// 반려견 및 보호자 정보 요청
+const requestPetAndUserInfo = async () => {
+  const petId = localStorage.getItem('petId');
   const token = Cookies.getCookie('token');
-  const userInfo = await request.getUserData(userId, token);
-  if (userInfo) return console.log('userInfo: ', userInfo, userId);
+  const petAndUserInfo = await request.getPetInfo(petId, token);
+  console.log('petAndUserInfo: ', petAndUserInfo);
+
+  renderOwnerInfo(petAndUserInfo.data.pet.owner);
+  renderPetInfo(petAndUserInfo.data.pet);
 };
 
-// ? Comment
-// const $commentForm = document.querySelector('.comment-form');
-
-// ? 댓글 카운팅
+// Comment
+// 댓글 카운팅
 const countComment = list => {
   const $commentCount = document.querySelector('.comment-count>.count');
   $commentCount.textContent = list.childElementCount;
 };
 
-// ? 작성일
+// 작성일
 const pastCommentDate = (writtenDate = new Date()) => {
   const nowDate = new Date();
   const pastTime = nowDate.getTime() - writtenDate.getTime();
@@ -93,7 +84,7 @@ const submitNewComment = e => {
   e.preventDefault();
 };
 
-// ? 댓글 추가 (렌더링)
+// 댓글 추가 (렌더링)
 const addNewComment = () => {
   const $commentInput = document.querySelector('.comment-input');
   const $commentsList = document.querySelector('.comments-list');
@@ -118,19 +109,19 @@ const addNewComment = () => {
 
   // TODO user information 가져오기
 
-  // ? 댓글 카운팅
+  // 댓글 카운팅
   countComment($commentsList);
 
-  // ? 작성자
+  // 작성자
 
   // const getUserData =
   //   console.log(getUserData);
 
-  // ? 작성일
+  // 작성일
   const writtenDate = new Date();
   $commentDate.textContent = `${pastCommentDate(writtenDate)}`;
 
-  // ? 작성내용
+  // 작성내용
   $commentContent.textContent = $commentInput.value;
   $commentInput.value = '';
 };
@@ -140,7 +131,7 @@ const addNewComment = () => {
 // // console.log(user.getUserName);
 // user.getUserData();
 
-//   // ? 서버에 새 댓글 데이터 제출
+//   // 서버에 새 댓글 데이터 제출
 //   // const submitNewCommnet = await request.postComment(
 //   //   pet.addComment($commentInput.value),
 //   //   user.userId(),
@@ -182,11 +173,10 @@ const displayAnimalPostPage = () => {
   <div class="column-container">
   <div class="owner-container">
   <div class="owner-row">
-    <div class="owner"></div>
-    <ul class="pet-list">
-    </ul>
+  <div class="owner-name"></div>
+  <div class="owner-email"></div>
   </div>
-</div>
+  </div>
     <div class="comment-container">
       <form class="comment-form">
         <textarea class="comment-input" name="comment-input" id="commentInput" rows="4"
@@ -216,7 +206,7 @@ const displayAnimalPostPage = () => {
     <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>
   </footer>
   `;
-
+  console.log('test');
 
   document.querySelector('body').innerHTML = markup;
 
@@ -228,7 +218,7 @@ const displayAnimalPostPage = () => {
   document.querySelector('.logout').addEventListener('click', logout);
 
   // document.addEventListener('DOMContnetLoaded', renderPetInfo);
-  document.addEventListener('DOMContentLoaded', requestUserInfo);
+  requestPetAndUserInfo();
 
   const $commentBtn = document.querySelector('.comment-submit');
   $commentBtn.addEventListener('click', addNewComment);
