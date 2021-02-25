@@ -21,6 +21,7 @@ const dateToString = date => date.replace('-', '. ');
 // pet.updatePetInfo(petInfo.params._id);
 
 
+
 // TODO: 함수 이름 다시 셍각해보기
 const petInfoHandler = async () => {
   const $petsImg = document.querySelector('.pets-container>img');

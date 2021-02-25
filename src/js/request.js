@@ -3,7 +3,7 @@ import {
   URL_LOGIN,
   URL_REGISTER,
   URL_LOGOUT,
-  URL_PETS,
+  URL_PET,
   URL_USER_DATA,
   URL_GET_PETS,
   URL_COMMENT
@@ -69,31 +69,47 @@ export const getUserData = async (userId, token) => {
     console.error(error);
   }
 };
+// export const patchPetImage = async (petId, imgFormData) => {
+//   console.log(typeof imgFormData, imgFormData.getAll('image'));
+//   try {
+//     const url = `${URL_PET}/${petId}`;
+//     const petInfo = await axios.post(url, imgFormData, {
+//       headers: { 'Content-Type': 'multipart/form-data' }
+//     });
+//     // const petInfo = await axios({
+//     //   method: 'patch',
+//     //   url: URL_PET + '/' + petId,
+//     //   headers: {
+//     //     'content-type': 'multipart/form-data',
+//     //     Authorization: 'Bearer ' + token
+//     //   },
+//     //   data: imgFormData
+//     // });
+//     return petInfo;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
-export const postPetInfo = async (
-  name,
-  deathDate,
-  favorites,
-  image,
-  userId,
-  token
-) => {
-  console.log('petInfo: ', name, deathDate, favorites, image, userId, token);
+export const postPetInfo = async (imgFormData, userId, token) => {
+  console.log(
+    'petInfo: ',
+    imgFormData.get('image'),
+    imgFormData.get('favorites'),
+    imgFormData.get('deathDate'),
+    imgFormData.get('petName'),
+    userId,
+    token
+  );
   try {
     const petInfo = await axios({
       method: 'post',
-      url: URL_PETS,
+      url: URL_PET + '/' + userId,
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         Authorization: 'Bearer ' + token
       },
-      data: {
-        name,
-        deathDate,
-        favorites,
-        image,
-        userId
-      }
+      data: imgFormData
     });
     return petInfo;
   } catch (error) {
@@ -105,7 +121,7 @@ export const getPetsInfo = async token => {
   try {
     const petsInfo = await axios({
       method: 'get',
-      url: URL_PETS,
+      url: URL_GET_PETS,
       headers: {
         'content-type': 'application/json',
         Authorization: token
@@ -121,7 +137,7 @@ export const getPetInfo = async petId => {
   try {
     const res = await axios({
       method: 'get',
-      url: URL_GET_PETS,
+      url: URL_PET,
       params: {
         petId
       }
