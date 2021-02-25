@@ -9,6 +9,9 @@ import * as Cookies from '../utils/cookies';
 import displayMainPage from './main';
 import { moveLabelInForm } from '../utils/common';
 
+// validation
+import { createErrorForSignupNameError, createErrorForSignupPwError, createErrorForSignupEmailError, reset } from '../utils/validation';
+
 const user = new User();
 
 const getSignUpInfo = () => {
@@ -50,6 +53,54 @@ const registerHandler = async e => {
   }
 };
 
+// validation
+const checkValidationName = e => {
+  const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
+
+  if(!(e.target.value).match(regExpName)) createErrorForSignupNameError(document.querySelector('.error-message-signup-name'));
+  else reset(document.querySelector('.error-message-signup-name'));
+};
+
+const checkValidationPw = e => {
+  const regExpPw = /^[a-z0-9]{4,15}$/;
+
+  if(!(e.target.value).match(regExpPw)) createErrorForSignupPwError(document.querySelector('.error-message-signup-pw'));
+  else reset(document.querySelector('.error-message-signup-pw'));
+};
+
+const checkValidationEmail = e => {
+  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  if(!(e.target.value).match(regExpEm)) createErrorForSignupEmailError(document.querySelector('.error-message-signup-email'));
+  else reset(document.querySelector('.error-message-signup-email'));
+};
+
+const checkValidationUsingSubmit = e => {
+  const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
+  const regExpPw = /^[a-z0-9]{4,15}$/;
+  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  if(!(e.target[0].value).match(regExpName))
+  createErrorForSignupNameError(document.querySelector('.error-message-signup-name'));
+  if(!(e.target[1].value).match(regExpPw))
+  createErrorForSignupPwError(document.querySelector('.error-message-signup-pw'));
+  if(!(e.target[2].value).match(regExpEm))
+  createErrorForSignupEmailError(document.querySelector('.email'));
+  
+  if(!e.target[0].value) {
+    e.preventDefault();
+    return;
+  }
+  if(!e.target[1].value) {
+    e.preventDefault();
+    return;
+  }
+  if(!e.target[2].value.includes('@')) {
+    e.preventDefault();
+    return;
+  }
+};
+
 const displaySignUpPage = () => {
   const markup = `<h1 class="site-title">Memorial for My Pet</h1>
   <main class="register-container">
@@ -60,7 +111,7 @@ const displaySignUpPage = () => {
         >회원가입</button
       >
     </div>
-    <form class="register-form">
+    <form class="register-form" novalidate>
       <div class="form-field">
         <label for="username">Username</label>
         <input
@@ -70,8 +121,8 @@ const displaySignUpPage = () => {
           class="username"
           autocomplete="off"
         />
-        <span class="error-message"></span>
-      </div>
+        </div>
+        <span class="error-message-signup-name"></span>
       <div class="form-field">
         <label for="password">Password</label>
         <input
@@ -80,9 +131,11 @@ const displaySignUpPage = () => {
           id="password"
           class="password"
           autocomplete="off"
+          minlength="4"
+          maxlength="15"
         />
-        <span class="error-message"></span>
-      </div>
+        </div>
+        <span class="error-message-signup-pw"></span>
       <div class="form-field">
         <label for="email">Email</label>
         <input
@@ -92,17 +145,22 @@ const displaySignUpPage = () => {
           class="email"
           autocomplete="off"
         />                                                                                                                                                                                                                                                                                                                                          
-        <span class="error-message"></span>
       </div>
+      <span class="error-message-signup-email"></span>
       <button class="register-btn">아이디 등록</button>
     </form>
   </main>`;
 
   document.querySelector('body').innerHTML = markup;
 
-  document
-    .querySelector('.register-form')
-    .addEventListener('submit', registerHandler);
+  document.querySelector('.username').addEventListener('keyup', checkValidationName);
+  document.querySelector('.password').addEventListener('keyup', checkValidationPw);
+  document.querySelector('.email').addEventListener('keyup', checkValidationEmail);
+  
+  document.querySelector('.register-form').addEventListener('submit', e => {
+      checkValidationUsingSubmit(e);
+      registerHandler(e);
+    });
 
   moveLabelInForm('register-form');
 };
