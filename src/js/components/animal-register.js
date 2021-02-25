@@ -5,6 +5,15 @@ import { Pet, Pets } from '../model';
 import displayMainPage from './main';
 import displayAnimalPostPage from './animal-post';
 
+// validation
+import {
+  createErrorForEmptyPetImage,
+  createErrorForEmptyPetName,
+  createErrorForEmptyPetDeathDate,
+  createErrorForEmptyPetFavorite,
+  reset
+} from '../utils/validation';
+
 const pet = new Pet();
 
 const obtainPetInfo = () => {
@@ -38,7 +47,6 @@ const animalRegisterHandler = async e => {
 
   const petInfo = await request.postPetInfo(imgFormData, userInfoId, token);
 
-  // await request.patchPetImage(petInfo.data.pet._id, imgFormData, token);
   console.log(petInfo);
   if (petInfo) {
     pet.updatePetInfo(
@@ -110,6 +118,36 @@ const animalRegister = () => {
   });
 };
 
+// validation
+const formDate = () => {
+  const formDate = [...document.forms][0];
+  const image = document.querySelector('.img-input').files[0];
+  const petName = formDate[1].value;
+  const deathDate = formDate[2].value;
+  const favorites = formDate[3].value;
+
+  return {
+    image,
+    petName,
+    deathDate,
+    favorites
+  };
+};
+
+// TODO:
+// const checkValidationUsingChange = e => {
+//   const { image, petName, deathDate, favorites } = formDate();
+// }
+
+const checkValidationUsingSubmit = e => {
+  const { image, petName, deathDate, favorites } = formDate();
+
+  createErrorForEmptyPetImage(image, e, document.querySelector('.error-message-petImage'));
+  createErrorForEmptyPetName(petName, e, document.querySelector('.error-message-petName'));
+  createErrorForEmptyPetDeathDate(deathDate, e, document.querySelector('.error-message-petDeathDate'));
+  createErrorForEmptyPetFavorite(favorites, e, document.querySelector('.error-message-petFavorite'));
+}
+
 const displayAnimalRegisterPage = () => {
   const now = new Date();
   const mixDate = now.toISOString().slice(0, 10);
@@ -129,30 +167,34 @@ const displayAnimalRegisterPage = () => {
 <!-- animal register section -->
 <main class="animal-register-container">
   <h1 class="title">내 반려견 추모 공간 등록</h1>
-  <form action="#" method="#" class="animal-register-form">
+  <form action="#" method="#" class="animal-register-form" novalidate>
     <!-- pet image -->
     <div class="img-container">
       <label class="img-label" for="animal-img">당신의 반려견 이미지를 등록해주세요.</label>
-      <input class="img-input" type="file" id="animal-img" name="animal-img" accept="image/*" required
+      <input class="img-input" type="file" id="animal-img" name="animal-img" accept="image/* required"
         autocomplete="off">
       <i class="img-icon fad fa-upload fa-9x"></i>
-    </div>
+      </div>
+      <span class="error-message-petImage"></span>
     <!-- pet name -->
     <div class="name-container">
       <label class="name-label text-label" for="animal-name">반려견 이름</label>
-      <input class="name-input" type="text" id="animal-name" name="animal-name" required autocomplete="off">
-    </div>
+      <input class="name-input" type="text" id="animal-name" name="animal-name" autocomplete="off" required>
+      </div>
+      <span class="error-message-petName"></span>
     <!-- pet date of death -->
     <div class="death-container">
       <label class="death-label text-label" for="animal-death">기일</label>
-      <input class="death-input" type="date" for="animal-death" name="animal-death" required autocomplete="off" max="${mixDate}">
-    </div>
+      <input class="death-input" type="date" for="animal-death" name="animal-death" autocomplete="off" max="${mixDate}" required>
+      </div>
+      <span class="error-message-petDeathDate"></span>
     <!-- pet favorites -->
     <div class="favorite-1st-container">
       <label class="favorit-1st-label text-label" for="animal-favorit-1st">좋아했던 것 1</label>
-      <input class="favorit-1st-input" type="text" id="animal-favorite-1st" name="animal-favorite-1st" required
-        autocomplete="off">
-    </div>
+      <input class="favorit-1st-input" type="text" id="animal-favorite-1st" name="animal-favorite-1st"
+        autocomplete="off" required>
+        </div>
+        <span class="error-message-petFavorite"></span>
     <div class="favorite-2nd-container">
       <label class="favorit-2nd-label text-label" for="animal-favorite-2nd">좋아했던 것 2</label>
       <input class="favorit-2nd-input" type="text" id="animal-favorite-2nd" name="animal-favorite-2nd"
@@ -196,7 +238,10 @@ const displayAnimalRegisterPage = () => {
 
   document
     .querySelector('.animal-register-button')
-    .addEventListener('click', animalRegisterHandler);
+    .addEventListener('click', e => {
+      checkValidationUsingSubmit(e);
+      animalRegisterHandler(e);
+    });
 
   document.querySelector('.slogan').addEventListener('click', displayMainPage);
   document.querySelector('.logo').addEventListener('click', displayMainPage);
