@@ -101,7 +101,6 @@ const submitNewComment = async e => {
   }
 };
 
-
 // 댓글 추가 (렌더링)
 const renderNewComment = () => {
   const { comment } = obtainNewComment();
@@ -220,12 +219,10 @@ const displayAnimalPostPage = () => {
     .addEventListener('click', displayAnimalRegisterPage);
   document.querySelector('.logout').addEventListener('click', logout);
 
-  // document.addEventListener('DOMContnetLoaded', renderPetInfo);
   requestPetAndUserInfo();
   const $commentBtn = document.querySelector('.comment-submit');
   $commentBtn.addEventListener('click', renderNewComment);
   $commentBtn.addEventListener('submit', submitNewComment);
-  // $commentBtn.addEventListener('submit', addNewComment);
 };
 
 export default displayAnimalPostPage;
