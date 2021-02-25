@@ -21,7 +21,7 @@ const renderAttentionPets = ($container, pets) => {
   $container.innerHTML = `${[...pets]
     .filter((_, i, pets) => i > pets.length - 5)
     .map(
-      ({ name, image }) => `<div class="attention-card" data-petId="${_id}">
+      ({ name, image, _id }) => `<div class="attention-card" data-petId="${_id}">
     <img src="${image}" alt="">
     <p class="name">${name}</p>
   </div>`
@@ -60,7 +60,8 @@ const renderAllPets = ($container, pets) => {
           name,
           deathDate,
           favorites,
-          image
+          image,
+          _id
         }) => `<div class="pets-card" data-petId="${_id}">
           <img src="${image}" />
           <div class="name">
