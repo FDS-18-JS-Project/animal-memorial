@@ -9,6 +9,26 @@ import {
   URL_COMMENT
 } from './utils/constants';
 
+const createErrorMessageReceivedFromServer = (message, type) => {
+  const $prevValue =
+    type === 'login'
+      ? document.querySelector('.password').nextElementSibling
+      : document.querySelector('.email').nextElementSibling;
+  console.log($prevValue);
+  if ($prevValue) $prevValue.textContent = '';
+
+  const $el =
+    type === 'login'
+      ? document.querySelector('.password')
+      : document.querySelector('.email');
+  console.log($el);
+
+  const $errorMessageEl = document.createElement('span');
+  $errorMessageEl.classList.add('error-message-server');
+  $errorMessageEl.textContent = message;
+  $el.after($errorMessageEl);
+};
+
 export const signin = async (email, password) => {
   try {
     const userInfo = await axios({
@@ -22,7 +42,7 @@ export const signin = async (email, password) => {
     return userInfo;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
+    createErrorMessageReceivedFromServer(error.response.data.error, 'login');
   }
 };
 
@@ -40,7 +60,7 @@ export const signup = async (email, password, username) => {
     return res;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
+    createErrorMessageReceivedFromServer(error.response.data.error, 'singup');
   }
 };
 
@@ -53,7 +73,6 @@ export const signout = async () => {
     return res;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
   }
 };
 
@@ -69,8 +88,7 @@ export const getUserData = async (userId, token) => {
     });
     return res;
   } catch (error) {
-    console.log(error.response);
-    alert(error.response.data.error);
+    // console.log(error.response);
   }
 };
 // export const patchPetImage = async (petId, imgFormData) => {
@@ -118,7 +136,7 @@ export const postPetInfo = async (imgFormData, userId, token) => {
     return petInfo;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
+    // alert(error.response.data.error);
   }
 };
 
@@ -135,7 +153,7 @@ export const getPetsInfo = async token => {
     return petsInfo;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
+    // alert(error.response.data.error);
   }
 };
 
@@ -153,7 +171,7 @@ export const getPetInfo = async (petId, token) => {
     return res;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
+    // alert(error.response.data.error);
   }
 };
 
@@ -175,6 +193,6 @@ export const postComment = async (comment, userId, petId, token) => {
     return res;
   } catch (error) {
     console.log(error.response);
-    alert(error.response.data.error);
+    // alert(error.response.data.error);
   }
 };

@@ -3,10 +3,9 @@ import * as request from '../request';
 import * as Cookies from '../utils/cookies';
 import { Pet, Pets } from '../model';
 import displayMainPage from './main';
-import displayAnimalPostPage from './animal-post'
+import displayAnimalPostPage from './animal-post';
 
 const pet = new Pet();
-const pets = new Pets();
 
 const obtainPetInfo = () => {
   const formDate = [...document.forms][0];

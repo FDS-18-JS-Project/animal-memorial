@@ -1,112 +1,82 @@
 export const errorMessage = {
   default: '',
-  signupIdError: '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
-  signupPwError: '4~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
-  signupEmailError: '유효하지 않은 이메일 형식입니다.',
+  signupNameError: '2자 이상의 문자를 입력해주세요.',
+  signupPwError: '4~15자 영문 대 소문자, 숫자를 사용하세요.',
   loginError: '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.',
   emptyIdError: '이메일을 입력해주세요.',
-  emptyEmailError: "이메일 주소에 '@'를 포함해 주세요.",
+  emptyEmailError: '유효하지 않은 이메일 형식입니다.',
   emptyPwError: '비밀번호를 입력해주세요.'
-}
-
-// export const createDefault = inputEl => {
-//   const $input = inputEl;
-//   $input.parentElement.lastChildElemtne.remove();
-//   console.log($input);
-// };
-
-export const createErrorForEmptyId = inputEl => {
-  const $input = inputEl;
-  const $errorMessageNode = document.createElement('span');
-  $errorMessageNode.textContent = errorMessage.emptyIdError;
-  $errorMessageNode.classList.add('error-message-email');
-  $input.parentElement.after($errorMessageNode);
 };
 
-export const createErrorForEmptyEmail = inputEl => {
-  const $input = inputEl;
-  const $errorMessageNode = document.createElement('span');
-  $errorMessageNode.textContent = errorMessage.emptyEmailError;
-  $errorMessageNode.classList.add('error-message-email');
-  $input.parentElement.after($errorMessageNode);
+export const reset = spanEl => {
+  const $span = spanEl;
+  $span.textContent = '';
 };
 
-export const createErrorForEmptyPw = inputEl => {
-  const $input = inputEl;
-  const $errorMessageNode = document.createElement('span');
-  $errorMessageNode.textContent = errorMessage.emptyPwError;
-  $errorMessageNode.classList.add('error-message-pw');
-  $input.parentElement.after($errorMessageNode);
+export const createErrorForEmptyId = (e, spanEl) => {
+  const $span = spanEl;
+
+  if (!e.target[0].value) $span.textContent = errorMessage.emptyIdError;
+  e.preventDefault();
 };
 
-// export const validateLength = (value, inputEl) => {
-//   if (value.length < 5) {
-//     createErrorForAddRecipe(
-//       'Please input a value which is longer than 5 chars',
-//       inputEl
-//     );
-//     return false;
-//   }
-//   return true;
-// };
+export const createErrorForEmptyEmail = (e, spanEl) => {
+  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  const $span = spanEl;
 
-// export const validateUrl = (url, inputEl) => {
-//   const regExpUrl = /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i;
-//   if (!regExpUrl.test(url)) {
-//     createErrorForAddRecipe('Please input a valid url', inputEl);
-//     return false;
-//   }
-//   return true;
-// };
+  if (!e.target.value.match(regExpEm)) {
+    $span.textContent = errorMessage.emptyEmailError;
+  } else reset($span);
+};
 
-// export const validateNumber = (number, inputEl) => {
-//   if (number < 1) {
-//     createErrorForAddRecipe(
-//       `${
-//         inputEl.name === 'cookingTime' ? 'Prep time' : 'Servings'
-//       } should be positive number!`,
-//       inputEl
-//     );
-//     return false;
-//   }
-//   return true;
-// };
+export const createErrorForEmptyPw = (e, spanEl) => {
+  const $span = spanEl;
 
-// export const validateIngredients = ingredients => {
-//   if (ingredients.length === 0) {
-//     const inputEl = document.querySelector('input[name="ingredient-1"]');
-//     generateError('Please input any ingredient at least once', inputEl);
-//     return false;
-//   }
+  if (!e.target[1].value) $span.textContent = errorMessage.emptyPwError;
+  e.preventDefault();
+};
 
-//   for (let i = 0; i < ingredients.length; i++) {
-//     if (!/^\d+$/.test(ingredients[i].quantity)) {
-//       const inputEl = document.querySelector(
-//         `input[name="ingredient-${i + 1}"]`
-//       );
-//       generateError('Quantity of ingredient should be number!', inputEl);
-//       return false;
-//     }
-//     if (!/^\D+$/.test(ingredients[i].unit)) {
-//       const inputEl = document.querySelector(
-//         `input[name="ingredient-${i + 1}"]`
-//       );
-//       generateError(
-//         'Unit of ingredient should not include any number!',
-//         inputEl
-//       );
-//       return false;
-//     }
-//     if (!/^\w+$/.test(ingredients[i].description)) {
-//       const inputEl = document.querySelector(
-//         `input[name="ingredient-${i + 1}"]`
-//       );
-//       generateError(
-//         'Description of ingredient should be a number(s) and alphabet letters',
-//         inputEl
-//       );
-//       return false;
-//     }
-//   }
-//   return true;
-// };
+export const createErrorForSignupNameError = (e, spanEl) => {
+  const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
+  const $span = spanEl;
+  console.log(e.target);
+  if (!e.target.value) {
+    e.preventDefault();
+    $span.textContent = errorMessage.signupNameError;
+    return;
+  }
+
+  if (!e.target.value.match(regExpName))
+    $span.textContent = errorMessage.signupNameError;
+  else reset($span);
+};
+
+export const createErrorForSignupPwError = (e, spanEl) => {
+  const regExpPw = /^[a-z0-9]{4,15}$/;
+  const $span = spanEl;
+
+  if (!e.target.value) {
+    e.preventDefault();
+    $span.textContent = errorMessage.signupPwError;
+    return;
+  }
+
+  if (!e.target.value.match(regExpPw))
+    $span.textContent = errorMessage.signupPwError;
+  else reset($span);
+};
+
+export const createErrorForSignupEmailError = (e, spanEl) => {
+  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  const $span = spanEl;
+
+  if (!e.target.value) {
+    e.preventDefault();
+    $span.textContent = errorMessage.emptyEmailError;
+    return;
+  }
+
+  if (!e.target.value.match(regExpEm))
+    $span.textContent = errorMessage.emptyEmailError;
+  else reset($span);
+};

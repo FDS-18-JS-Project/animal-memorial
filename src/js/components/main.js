@@ -18,17 +18,19 @@ const getPetIdForPost = e => {
 };
 
 const renderAttentionPets = ($container, pets) => {
-  $container.innerHTML = `${[...pets].filter((_, i, pets) => i > pets.length - 5).map(({ name, image, _id }) => `<div class="attention-card" data-petId="${_id}">
+  $container.innerHTML = `${[...pets]
+    .filter((_, i, pets) => i > pets.length - 5)
+    .map(
+      ({ name, image }) => `<div class="attention-card" data-petId="${_id}">
     <img src="${image}" alt="">
     <p class="name">${name}</p>
-  </div>`).join('')}`;
-
-  document.querySelectorAll('.attention-card').forEach($attentionCard => {
-    $attentionCard.addEventListener('click', getPetIdForPost);
-  });
+  </div>`
+    )
+    .join('')}`;
 };
 
 const renderAllPets = ($container, pets) => {
+  console.log('petList: ', pets);
   let currentSlide = 0;
   let isMoving = false;
   const DURATION = 500;
@@ -58,8 +60,7 @@ const renderAllPets = ($container, pets) => {
           name,
           deathDate,
           favorites,
-          image,
-          _id
+          image
         }) => `<div class="pets-card" data-petId="${_id}">
           <img src="${image}" />
           <div class="name">

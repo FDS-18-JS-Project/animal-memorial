@@ -9,6 +9,14 @@ import * as Cookies from '../utils/cookies';
 import displayMainPage from './main';
 import { moveLabelInForm } from '../utils/common';
 
+// validation
+import {
+  createErrorForSignupNameError,
+  createErrorForSignupPwError,
+  createErrorForSignupEmailError,
+  reset
+} from '../utils/validation';
+
 const user = new User();
 
 const getSignUpInfo = () => {
@@ -32,7 +40,7 @@ const registerHandler = async e => {
 
   const userInfo = await request.signup(email, password, username);
 
-  if (userInfo.status === 200) {
+  if (userInfo || userInfo.status === 200) {
     user.updateUserInfo(
       email,
       username,
@@ -50,6 +58,43 @@ const registerHandler = async e => {
   }
 };
 
+// validation
+const checkValidationName = e => {
+  createErrorForSignupNameError(
+    e,
+    document.querySelector('.error-message-signup-name')
+  );
+};
+
+const checkValidationPw = e => {
+  createErrorForSignupPwError(
+    e,
+    document.querySelector('.error-message-signup-pw')
+  );
+};
+
+const checkValidationEmail = e => {
+  createErrorForSignupEmailError(
+    e,
+    document.querySelector('.error-message-signup-email')
+  );
+};
+
+const checkValidationUsingSubmit = e => {
+  createErrorForSignupNameError(
+    e,
+    document.querySelector('.error-message-signup-name')
+  );
+  createErrorForSignupPwError(
+    e,
+    document.querySelector('.error-message-signup-pw')
+  );
+  createErrorForSignupEmailError(
+    e,
+    document.querySelector('.error-message-signup-email')
+  );
+};
+
 const displaySignUpPage = () => {
   const markup = `<h1 class="site-title">Memorial for My Pet</h1>
   <main class="register-container">
@@ -60,7 +105,7 @@ const displaySignUpPage = () => {
         >회원가입</button
       >
     </div>
-    <form class="register-form">
+    <form class="register-form" novalidate>
       <div class="form-field">
         <label for="username">Username</label>
         <input
@@ -70,8 +115,8 @@ const displaySignUpPage = () => {
           class="username"
           autocomplete="off"
         />
-        <span class="error-message"></span>
-      </div>
+        </div>
+        <span class="error-message-signup-name"></span>
       <div class="form-field">
         <label for="password">Password</label>
         <input
@@ -80,9 +125,11 @@ const displaySignUpPage = () => {
           id="password"
           class="password"
           autocomplete="off"
+          minlength="4"
+          maxlength="15"
         />
-        <span class="error-message"></span>
-      </div>
+        </div>
+        <span class="error-message-signup-pw"></span>
       <div class="form-field">
         <label for="email">Email</label>
         <input
@@ -92,8 +139,8 @@ const displaySignUpPage = () => {
           class="email"
           autocomplete="off"
         />                                                                                                                                                                                                                                                                                                                                          
-        <span class="error-message"></span>
       </div>
+      <span class="error-message-signup-email"></span>
       <button class="register-btn">아이디 등록</button>
     </form>
   </main>`;
@@ -101,8 +148,19 @@ const displaySignUpPage = () => {
   document.querySelector('body').innerHTML = markup;
 
   document
-    .querySelector('.register-form')
-    .addEventListener('submit', registerHandler);
+    .querySelector('.username')
+    .addEventListener('keyup', checkValidationName);
+  document
+    .querySelector('.password')
+    .addEventListener('keyup', checkValidationPw);
+  document
+    .querySelector('.email')
+    .addEventListener('keyup', checkValidationEmail);
+
+  document.querySelector('.register-form').addEventListener('submit', e => {
+    checkValidationUsingSubmit(e);
+    registerHandler(e);
+  });
 
   moveLabelInForm('register-form');
 };

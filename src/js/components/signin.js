@@ -10,7 +10,12 @@ import displayMainPage from './main';
 import { moveLabelInForm } from '../utils/common';
 
 // validation
-import { createErrorForEmptyId, createErrorForEmptyEmail, createErrorForEmptyPw } from '../utils/validation';
+import {
+  createErrorForEmptyId,
+  createErrorForEmptyEmail,
+  createErrorForEmptyPw,
+  reset
+} from '../utils/validation';
 
 const user = new User();
 
@@ -41,7 +46,7 @@ const loginHandler = async e => {
       userInfo.data.token
     );
     const userId = userInfo.data.payload._id;
-    const username = userInfo.data.payload.username;
+    const { username } = userInfo.data.payload;
     localStorage.setItem('userId', userId);
     localStorage.setItem('username', username);
 
@@ -54,7 +59,15 @@ const loginHandler = async e => {
   }
 };
 
+// validation
+const checkValidationUsingKeyup = e => {
+  createErrorForEmptyEmail(e, document.querySelector('.error-message-email'));
+};
 
+const checkValidationUsingSubmit = e => {
+  createErrorForEmptyId(e, document.querySelector('.error-message-email'));
+  createErrorForEmptyPw(e, document.querySelector('.error-message-pw'));
+};
 
 // eslint-disable-next-line no-undef
 const displaySignInPage = () => {
@@ -78,6 +91,7 @@ const displaySignInPage = () => {
         autocomplete="off"
       />
       </div>
+      <span class="error-message-email"></span>
     <div class="form-field">
       <label for="password">Password</label>
       <input
@@ -85,8 +99,11 @@ const displaySignInPage = () => {
         name="password"
         id="password"
         class="password"
+        minlength="4"
+        maxlength="15"
       />
       </div>
+      <span class="error-message-pw"></span>
     <button class="login-btn">로그인</button>
   </form>
 </main>`;
@@ -94,29 +111,10 @@ const displaySignInPage = () => {
   document.querySelector('body').innerHTML = markup;
 
   document
-  .querySelector('.login-form')
-  .addEventListener('submit', e => {
-    if(!e.target[0].value)
-    createErrorForEmptyId(document.querySelector('.email'));
-    if(!e.target[1].value)
-    createErrorForEmptyPw(document.querySelector('.password'));
-    if(!e.target[0].value.includes('@'))
-    createErrorForEmptyEmail(document.querySelector('.email'));
-
-    if(!e.target[0].value) {
-      e.preventDefault();
-      return;
-    }
-    if(!e.target[1].value) {
-      e.preventDefault();
-      return;
-    }
-    if(!e.target[0].value.includes('@')) {
-      e.preventDefault();
-      return;
-    }
-
-
+    .querySelector('.email')
+    .addEventListener('keyup', checkValidationUsingKeyup);
+  document.querySelector('.login-form').addEventListener('submit', e => {
+    checkValidationUsingSubmit(e);
     loginHandler(e);
   });
 

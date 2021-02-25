@@ -42,7 +42,7 @@
 
     .login-btn:hover,
     .register-btn:hover {
-      @include button-hover($color-secondary, $white_font)
+      @include button-hover($color-secondary, $white_font);
     }
 
     // .error-message {
@@ -67,6 +67,26 @@
       left: 100px;
     }
 
+    .error-message-signup-name {
+      @include validation-text;
+
+      top: 120px;
+      left: 100px;
+    }
+
+    .error-message-signup-pw {
+      @include validation-text;
+
+      top: 230px;
+      left: 100px;
+    }
+
+    .error-message-signup-email {
+      @include validation-text;
+
+      top: 340px;
+      left: 100px;
+    }
   }
   .title-group {
     position: absolute;

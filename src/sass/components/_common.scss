@@ -202,3 +202,11 @@ caption {
 @mixin validation-active {
   // display: block;
 }
+
+.error-message-server {
+  position: absolute;
+  top: 10;
+  top: 80px;
+  color: #f74b4b;
+  left: 5px;
+}
