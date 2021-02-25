@@ -21,7 +21,8 @@ export const signin = async (email, password) => {
     });
     return userInfo;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -38,7 +39,8 @@ export const signup = async (email, password, username) => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -50,7 +52,8 @@ export const signout = async () => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -61,12 +64,13 @@ export const getUserData = async (userId, token) => {
       url: URL_USER_DATA + '/' + userId,
       headers: {
         'content-type': 'application/json',
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 // export const patchPetImage = async (petId, imgFormData) => {
@@ -113,7 +117,8 @@ export const postPetInfo = async (imgFormData, userId, token) => {
     });
     return petInfo;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -124,12 +129,13 @@ export const getPetsInfo = async token => {
       url: URL_GET_PETS,
       headers: {
         'content-type': 'application/json',
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     });
     return petsInfo;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -146,7 +152,8 @@ export const getPetInfo = async (petId, token) => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };
 
@@ -163,6 +170,7 @@ export const postComment = async (comment, userId, petId) => {
     });
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error.response);
+    alert(error.response.data.error);
   }
 };

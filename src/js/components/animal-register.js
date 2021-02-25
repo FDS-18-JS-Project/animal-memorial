@@ -37,12 +37,6 @@ const animalRegisterHandler = async e => {
   const userInfoId = localStorage.getItem('userId');
   const token = Cookies.getCookie('token');
 
-  // "name": "vix",
-  // "deathDate": "{{todayDate}}",
-  // "favorites": ["hello", "hi"],
-  // "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80",
-  // "userId": "6033045a763ded265cf9efae"
-
   const petInfo = await request.postPetInfo(imgFormData, userInfoId, token);
 
   // await request.patchPetImage(petInfo.data.pet._id, imgFormData, token);
@@ -56,11 +50,6 @@ const animalRegisterHandler = async e => {
     );
 
     localStorage.setItem('petId', petInfo.data.pet._id);
-    // pets.updatePetInfo(pet, userInfoId);
-
-    // 펫 데이타를 가져오기
-
-    // displayMainPage(); TODO: 포스트 페이지로 이동
     displayAnimalPostPage();
   }
 };
