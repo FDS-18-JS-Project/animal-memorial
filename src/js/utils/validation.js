@@ -1,4 +1,5 @@
 export const errorMessage = {
+  default: '',
   signupIdError: '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
   signupPwError: '4~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
   signupEmailError: '유효하지 않은 이메일 형식입니다.',
@@ -7,6 +8,12 @@ export const errorMessage = {
   emptyEmailError: "이메일 주소에 '@'를 포함해 주세요.",
   emptyPwError: '비밀번호를 입력해주세요.'
 }
+
+// export const createDefault = inputEl => {
+//   const $input = inputEl;
+//   $input.parentElement.lastChildElemtne.remove();
+//   console.log($input);
+// };
 
 export const createErrorForEmptyId = inputEl => {
   const $input = inputEl;

@@ -91,20 +91,15 @@ const displaySignInPage = () => {
 
   document.querySelector('body').innerHTML = markup;
 
-  // document
-  //   .querySelector('.login-form')
-  //   .addEventListener('submit', loginHandler);
-
   document
   .querySelector('.login-form')
   .addEventListener('submit', e => {
-    console.log(e.target[0].value.includes('@'));
     if(!e.target[0].value)
     createErrorForEmptyId(document.querySelector('.email'));
     if(!e.target[1].value)
     createErrorForEmptyPw(document.querySelector('.password'));
-    // if(!e.target[0].value.includes('@'));
-    // createErrorForEmptyEmail(document.querySelector('.email'));
+    if(!e.target[0].value.includes('@'))
+    createErrorForEmptyEmail(document.querySelector('.email'));
 
     if(!e.target[0].value) {
       e.preventDefault();
@@ -114,10 +109,10 @@ const displaySignInPage = () => {
       e.preventDefault();
       return;
     }
-    // if(!e.target[0].value.includes('@')) {
-    //   e.preventDefault();
-    //   return;
-    // }
+    if(!e.target[0].value.includes('@')) {
+      e.preventDefault();
+      return;
+    }
 
 
     loginHandler(e);

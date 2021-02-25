@@ -48,9 +48,6 @@ const animalRegisterHandler = async e => {
       petInfo.data.pet.deathDate,
       petInfo.data.pet.favorites
     );
-    // useData(petInfo.data.pet);
-
-    pets.updatePetInfo(pet, userInfoId);
 
     localStorage.setItem('petId', petInfo.data.pet._id);
     displayAnimalPostPage();
