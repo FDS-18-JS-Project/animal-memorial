@@ -157,11 +157,15 @@ export const getPetInfo = async (petId, token) => {
   }
 };
 
-export const postComment = async (comment, userId, petId) => {
+export const postComment = async (comment, userId, petId, token) => {
   try {
     const res = await axios({
       method: 'post',
       url: URL_COMMENT,
+      headers: {
+        'content-type': 'application/json',
+        Authorization: 'Bearer ' + token
+      },
       data: {
         comment,
         userId,
