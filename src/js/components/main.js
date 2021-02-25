@@ -11,7 +11,7 @@ const animalRegister = () => {
   displayAnimalRegisterPage();
 };
 
-const getDataPetIdForPost = e => {
+const getPetIdForPost = e => {
   const petId = e.currentTarget.dataset.petid;
   localStorage.setItem('petId', petId);
   displayAnimalPostPage();
@@ -24,7 +24,7 @@ const renderAttentionPets = ($container, pets) => {
   </div>`).join('')}`;
 
   document.querySelectorAll('.attention-card').forEach($attentionCard => {
-    $attentionCard.addEventListener('click', getDataPetIdForPost);
+    $attentionCard.addEventListener('click', getPetIdForPost);
   });
 };
 
@@ -111,7 +111,7 @@ const renderAllPets = ($container, pets) => {
   };
 
   document.querySelectorAll('.pets-card').forEach($petsCard => {
-    $petsCard.addEventListener('click', getDataPetIdForPost);
+    $petsCard.addEventListener('click', getPetIdForPost);
   });
 };
 
