@@ -10,6 +10,7 @@ export const logout = () => {
   // check whether
   localStorage.removeItem('userId');
   localStorage.removeItem('petId');
+  localStorage.removeItem('username');
   Cookies.deleteCookie('token');
   displayLandingPage();
 };

@@ -41,6 +41,7 @@ const registerHandler = async e => {
     );
 
     localStorage.setItem('userId', userInfo.data.user._id);
+    localStorage.setItem('username', userInfo.data.user.username);
     Cookies.setCookie('token', userInfo.data.token, {
       secure: true,
       'max-age': 3600 * 3
