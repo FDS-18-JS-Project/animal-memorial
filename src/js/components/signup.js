@@ -55,50 +55,21 @@ const registerHandler = async e => {
 
 // validation
 const checkValidationName = e => {
-  const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
-
-  if(!(e.target.value).match(regExpName)) createErrorForSignupNameError(document.querySelector('.error-message-signup-name'));
-  else reset(document.querySelector('.error-message-signup-name'));
+  createErrorForSignupNameError(e, document.querySelector('.error-message-signup-name'));
 };
 
 const checkValidationPw = e => {
-  const regExpPw = /^[a-z0-9]{4,15}$/;
-
-  if(!(e.target.value).match(regExpPw)) createErrorForSignupPwError(document.querySelector('.error-message-signup-pw'));
-  else reset(document.querySelector('.error-message-signup-pw'));
+  createErrorForSignupPwError(e, document.querySelector('.error-message-signup-pw'));
 };
 
 const checkValidationEmail = e => {
-  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-  if(!(e.target.value).match(regExpEm)) createErrorForSignupEmailError(document.querySelector('.error-message-signup-email'));
-  else reset(document.querySelector('.error-message-signup-email'));
+  createErrorForSignupEmailError(e, document.querySelector('.error-message-signup-email'));
 };
 
 const checkValidationUsingSubmit = e => {
-  const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
-  const regExpPw = /^[a-z0-9]{4,15}$/;
-  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-  if(!(e.target[0].value).match(regExpName))
-  createErrorForSignupNameError(document.querySelector('.error-message-signup-name'));
-  if(!(e.target[1].value).match(regExpPw))
-  createErrorForSignupPwError(document.querySelector('.error-message-signup-pw'));
-  if(!(e.target[2].value).match(regExpEm))
-  createErrorForSignupEmailError(document.querySelector('.email'));
-  
-  if(!e.target[0].value) {
-    e.preventDefault();
-    return;
-  }
-  if(!e.target[1].value) {
-    e.preventDefault();
-    return;
-  }
-  if(!e.target[2].value.includes('@')) {
-    e.preventDefault();
-    return;
-  }
+  createErrorForSignupNameError(e, document.querySelector('.error-message-signup-name'));
+  createErrorForSignupPwError(e, document.querySelector('.error-message-signup-pw'));
+  createErrorForSignupEmailError(e, document.querySelector('.error-message-signup-email'));
 };
 
 const displaySignUpPage = () => {
