@@ -1,6 +1,9 @@
+import { logout } from '../utils/common';
 import { User, Pet, Pets } from '../model';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
+import displayMainPage from '../components/main';
+import displayAnimalRegisterPage from './animal-register';
 // import { doc } from 'prettier';
 
 // ? date 렌더링 함수
@@ -149,7 +152,7 @@ const displayAnimalPostPage = () => {
   <header class="header">
   <h1 class="offscreen">동물 추모공원</h1>
   <p class="slogan">Memorial for my Pet</p>
-  <div class="logo"><img src="./img/logo.png" alt="logo"></div>
+  <div class="logo"><img src="/public/assets/img/logo.png" alt="logo"></div>
   <nav>
     <ul class="menu">
       <li class="bookmark">북마크</li>
@@ -216,6 +219,14 @@ const displayAnimalPostPage = () => {
 
 
   document.querySelector('body').innerHTML = markup;
+
+  document.querySelector('.slogan').addEventListener('click', displayMainPage);
+  document.querySelector('.logo').addEventListener('click', displayMainPage);
+  document
+    .querySelector('.animal-register')
+    .addEventListener('click', displayAnimalRegisterPage);
+  document.querySelector('.logout').addEventListener('click', logout);
+
   // document.addEventListener('DOMContnetLoaded', renderPetInfo);
   document.addEventListener('DOMContentLoaded', requestUserInfo);
 
