@@ -1,42 +1,46 @@
 export const errorMessage = {
   default: '',
-  signupIdError: '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
-  signupPwError: '4~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
-  signupEmailError: '유효하지 않은 이메일 형식입니다.',
+  signupNameError: '2자 이상의 문자를 입력해주세요.',
+  signupPwError: '4~15자 영문 대 소문자, 숫자를 사용하세요.',
   loginError: '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.',
   emptyIdError: '이메일을 입력해주세요.',
-  emptyEmailError: "이메일 주소에 '@'를 포함해 주세요.",
+  emptyEmailError: '유효하지 않은 이메일 형식입니다.',
   emptyPwError: '비밀번호를 입력해주세요.'
-}
-
-// export const createDefault = inputEl => {
-//   const $input = inputEl;
-//   $input.parentElement.lastChildElemtne.remove();
-//   console.log($input);
-// };
-
-export const createErrorForEmptyId = inputEl => {
-  const $input = inputEl;
-  const $errorMessageNode = document.createElement('span');
-  $errorMessageNode.textContent = errorMessage.emptyIdError;
-  $errorMessageNode.classList.add('error-message-email');
-  $input.parentElement.after($errorMessageNode);
 };
 
-export const createErrorForEmptyEmail = inputEl => {
-  const $input = inputEl;
-  const $errorMessageNode = document.createElement('span');
-  $errorMessageNode.textContent = errorMessage.emptyEmailError;
-  $errorMessageNode.classList.add('error-message-email');
-  $input.parentElement.after($errorMessageNode);
+export const reset = spanEl => {
+  const $span = spanEl;
+  $span.textContent = '';
 };
 
-export const createErrorForEmptyPw = inputEl => {
-  const $input = inputEl;
-  const $errorMessageNode = document.createElement('span');
-  $errorMessageNode.textContent = errorMessage.emptyPwError;
-  $errorMessageNode.classList.add('error-message-pw');
-  $input.parentElement.after($errorMessageNode);
+export const createErrorForEmptyId = spanEl => {
+  const $span = spanEl;
+  $span.textContent = errorMessage.emptyIdError;
+};
+
+export const createErrorForEmptyEmail = spanEl => {
+  const $span = spanEl;
+  $span.textContent = errorMessage.emptyEmailError;
+};
+
+export const createErrorForEmptyPw = spanEl => {
+  const $span = spanEl;
+  $span.textContent = errorMessage.emptyPwError;
+};
+
+export const createErrorForSignupNameError = spanEl => {
+  const $span = spanEl;
+  $span.textContent = errorMessage.signupNameError;
+};
+
+export const createErrorForSignupPwError = spanEl => {
+  const $span = spanEl;
+  $span.textContent = errorMessage.signupPwError;
+};
+
+export const createErrorForSignupEmailError = spanEl => {
+  const $span = spanEl;
+  $span.textContent = errorMessage.emptyEmailError;
 };
 
 // export const validateLength = (value, inputEl) => {
