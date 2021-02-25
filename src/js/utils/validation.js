@@ -13,104 +13,71 @@ export const reset = spanEl => {
   $span.textContent = '';
 };
 
-export const createErrorForEmptyId = spanEl => {
+export const createErrorForEmptyId = (e, spanEl) => {
   const $span = spanEl;
+
+  if(!e.target[0].value)
   $span.textContent = errorMessage.emptyIdError;
+  e.preventDefault();
+  return;
 };
 
-export const createErrorForEmptyEmail = spanEl => {
+export const createErrorForEmptyEmail = (e, spanEl) => {
+  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   const $span = spanEl;
-  $span.textContent = errorMessage.emptyEmailError;
+  
+  if(!e.target.value.match(regExpEm)) {
+    $span.textContent = errorMessage.emptyEmailError;
+  } else reset($span);
 };
 
-export const createErrorForEmptyPw = spanEl => {
+export const createErrorForEmptyPw = (e, spanEl) => {
   const $span = spanEl;
+
+  if(!e.target[1].value)
   $span.textContent = errorMessage.emptyPwError;
+  e.preventDefault();
+  return;
 };
 
-export const createErrorForSignupNameError = spanEl => {
+export const createErrorForSignupNameError = (e, spanEl) => {
+  const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
   const $span = spanEl;
-  $span.textContent = errorMessage.signupNameError;
+
+  if(!e.target[0].value) {
+    e.preventDefault();
+    $span.textContent = errorMessage.signupNameError;
+    return;
+  };
+
+  if(!(e.target.value).match(regExpName)) $span.textContent = errorMessage.signupNameError;
+  else reset($span);
 };
 
-export const createErrorForSignupPwError = spanEl => {
+export const createErrorForSignupPwError = (e, spanEl) => {
+  const regExpPw = /^[a-z0-9]{4,15}$/;
   const $span = spanEl;
-  $span.textContent = errorMessage.signupPwError;
+
+  if(!e.target[1].value) {
+    e.preventDefault();
+    $span.textContent = errorMessage.signupPwError;
+    return;
+  };
+
+  if(!(e.target.value).match(regExpPw)) $span.textContent = errorMessage.signupPwError;
+  else reset($span);
 };
 
-export const createErrorForSignupEmailError = spanEl => {
+export const createErrorForSignupEmailError = (e, spanEl) => {
+  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   const $span = spanEl;
-  $span.textContent = errorMessage.emptyEmailError;
+
+  if(!e.target[2].value) {
+    e.preventDefault();
+    $span.textContent = errorMessage.emptyEmailError;
+    return;
+  };
+
+  if(!(e.target.value).match(regExpEm)) $span.textContent = errorMessage.emptyEmailError;
+  else reset($span);
 };
-
-// export const validateLength = (value, inputEl) => {
-//   if (value.length < 5) {
-//     createErrorForAddRecipe(
-//       'Please input a value which is longer than 5 chars',
-//       inputEl
-//     );
-//     return false;
-//   }
-//   return true;
-// };
-
-// export const validateUrl = (url, inputEl) => {
-//   const regExpUrl = /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i;
-//   if (!regExpUrl.test(url)) {
-//     createErrorForAddRecipe('Please input a valid url', inputEl);
-//     return false;
-//   }
-//   return true;
-// };
-
-// export const validateNumber = (number, inputEl) => {
-//   if (number < 1) {
-//     createErrorForAddRecipe(
-//       `${
-//         inputEl.name === 'cookingTime' ? 'Prep time' : 'Servings'
-//       } should be positive number!`,
-//       inputEl
-//     );
-//     return false;
-//   }
-//   return true;
-// };
-
-// export const validateIngredients = ingredients => {
-//   if (ingredients.length === 0) {
-//     const inputEl = document.querySelector('input[name="ingredient-1"]');
-//     generateError('Please input any ingredient at least once', inputEl);
-//     return false;
-//   }
-
-//   for (let i = 0; i < ingredients.length; i++) {
-//     if (!/^\d+$/.test(ingredients[i].quantity)) {
-//       const inputEl = document.querySelector(
-//         `input[name="ingredient-${i + 1}"]`
-//       );
-//       generateError('Quantity of ingredient should be number!', inputEl);
-//       return false;
-//     }
-//     if (!/^\D+$/.test(ingredients[i].unit)) {
-//       const inputEl = document.querySelector(
-//         `input[name="ingredient-${i + 1}"]`
-//       );
-//       generateError(
-//         'Unit of ingredient should not include any number!',
-//         inputEl
-//       );
-//       return false;
-//     }
-//     if (!/^\w+$/.test(ingredients[i].description)) {
-//       const inputEl = document.querySelector(
-//         `input[name="ingredient-${i + 1}"]`
-//       );
-//       generateError(
-//         'Description of ingredient should be a number(s) and alphabet letters',
-//         inputEl
-//       );
-//       return false;
-//     }
-//   }
-//   return true;
-// };

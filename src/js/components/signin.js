@@ -54,26 +54,12 @@ const loginHandler = async e => {
 
 // validation
 const checkValidationUsingKeyup = e => {
-  const regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-  if(!e.target.value.match(regExpEm)) createErrorForEmptyEmail(document.querySelector('.error-message-email'));
-  else reset(document.querySelector('.error-message-email'));
+  createErrorForEmptyEmail(e, document.querySelector('.error-message-email'));
 };
 
 const checkValidationUsingSubmit = e => {
-  if(!e.target[0].value)
-  createErrorForEmptyId(document.querySelector('.error-message-email'));
-  if(!e.target[1].value)
-  createErrorForEmptyPw(document.querySelector('.error-message-pw'));
-
-  if(!e.target[0].value) {
-    e.preventDefault();
-    return;
-  }
-  if(!e.target[1].value) {
-    e.preventDefault();
-    return;
-  }
+  createErrorForEmptyId(e, document.querySelector('.error-message-email'));
+  createErrorForEmptyPw(e, document.querySelector('.error-message-pw'));
 };
 
 
