@@ -13,23 +13,23 @@ body {
   .landing-title,
   .landing-subtitle {
     font-family: 'Iropke Batang', serif;
-    width: 800px;
+    width: 1050px;
     color: rgba(0, 0, 0, 0.6);
     margin: 0 auto;
     margin-bottom: 50px;
   }
   .landing-title {
     font-weight: $extra-bold;
-    font-size: 32px;
+    font-size: 50px;
   }
   .landing-subtitle {
     font-weight: $bold;
-    font-size: 24px;
+    font-size: 40px;
   }
   .landing-links {
     @include flex-center-center;
     justify-content: flex-start;
-    width: 800px;
+    width: 1050px;
     margin: 0 auto;
     margin-bottom: 80px;
 
@@ -54,4 +54,18 @@ body {
   background-color: $color-primary;
   margin: 0;
   padding: 20px;
+  cursor: pointer;
+}
+
+.dog-landing {
+  background-image: url('/public/assets/img/dog-landing.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: bottom;
+  width: 800px;
+  height: 500px;
+  position: absolute;
+  right: 200px;
+  bottom: 0;
 }

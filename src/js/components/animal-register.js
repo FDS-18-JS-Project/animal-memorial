@@ -10,7 +10,7 @@ const pets = new Pets();
 
 const obtainPetInfo = () => {
   const formDate = [...document.forms][0];
-  const image = window.URL.createObjectURL(formDate[0].files[0]);
+  const image = document.querySelector('.img-input').files[0];
   const petName = formDate[1].value;
   const deathDate = formDate[2].value;
   const favorites = [
@@ -18,13 +18,13 @@ const obtainPetInfo = () => {
     `${formDate[4].value}`,
     `${formDate[5].value}`
   ];
+  const imgFormData = new FormData();
+  imgFormData.append('image', image);
+  imgFormData.append('petName', petName);
+  imgFormData.append('deathDate', deathDate);
+  imgFormData.append('favorites', favorites);
 
-  return {
-    petName,
-    deathDate,
-    favorites,
-    image
-  };
+  return imgFormData;
 };
 
 const animalRegisterHandler = async e => {
@@ -32,8 +32,7 @@ const animalRegisterHandler = async e => {
 
   // validation required
 
-  const { petName, deathDate, favorites, image } = obtainPetInfo();
-  console.log(petName, deathDate, favorites, image);
+  const imgFormData = obtainPetInfo();
 
   const userInfoId = localStorage.getItem('userId');
   const token = Cookies.getCookie('token');
@@ -44,22 +43,16 @@ const animalRegisterHandler = async e => {
   // "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80",
   // "userId": "6033045a763ded265cf9efae"
 
-  const petInfo = await request.postPetInfo(
-    petName,
-    deathDate,
-    favorites,
-    image,
-    userInfoId,
-    token
-  );
+  const petInfo = await request.postPetInfo(imgFormData, userInfoId, token);
 
+  // await request.patchPetImage(petInfo.data.pet._id, imgFormData, token);
+  console.log(petInfo);
   if (petInfo) {
     pet.updatePetInfo(
       petInfo.data.pet._id,
       petInfo.data.pet.name,
       petInfo.data.pet.deathDate,
-      petInfo.data.pet.favorites,
-      petInfo.data.pet.image
+      petInfo.data.pet.favorites
     );
     useData(petInfo.data.pet);
 
@@ -144,7 +137,7 @@ const displayAnimalRegisterPage = () => {
 <!-- animal register section -->
 <main class="animal-register-container">
   <h1 class="title">내 반려견 추모 공간 등록</h1>
-  <form action="#" method="#" class="animal-register-form" enctype="multipart/form-data">
+  <form action="#" method="#" class="animal-register-form">
     <!-- pet image -->
     <div class="img-container">
       <label class="img-label" for="animal-img">당신의 반려견 이미지를 등록해주세요.</label>
