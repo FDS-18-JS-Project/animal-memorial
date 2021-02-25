@@ -80,17 +80,35 @@ const pastCommentDate = (writtenDate = new Date()) => {
 };
 
 // TODO ** 서버에 댓글 제출
-const submitNewComment = e => {
-  e.preventDefault();
+const obtainNewComment = () => {
+  const comment = document.querySelector('.comment-input').value;
+  const userId = localStorage.getItem('userId');
+  const petId = localStorage.getItem('petId');
+
+  return { comment, userId, petId };
 };
 
+const submitNewComment = async e => {
+  e.preventDefault();
+
+  // 서버에 댓글 보내기
+  const { comment, userId, petId } = obtainNewComment();
+  const newComment = await request.postComment(comment, userId, petId);
+
+  if (newComment.status === 200) {
+    // 모델에 댓글 저장하기
+    petId.addComment(comment);
+  }
+};
+
+
 // 댓글 추가 (렌더링)
-const addNewComment = () => {
-  const $commentInput = document.querySelector('.comment-input');
+const renderNewComment = () => {
+  const { comment } = obtainNewComment();
+  // const $commentInput = document.querySelector('.comment-input');
   const $commentsList = document.querySelector('.comments-list');
 
-  if (!$commentInput.value) return;
-  console.log($commentInput.value);
+  if (!comment) return;
 
   const $commentRow = document.createElement('li');
   const $userName = document.createElement('span');
@@ -107,36 +125,22 @@ const addNewComment = () => {
   $commentRow.appendChild($commentDate);
   $commentRow.appendChild($commentContent);
 
-  // TODO user information 가져오기
-
   // 댓글 카운팅
   countComment($commentsList);
 
   // 작성자
-
-  // const getUserData =
-  //   console.log(getUserData);
+  const username = localStorage.getItem('username');
+  console.log(username);
+  $userName.textContent = username;
 
   // 작성일
   const writtenDate = new Date();
   $commentDate.textContent = `${pastCommentDate(writtenDate)}`;
 
   // 작성내용
-  $commentContent.textContent = $commentInput.value;
-  $commentInput.value = '';
+  $commentContent.textContent = comment;
+  document.querySelector('.comment-input').value = '';
 };
-
-// // username 렌더링
-// $userName.textContent = user.getUserName();
-// // console.log(user.getUserName);
-// user.getUserData();
-
-//   // 서버에 새 댓글 데이터 제출
-//   // const submitNewCommnet = await request.postComment(
-//   //   pet.addComment($commentInput.value),
-//   //   user.userId(),
-//   //   pet.getPetId()
-//   // );
 
 const displayAnimalPostPage = () => {
   const markup = `
@@ -206,7 +210,6 @@ const displayAnimalPostPage = () => {
     <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>
   </footer>
   `;
-  console.log('test');
 
   document.querySelector('body').innerHTML = markup;
 
@@ -219,11 +222,10 @@ const displayAnimalPostPage = () => {
 
   // document.addEventListener('DOMContnetLoaded', renderPetInfo);
   requestPetAndUserInfo();
-
   const $commentBtn = document.querySelector('.comment-submit');
-  $commentBtn.addEventListener('click', addNewComment);
+  $commentBtn.addEventListener('click', renderNewComment);
   $commentBtn.addEventListener('submit', submitNewComment);
   // $commentBtn.addEventListener('submit', addNewComment);
 };
 
-export { displayAnimalPostPage };
+export default displayAnimalPostPage;

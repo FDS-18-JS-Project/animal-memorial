@@ -33,12 +33,14 @@ const loginHandler = async e => {
     console.log(userInfo);
     user.updateUserInfo(
       userInfo.data.payload.email,
-      userInfo.data.username,
+      userInfo.data.payload.username,
       userInfo.data.payload._id,
       userInfo.data.token
     );
     const userId = userInfo.data.payload._id;
+    const username = userInfo.data.payload.username;
     localStorage.setItem('userId', userId);
+    localStorage.setItem('username', username);
 
     Cookies.setCookie('token', userInfo.data.token, {
       secure: true,
