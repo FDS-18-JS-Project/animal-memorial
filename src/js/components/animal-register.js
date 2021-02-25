@@ -3,6 +3,7 @@ import * as request from '../request';
 import * as Cookies from '../utils/cookies';
 import { Pet, Pets } from '../model';
 import displayMainPage from './main';
+import { displayAnimalPostPage } from './animal-post'
 
 const pet = new Pet();
 const pets = new Pets();
@@ -48,10 +49,8 @@ const animalRegisterHandler = async e => {
       petInfo.data.pet.favorites
     );
 
-    pets.updatePetInfo(pet, userInfoId);
-    console.log(pet);
-    console.log(pets);
-    // displayMainPage(); TODO: 포스트 페이지로 이동
+    localStorage.setItem('petId', petInfo.data.pet._id);
+    displayAnimalPostPage();
   }
 };
 

@@ -139,13 +139,15 @@ export const getPetsInfo = async token => {
   }
 };
 
-export const getPetInfo = async petId => {
+export const getPetInfo = async (petId, token) => {
+  console.log(petId, token);
   try {
     const res = await axios({
       method: 'get',
-      url: URL_PET,
-      params: {
-        petId
+      url: URL_PET + '/' + petId,
+      headers: {
+        'content-type': 'application/json',
+        Authorization: 'Bearer ' + token
       }
     });
     return res;
