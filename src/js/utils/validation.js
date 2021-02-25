@@ -5,7 +5,11 @@ export const errorMessage = {
   loginError: '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.',
   emptyIdError: '이메일을 입력해주세요.',
   emptyEmailError: '유효하지 않은 이메일 형식입니다.',
-  emptyPwError: '비밀번호를 입력해주세요.'
+  emptyPwError: '비밀번호를 입력해주세요.',
+  emptyPetImgError: '반려견 이미지를 등록해주세요.',
+  emptyPetNameError: '반려견 이름을 입력해주세요.',
+  emptyPetDeathDateError: '날짜를 입력해주세요.',
+  emptyPetFavoriteError: '1개 이상의 좋아했던 항목을 입력해주세요.'
 };
 
 export const reset = spanEl => {
@@ -39,7 +43,6 @@ export const createErrorForEmptyPw = (e, spanEl) => {
 export const createErrorForSignupNameError = (e, spanEl) => {
   const regExpName = /^[가-힣|a-z|A-Z|\*]{2,}$/;
   const $span = spanEl;
-  console.log(e.target);
   if (!e.target.value) {
     e.preventDefault();
     $span.textContent = errorMessage.signupNameError;
@@ -79,4 +82,37 @@ export const createErrorForSignupEmailError = (e, spanEl) => {
   if (!e.target.value.match(regExpEm))
     $span.textContent = errorMessage.emptyEmailError;
   else reset($span);
+};
+
+export const createErrorForEmptyPetImage = (value, e, spanEl) => {
+  const $span = spanEl;
+
+  if (!value) $span.textContent = errorMessage.emptyPetImgError;
+  else reset($span);
+  e.preventDefault();
+
+};
+
+export const createErrorForEmptyPetName = (value, e, spanEl) => {
+  const $span = spanEl;
+
+  if (!value) $span.textContent = errorMessage.emptyPetNameError;
+  else reset($span);
+  e.preventDefault();
+};
+
+export const createErrorForEmptyPetDeathDate = (value, e, spanEl) => {
+  const $span = spanEl;
+
+  if (!value) $span.textContent = errorMessage.emptyPetDeathDateError;
+  else reset($span);
+  e.preventDefault();
+};
+
+export const createErrorForEmptyPetFavorite = (value, e, spanEl) => {
+  const $span = spanEl;
+
+  if (!value) $span.textContent = errorMessage.emptyPetFavoriteError;
+  else reset($span);
+  e.preventDefault();
 };

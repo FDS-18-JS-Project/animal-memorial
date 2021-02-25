@@ -20,6 +20,7 @@ body {
 .animal-register-form {
   @include form;
   margin: auto;
+  position: relative;
 
   .animal-register-button {
     @include button($gray_btn, $black, 20px, 700);
@@ -37,6 +38,34 @@ body {
   div>label.active {
     @include label-focus;
   }
+
+  .error-message-petImage {
+    @include validation-text;
+
+    top: 530px;
+    left: 100px;
+  } 
+
+  .error-message-petName {
+    @include validation-text;
+
+    top: 670px;
+    left: 100px;
+  } 
+
+  .error-message-petDeathDate {
+    @include validation-text;
+
+    top: 780px;
+    left: 100px;
+  } 
+
+  .error-message-petFavorite {
+    @include validation-text;
+
+    top: 890px;
+    left: 100px;
+  } 
 }
 
 .img-container {
@@ -88,6 +117,8 @@ body {
 
   .name-input {
     @include input;
+
+    margin-bottom: 10px;
     color: rgba(0, 0, 0, 0.6);
 
   }
@@ -110,6 +141,7 @@ body {
   .death-input {
     @include input;
 
+    margin-bottom: 10px;
     color: rgba(0, 0, 0, 0.6);
   }
 }
@@ -129,6 +161,8 @@ body {
   .favorit-2nd-input,
   .favorit-3rd-input {
     @include input;
+
+    margin-bottom: 10px;
     color: rgba(0, 0, 0, 0.6);
   }
 }
