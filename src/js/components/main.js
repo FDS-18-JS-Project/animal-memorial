@@ -1,4 +1,5 @@
 import displayAnimalRegisterPage from './animal-register';
+import displayAnimalPostPage from './animal-post';
 import { logout } from '../utils/common';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
@@ -10,14 +11,20 @@ const animalRegister = () => {
   displayAnimalRegisterPage();
 };
 
+const getPetIdForPost = e => {
+  const petId = e.currentTarget.dataset.petid;
+  localStorage.setItem('petId', petId);
+  displayAnimalPostPage();
+};
+
 const renderAttentionPets = ($container, pets) => {
   $container.innerHTML = `${[...pets]
     .filter((_, i, pets) => i > pets.length - 5)
     .map(
-      ({ name, image }) => `<a href="#" class="attention-card">
+      ({ name, image, _id }) => `<div class="attention-card" data-petId="${_id}">
     <img src="${image}" alt="">
     <p class="name">${name}</p>
-  </a>`
+  </div>`
     )
     .join('')}`;
 };
@@ -42,19 +49,20 @@ const renderAllPets = ($container, pets) => {
     <div class="pets-card-container">
       <div class="slides">
       ${[
-        pets[pets.length - 2],
-        pets[pets.length - 1],
-        ...pets,
-        pets[0],
-        pets[1]
-      ]
-        .map(
-          ({
-            name,
-            deathDate,
-            favorites,
-            image
-          }) => `<a href="#" class="pets-card">
+      pets[pets.length - 2],
+      pets[pets.length - 1],
+      ...pets,
+      pets[0],
+      pets[1]
+    ]
+      .map(
+        ({
+          name,
+          deathDate,
+          favorites,
+          image,
+          _id
+        }) => `<div class="pets-card" data-petId="${_id}">
           <img src="${image}" />
           <div class="name">
             <span class="title">이름</span>
@@ -68,9 +76,9 @@ const renderAllPets = ($container, pets) => {
             <span class="title">좋아했던 것</span>
             <span class="desc">${favorites}</span>
           </div>
-        </a>`
-        )
-        .join('')}
+        </div>`
+      )
+      .join('')}
       </div>
     </div>
     <i class="slide-control prev fas fa-chevron-left"></i>
@@ -103,6 +111,10 @@ const renderAllPets = ($container, pets) => {
     currentSlide = clickedBtn === -1 ? 1 : pets.length + 1;
     move(currentSlide);
   };
+
+  document.querySelectorAll('.pets-card').forEach($petsCard => {
+    $petsCard.addEventListener('click', getPetIdForPost);
+  });
 };
 
 const getAllPets = async () => {
