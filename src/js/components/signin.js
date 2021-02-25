@@ -9,6 +9,9 @@ import * as Cookies from '../utils/cookies';
 import displayMainPage from './main';
 import { moveLabelInForm } from '../utils/common';
 
+// validation
+import { createErrorForEmptyId, createErrorForEmptyEmail, createErrorForEmptyPw } from '../utils/validation';
+
 const user = new User();
 let userId;
 
@@ -50,6 +53,8 @@ const loginHandler = async e => {
   }
 };
 
+
+
 // eslint-disable-next-line no-undef
 const displaySignInPage = () => {
   const markup = `<h1 class="site-title">Memorial for My Pet</h1>
@@ -61,7 +66,7 @@ const displaySignInPage = () => {
     >
     <button class="register-title">회원가입</button>
   </div>
-  <form class="login-form">
+  <form class="login-form" novalidate>
     <div class="form-field">
       <label for="email">Email</label>
       <input
@@ -71,8 +76,7 @@ const displaySignInPage = () => {
         class="email"
         autocomplete="off"
       />
-      <span class="error-message"></span>
-    </div>  
+      </div>
     <div class="form-field">
       <label for="password">Password</label>
       <input
@@ -81,17 +85,44 @@ const displaySignInPage = () => {
         id="password"
         class="password"
       />
-      <span class="error-message"></span>
-    </div>
+      </div>
     <button class="login-btn">로그인</button>
   </form>
 </main>`;
 
   document.querySelector('body').innerHTML = markup;
 
+  // document
+  //   .querySelector('.login-form')
+  //   .addEventListener('submit', loginHandler);
+
   document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginHandler);
+  .querySelector('.login-form')
+  .addEventListener('submit', e => {
+    console.log(e.target[0].value.includes('@'));
+    if(!e.target[0].value)
+    createErrorForEmptyId(document.querySelector('.email'));
+    if(!e.target[1].value)
+    createErrorForEmptyPw(document.querySelector('.password'));
+    // if(!e.target[0].value.includes('@'));
+    // createErrorForEmptyEmail(document.querySelector('.email'));
+
+    if(!e.target[0].value) {
+      e.preventDefault();
+      return;
+    }
+    if(!e.target[1].value) {
+      e.preventDefault();
+      return;
+    }
+    // if(!e.target[0].value.includes('@')) {
+    //   e.preventDefault();
+    //   return;
+    // }
+
+
+    loginHandler(e);
+  });
 
   moveLabelInForm('login-form');
 };

@@ -191,9 +191,13 @@ caption {
 
 // validation
 @mixin validation-text {
-  background: lime;
+  color: rgb(247, 75, 75);
+  position: absolute;
+  font-size: 16px;
+  // display: none;
+  transition: display 0.1;
 }
 
-@mixin validation-input {
-  border-color: rgba(24, 24, 24, 0.3);
+@mixin validation-active {
+  // display: block;
 }

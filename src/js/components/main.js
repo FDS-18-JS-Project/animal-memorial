@@ -49,7 +49,7 @@ const renderAllPets = ($container, pets) => {
           deathDate,
           favorites,
           image
-        }) => `<a href="#" class="pets-card">
+        }) => `${console.log(deathDate)}<a href="#" class="pets-card">
           <img src="${image}" />
           <div class="name">
             <span class="title">이름</span>
