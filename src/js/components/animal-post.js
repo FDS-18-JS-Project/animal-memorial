@@ -2,7 +2,7 @@ import { logout } from '../utils/common';
 import { User, Pet, Pets } from '../model';
 import * as request from '../request';
 import * as Cookies from '../utils/cookies';
-import displayMainPage from '../components/main';
+import displayMainPage from './main';
 import displayAnimalRegisterPage from './animal-register';
 // import { doc } from 'prettier';
 
@@ -96,7 +96,12 @@ const submitNewComment = async e => {
   // 서버에 댓글 보내기
   const { newComment, userId, petId } = obtainNewComment();
   const token = Cookies.getCookie('token');
-  const postComment = await request.postComment(newComment, userId, petId, token);
+  const postComment = await request.postComment(
+    newComment,
+    userId,
+    petId,
+    token
+  );
   console.log(postComment);
 
   if (postComment.status === 200) {
@@ -124,7 +129,7 @@ const renderNewComment = () => {
   $commentDate.classList.add('date');
   $commentContent.classList.add('content');
 
-  $commentsList.appendChild($commentRow);
+  $commentsList.prepend($commentRow);
   $commentRow.appendChild($userName);
   $commentRow.appendChild($commentDate);
   $commentRow.appendChild($commentContent);
@@ -134,7 +139,6 @@ const renderNewComment = () => {
   // commentList.forEach(item => {
   //   console.log(item);
   // });
-
 
   // 댓글 카운팅
   countComment($commentsList);
@@ -192,8 +196,8 @@ const displayAnimalPostPage = () => {
   </div>
   </div>
     <div class="comment-container">
-      <form class="comment-form">
-        <textarea class="comment-input" name="comment-input" id="commentInput" rows="4"
+      <form class="comment-form" novalidate>
+        <textarea class="comment-input" name="comment-input" autocomplete="off" id="commentInput" rows="4"
     placeholder="따뜻한 한마디를 보내주세요. 악플은 주인과 사용자들에게 큰 상처가 됩니다. 악플은 예고 없이 삭제될 수 있습니다." required></textarea>
         <button class="comment-submit" type="submit">댓글</button>
       </form>
@@ -235,6 +239,11 @@ const displayAnimalPostPage = () => {
   const $commentBtn = document.querySelector('.comment-submit');
   $commentBtn.addEventListener('click', renderNewComment);
   $commentBtn.addEventListener('submit', submitNewComment);
+
+  const $commentForm = document.querySelector('.comment-form');
+  $commentForm.addEventListener('click', e => {
+    e.preventDefault();
+  });
 };
 
 export default displayAnimalPostPage;

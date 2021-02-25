@@ -30,7 +30,9 @@ const obtainPetInfo = () => {
   imgFormData.append('image', image);
   imgFormData.append('petName', petName);
   imgFormData.append('deathDate', deathDate);
-  imgFormData.append('favorites', favorites);
+  imgFormData.append('favorite1', favorites[0]);
+  imgFormData.append('favorite2', favorites[1]);
+  imgFormData.append('favorite3', favorites[2]);
 
   return imgFormData;
 };
@@ -142,11 +144,27 @@ const formDate = () => {
 const checkValidationUsingSubmit = e => {
   const { image, petName, deathDate, favorites } = formDate();
 
-  createErrorForEmptyPetImage(image, e, document.querySelector('.error-message-petImage'));
-  createErrorForEmptyPetName(petName, e, document.querySelector('.error-message-petName'));
-  createErrorForEmptyPetDeathDate(deathDate, e, document.querySelector('.error-message-petDeathDate'));
-  createErrorForEmptyPetFavorite(favorites, e, document.querySelector('.error-message-petFavorite'));
-}
+  createErrorForEmptyPetImage(
+    image,
+    e,
+    document.querySelector('.error-message-petImage')
+  );
+  createErrorForEmptyPetName(
+    petName,
+    e,
+    document.querySelector('.error-message-petName')
+  );
+  createErrorForEmptyPetDeathDate(
+    deathDate,
+    e,
+    document.querySelector('.error-message-petDeathDate')
+  );
+  createErrorForEmptyPetFavorite(
+    favorites,
+    e,
+    document.querySelector('.error-message-petFavorite')
+  );
+};
 
 const displayAnimalRegisterPage = () => {
   const now = new Date();

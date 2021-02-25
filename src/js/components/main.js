@@ -21,12 +21,20 @@ const renderAttentionPets = ($container, pets) => {
   $container.innerHTML = `${[...pets]
     .filter((_, i, pets) => i > pets.length - 5)
     .map(
-      ({ name, image, _id }) => `<div class="attention-card" data-petId="${_id}">
+      ({
+        name,
+        image,
+        _id
+      }) => `<div class="attention-card" data-petId="${_id}">
     <img src="${image}" alt="">
     <p class="name">${name}</p>
   </div>`
     )
     .join('')}`;
+
+  document.querySelectorAll('.attention-card').forEach($attentionCard => {
+    $attentionCard.addEventListener('click', getPetIdForPost);
+  });
 };
 
 const renderAllPets = ($container, pets) => {
@@ -49,20 +57,20 @@ const renderAllPets = ($container, pets) => {
     <div class="pets-card-container">
       <div class="slides">
       ${[
-      pets[pets.length - 2],
-      pets[pets.length - 1],
-      ...pets,
-      pets[0],
-      pets[1]
-    ]
-      .map(
-        ({
-          name,
-          deathDate,
-          favorites,
-          image,
-          _id
-        }) => `<div class="pets-card" data-petId="${_id}">
+        pets[pets.length - 2],
+        pets[pets.length - 1],
+        ...pets,
+        pets[0],
+        pets[1]
+      ]
+        .map(
+          ({
+            name,
+            deathDate,
+            favorites,
+            image,
+            _id
+          }) => `<div class="pets-card" data-petId="${_id}">
           <img src="${image}" />
           <div class="name">
             <span class="title">이름</span>
@@ -77,8 +85,8 @@ const renderAllPets = ($container, pets) => {
             <span class="desc">${favorites}</span>
           </div>
         </div>`
-      )
-      .join('')}
+        )
+        .join('')}
       </div>
     </div>
     <i class="slide-control prev fas fa-chevron-left"></i>

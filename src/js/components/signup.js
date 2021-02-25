@@ -158,7 +158,7 @@ const displaySignUpPage = () => {
     .addEventListener('keyup', checkValidationEmail);
 
   document.querySelector('.register-form').addEventListener('submit', e => {
-    checkValidationUsingSubmit(e);
+    // checkValidationUsingSubmit(e);
     registerHandler(e);
   });
 
