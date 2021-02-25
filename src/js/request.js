@@ -61,7 +61,7 @@ export const getUserData = async (userId, token) => {
       url: URL_USER_DATA + '/' + userId,
       headers: {
         'content-type': 'application/json',
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     });
     return res;
@@ -124,7 +124,7 @@ export const getPetsInfo = async token => {
       url: URL_GET_PETS,
       headers: {
         'content-type': 'application/json',
-        Authorization: token
+        Authorization: 'Bearer ' + token
       }
     });
     return petsInfo;

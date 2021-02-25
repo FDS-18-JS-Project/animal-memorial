@@ -37,12 +37,6 @@ const animalRegisterHandler = async e => {
   const userInfoId = localStorage.getItem('userId');
   const token = Cookies.getCookie('token');
 
-  // "name": "vix",
-  // "deathDate": "{{todayDate}}",
-  // "favorites": ["hello", "hi"],
-  // "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80",
-  // "userId": "6033045a763ded265cf9efae"
-
   const petInfo = await request.postPetInfo(imgFormData, userInfoId, token);
 
   // await request.patchPetImage(petInfo.data.pet._id, imgFormData, token);
@@ -54,10 +48,9 @@ const animalRegisterHandler = async e => {
       petInfo.data.pet.deathDate,
       petInfo.data.pet.favorites
     );
-    useData(petInfo.data.pet);
+    // useData(petInfo.data.pet);
 
     pets.updatePetInfo(pet, userInfoId);
-    // displayMainPage(); TODO: 포스트 페이지로 이동
   }
 };
 

@@ -188,3 +188,12 @@ caption {
   opacity: 0.2;
   transform: rotate($rotate);
 }
+
+// validation
+@mixin validation-text {
+  background: lime;
+}
+
+@mixin validation-input {
+  border-color: rgba(24, 24, 24, 0.3);
+}

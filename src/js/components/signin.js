@@ -69,6 +69,7 @@ const displaySignInPage = () => {
         name="email"
         id="email"
         class="email"
+        autocomplete="off"
       />
       <span class="error-message"></span>
     </div>  

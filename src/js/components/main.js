@@ -12,12 +12,13 @@ const animalRegister = () => {
 
 const renderAttentionPets = ($container, pets) => {
   $container.innerHTML = `${[...pets].filter((_, i, pets) => i > pets.length - 5 ).map(({ name, image }) => `<a href="#" class="attention-card">
-    <img src="" alt="">
+    <img src="${image}" alt="">
     <p class="name">${name}</p>
   </a>`).join('')}`;
 };
 
 const renderAllPets = ($container, pets) => {
+  console.log('petList: ', pets)
   let currentSlide = 0;
   let isMoving = false;
   const DURATION = 500;
