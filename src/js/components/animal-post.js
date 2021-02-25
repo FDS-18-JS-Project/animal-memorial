@@ -1,26 +1,12 @@
-import { User, Pet } from '../model';
+import { User, Pet, Pets } from '../model';
 import * as request from '../request';
 // import { doc } from 'prettier';
 
-//
-const user = new User();
-const pet = new Pet();
+//!
+// const user = new User();
+// const pet = new Pet();
 
-
-// Comment
-const $commentInput = document.querySelector('.comment-input');
-const $commentBtn = document.querySelector('.comment-submit');
-const $commentList = document.querySelector('.comments-list');
-
-// Pet Info
-// TODO: 2021-02-22T15:00:00.000Z라고 오면 자르는 메서드 추가해야함
-const dateToString = date => date.replace('-', '. ');
-
-// const petInfo1 = await request.obtainPetInfo(petInfo);
-// const petInfo = await request.getPetInfo(petInfo1.pet._id);
-// pet.updatePetInfo(petInfo.params._id);
-
-
+// const dateToString = date => date.replace('-', '. ');
 
 // TODO: 함수 이름 다시 셍각해보기
 const petInfoHandler = async () => {
@@ -29,91 +15,148 @@ const petInfoHandler = async () => {
   const $petsDeathDate = document.querySelector('.pets-info>.death-date>.desc');
   const $petsFavorite = document.querySelector('.pets-info>.favorite>.desc');
 
-  const petInfo = await request.getPetInfo();
+  // const $petsFavoriteList = document.createElement('li');
+  // $petsFavorite.appendChild($petsFavoriteList);
+  console.log($petsImg, $petsName, $petsDeathDate, $petsFavorite);
 
+  // localStorage.setItem('petId', petInfo.data.pet._id);
 
-
-  // const petId = pet.getPetId();
-  const { petName, deathDate, favorites, image } = {
-    petInfo.params.name,
-    petInfo.params.deathDate,
-    petInfo.params.favorites,
-    petInfo.params.image
-  }
-
-  $petsImg.setAttribute('src', image);
-  $petsName.textContent = petName;
-  $petsDeathDate.textContent = dateToString(deathDate);
+  $petsImg.setAttribute('src', pets.image);
+  $petsName.textContent = pets.name;
+  $petsDeathDate.textContent = pets.deathDate;
 
   // TODO: favorite - list로 구분 or ',' 쉼표 써서 구분
-  favorites.map()
+  // favorites.map()
+  // $petsFavoriteList.textContent = pets.favorites;
 };
+// const userInfoId = localStorage.getItem('userId');
+// console.log(userInfoId);
 
-// User Info
-const $petList = document.querySelector('.owner>.pet-list');
+// Comment
+// const $commentInput = document.querySelector('.comment-input');
+// const $commentBtn = document.querySelector('.comment-submit');
+// const $commentList = document.querySelector('.comments-list');
 
-const $petListItem = document.createElement('li');
-const $petListLink = document.createElement('a');
+// // Pet Info
+// // TODO: 2021-02-22T15:00:00.000Z라고 오면 자르는 메서드 추가해야함
 
-$petList.appendChild($petListItem);
-$petList.appendChild($petListLink);
+// // const petInfo1 = await request.obtainPetInfo(petInfo);
+// // const petInfo = await request.getPetInfo(petInfo1.pet._id);
+// // pet.updatePetInfo(petInfo.params._id);
 
+// // ? User Info
+// // const $petList = document.querySelector('.owner>.pet-list');
 
+// // // const $petListItem = document.createElement('li');
+// // // const $petListLink = document.createElement('a');
 
-const countComment = () => {
-  const $commentCount = document.querySelector('.comment-count>.count');
-  $commentCount.textContent = $commentList.childElementCount;
-};
+// // // $petList.appendChild($petListItem);
+// // // $petListItem.appendChild($petListLink);
 
-const pastCommentDate = (writtenDate = new Date()) => {
-  const nowDate = new Date();
-  const pastTime = nowDate.getTime() - writtenDate.getTime();
-  const pastMinute = Math.floor(pastTime / 1000 / 60);
-  const pastHour = Math.floor(pastTime / 1000 / 60 / 60);
-  const pastDate = Math.floor(pastTime / 1000 / 60 / 60 / 24);
-  const pastWeek = Math.floor(pastTime / 1000 / 60 / 60 / 24 / 7);
-  const pastMonth = Math.floor(pastTime / 1000 / 60 / 60 / 24 / 30);
-  const pastYear = Math.floor(pastTime / 1000 / 60 / 60 / 24 / 365);
+// const countComment = () => {
+//   const $commentCount = document.querySelector('.comment-count>.count');
+//   $commentCount.textContent = $commentList.childElementCount;
+// };
 
-  if (pastMinute < 1) return '• 방금 전';
-  if (pastMinute < 60) return `• ${pastMinute}분 전`;
-  if (pastHour < 24) return `• ${pastHour}시간 전`;
-  if (pastDate < 7) return `• ${pastDate}일 전`;
-  if (pastWeek < 5) return `• ${pastWeek}주 전`;
-  if (pastMonth < 12) return `• ${pastMonth}달 전`;
-  if (pastYear >= 1) return `• ${pastYear}년 전`;
-};
+// const pastCommentDate = (writtenDate = new Date()) => {
+//   const nowDate = new Date();
+//   const pastTime = nowDate.getTime() - writtenDate.getTime();
+//   const pastMinute = Math.floor(pastTime / 1000 / 60);
+//   const pastHour = Math.floor(pastTime / 1000 / 60 / 60);
+//   const pastDate = Math.floor(pastTime / 1000 / 60 / 60 / 24);
+//   const pastWeek = Math.floor(pastTime / 1000 / 60 / 60 / 24 / 7);
+//   const pastMonth = Math.floor(pastTime / 1000 / 60 / 60 / 24 / 30);
+//   const pastYear = Math.floor(pastTime / 1000 / 60 / 60 / 24 / 365);
 
-const newComment = async () => {
-  if (!$commentInput.value) return;
+//   if (pastMinute < 1) return '• 방금 전';
+//   if (pastMinute < 60) return `• ${pastMinute}분 전`;
+//   if (pastHour < 24) return `• ${pastHour}시간 전`;
+//   if (pastDate < 7) return `• ${pastDate}일 전`;
+//   if (pastWeek < 5) return `• ${pastWeek}주 전`;
+//   if (pastMonth < 12) return `• ${pastMonth}달 전`;
+//   if (pastYear >= 1) return `• ${pastYear}년 전`;
+// };
 
-  const $commentRow = document.createElement('div');
-  const $userName = document.createElement('span');
-  const $commentDate = document.createElement('time');
-  const $commentContent = document.createElement('p');
+// const addNewComment = () => {
+//   if (!$commentInput.value) return;
+//   console.log($commentInput.value);
+//   const $commentRow = document.createElement('div');
+//   const $userName = document.createElement('span');
+//   const $commentDate = document.createElement('time');
+//   const $commentContent = document.createElement('p');
 
-  $commentRow.classList.add('comment-row');
-  $userName.classList.add('username');
-  $commentDate.classList.add('date');
-  $commentContent.classList.add('content');
+//   $commentRow.classList.add('comment-row');
+//   $userName.classList.add('username');
+//   $commentDate.classList.add('date');
+//   $commentContent.classList.add('content');
 
-  $commentList.appendChild($commentRow);
-  $commentRow.appendChild($userName);
-  $commentRow.appendChild($commentDate);
-  $commentRow.appendChild($commentContent);
+//   $commentList.appendChild($commentRow);
+//   $commentRow.appendChild($userName);
+//   $commentRow.appendChild($commentDate);
+//   $commentRow.appendChild($commentContent);
 
-  const writtenDate = new Date();
-  $commentDate.textContent = `${pastCommentDate(writtenDate)}`;
+//   const writtenDate = new Date();
+//   $commentDate.textContent = `${pastCommentDate(writtenDate)}`;
 
-  const addNewComment = await request.postComment(pet.addComment($commentInput.value), user.userId(), pet.getPetId());
+//   // // username 렌더링
+//   // $userName.textContent = user.getUserName();
+//   // // console.log(user.getUserName);
+//   // user.getUserData();
 
-  // username 렌더링
-  $userName.textContent = user.getUserName();
+//   // comment 렌더링
+//   $commentContent.textContent = $commentInput.value;
+//   $commentInput.value = '';
 
-  // comment 렌더링
-  $commentContent.textContent = $commentInput.value;
-  $commentInput.value = '';
-};
+//   // ? 서버에 새 댓글 데이터 제출
+//   // const submitNewCommnet = await request.postComment(
+//   //   pet.addComment($commentInput.value),
+//   //   user.userId(),
+//   //   pet.getPetId()
+//   // );
+// };
+
+// const renderPetInfo = async () => {
+//   countComment();
+
+//   const $petsImg = document.querySelector('.pets-container>img');
+//   const $petsName = document.querySelector('.pets-info>.name>.desc');
+//   const $petsDeathDate = document.querySelector('.pets-info>.death-date>.desc');
+//   const $petsFavorite = document.querySelector('.pets-info>.favorite>.desc');
+
+//   const $petsFavoriteList = document.createElement('li');
+//   $petsFavorite.appendChild($petsFavoriteList);
+
+//   // const petId = pet.getPetId();
+//   const petInfo = await request.getPetInfo();
+//   // const { petId, petName, deathDate, favorites, image } = {
+//   //   petInfo.data.pet._id,
+//   //   petInfo.data.pet.name,
+//   //   petInfo.data.pet.deathDate,
+//   //   petInfo.data.pet.favorites,
+//   //   petInfo.data.pet.image
+//   // };
+
+//   // ? 서버에 새 댓글 데이터 제출
+//   // const submitNewCommnet = await request.postComment(
+//   //   pet.addComment($commentInput.value),
+//   //   user.userId(),
+//   //   pet.getPetId()
+//   // );
+
+//   localStorage.setItem('petId', petInfo.data.pet._id);
+//   // const petName = petInfo.params.pets.name;
+//   // const deathDate = petInfo.params.pets.deathDate;
+//   // const favorites = petInfo.params.pets.favorites;
+//   // const image = petInfo.params.pets.image;
+
+//   $petsImg.setAttribute('src', petInfo.data.pet.image);
+//   $petsName.textContent = petInfo.data.pet.name;
+//   $petsDeathDate.textContent = dateToString(petInfo.data.pet.deathDate);
+
+//   // TODO: favorite - list로 구분 or ',' 쉼표 써서 구분
+//   // favorites.map()
+//   $petsFavoriteList.textContent = petInfo.data.pet.favorites;
+// };
 
 const displayAnimalPostPage = () => {
   const markup = `
@@ -130,9 +173,33 @@ const displayAnimalPostPage = () => {
   </nav>
 </header>
 <main class="post-container">
-  <div class="pets-container"></div>
+<div class="pets-container">
+<img src="" alt="">
+<div class="pets-info">
+  <div class="name">
+    <span class="title">이름</span>
+    <p class="desc"></p>
+  </div>
+  <div class="death-date">
+    <span class="title">기일</span>
+    <time class="desc"></time>
+  </div>
+  <div class="favorite">
+    <span class="title">좋아했던 것</span>
+    <ul>
+      <li class="desc"></li>
+    </ul>
+  </div>
+</div>
+</div>
   <div class="column-container">
-    <div class="owner-container"></div>
+  <div class="owner-container">
+  <div class="owner-row">
+    <div class="owner"></div>
+    <ul class="pet-list">
+    </ul>
+  </div>
+</div>
     <div class="comment-container">
       <div class="new-comment">
         <textarea class="comment-input" name="comment-input" id="commentInput" rows="4"
@@ -162,16 +229,11 @@ const displayAnimalPostPage = () => {
     <p>&copy; 2021 Memorial for my Pet. All Rights Reseved</p>
   </footer>
   `;
+
   document.querySelector('body').innerHTML = markup;
+  // document.addEventListener('DOMContnetLoaded', renderPetInfo);
+  // $commentBtn.addEventListener('click', addNewComment);
+  // $commentBtn.addEventListener('submit', addNewComment);
 };
 
-$commentBtn.addEventListener('click', () => {
-  newComment();
-  countComment();
-});
-
-// $commentBtn.addEventListener('submit', addNewComment);
-
-document.addEventListener('DOMContentLoaded',);
-
-export default displayAnimalPostPage;
+export { displayAnimalPostPage };
