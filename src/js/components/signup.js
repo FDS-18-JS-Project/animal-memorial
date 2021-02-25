@@ -68,6 +68,7 @@ const displaySignUpPage = () => {
           name="username"
           id="username"
           class="username"
+          autocomplete="off"
         />
         <span class="error-message"></span>
       </div>
@@ -78,6 +79,7 @@ const displaySignUpPage = () => {
           name="password"
           id="password"
           class="password"
+          autocomplete="off"
         />
         <span class="error-message"></span>
       </div>
@@ -88,6 +90,7 @@ const displaySignUpPage = () => {
           name="email"
           id="email"
           class="email"
+          autocomplete="off"
         />                                                                                                                                                                                                                                                                                                                                          
         <span class="error-message"></span>
       </div>

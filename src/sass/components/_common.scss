@@ -189,3 +189,16 @@ caption {
   opacity: 0.2;
   transform: rotate($rotate);
 }
+
+// validation
+@mixin validation-text {
+  color: rgb(247, 75, 75);
+  position: absolute;
+  font-size: 16px;
+  // display: none;
+  transition: display 0.1;
+}
+
+@mixin validation-active {
+  // display: block;
+}

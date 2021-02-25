@@ -1,44 +1,76 @@
-const createErrorForAddRecipe = (msg, inputEl) => {
+export const errorMessage = {
+  default: '',
+  signupIdError: '5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
+  signupPwError: '4~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
+  signupEmailError: '유효하지 않은 이메일 형식입니다.',
+  loginError: '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.',
+  emptyIdError: '이메일을 입력해주세요.',
+  emptyEmailError: "이메일 주소에 '@'를 포함해 주세요.",
+  emptyPwError: '비밀번호를 입력해주세요.'
+}
+
+// export const createDefault = inputEl => {
+//   const $input = inputEl;
+//   $input.parentElement.lastChildElemtne.remove();
+//   console.log($input);
+// };
+
+export const createErrorForEmptyId = inputEl => {
   const $input = inputEl;
-  const $errorMessageNode = document.createElement('p');
-  $errorMessageNode.textContent = msg;
-  $errorMessageNode.classList.add('error-message');
-  $errorMessageNode.style.color = 'red';
-  $input.after($errorMessageNode);
+  const $errorMessageNode = document.createElement('span');
+  $errorMessageNode.textContent = errorMessage.emptyIdError;
+  $errorMessageNode.classList.add('error-message-email');
+  $input.parentElement.after($errorMessageNode);
 };
 
-export const validateLength = (value, inputEl) => {
-  if (value.length < 5) {
-    createErrorForAddRecipe(
-      'Please input a value which is longer than 5 chars',
-      inputEl
-    );
-    return false;
-  }
-  return true;
+export const createErrorForEmptyEmail = inputEl => {
+  const $input = inputEl;
+  const $errorMessageNode = document.createElement('span');
+  $errorMessageNode.textContent = errorMessage.emptyEmailError;
+  $errorMessageNode.classList.add('error-message-email');
+  $input.parentElement.after($errorMessageNode);
 };
 
-export const validateUrl = (url, inputEl) => {
-  const regExpUrl = /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i;
-  if (!regExpUrl.test(url)) {
-    createErrorForAddRecipe('Please input a valid url', inputEl);
-    return false;
-  }
-  return true;
+export const createErrorForEmptyPw = inputEl => {
+  const $input = inputEl;
+  const $errorMessageNode = document.createElement('span');
+  $errorMessageNode.textContent = errorMessage.emptyPwError;
+  $errorMessageNode.classList.add('error-message-pw');
+  $input.parentElement.after($errorMessageNode);
 };
 
-export const validateNumber = (number, inputEl) => {
-  if (number < 1) {
-    createErrorForAddRecipe(
-      `${
-        inputEl.name === 'cookingTime' ? 'Prep time' : 'Servings'
-      } should be positive number!`,
-      inputEl
-    );
-    return false;
-  }
-  return true;
-};
+// export const validateLength = (value, inputEl) => {
+//   if (value.length < 5) {
+//     createErrorForAddRecipe(
+//       'Please input a value which is longer than 5 chars',
+//       inputEl
+//     );
+//     return false;
+//   }
+//   return true;
+// };
+
+// export const validateUrl = (url, inputEl) => {
+//   const regExpUrl = /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i;
+//   if (!regExpUrl.test(url)) {
+//     createErrorForAddRecipe('Please input a valid url', inputEl);
+//     return false;
+//   }
+//   return true;
+// };
+
+// export const validateNumber = (number, inputEl) => {
+//   if (number < 1) {
+//     createErrorForAddRecipe(
+//       `${
+//         inputEl.name === 'cookingTime' ? 'Prep time' : 'Servings'
+//       } should be positive number!`,
+//       inputEl
+//     );
+//     return false;
+//   }
+//   return true;
+// };
 
 // export const validateIngredients = ingredients => {
 //   if (ingredients.length === 0) {
