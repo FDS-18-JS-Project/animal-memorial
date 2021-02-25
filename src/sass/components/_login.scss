@@ -6,11 +6,16 @@
   position: relative;
   background: #ffe5b3;
 
+  .form-field {
+    margin-bottom: 60px;
+  }
+
   .login-form,
   .register-form {
     @include form;
     margin-top: 40px;
     box-sizing: border-box;
+    position: relative;
     .form-field {
       position: relative;
     }
@@ -21,12 +26,7 @@
       padding-left: 20px;
       @include input;
     }
-    .error-message {
-      display: block;
-      padding: 15px 10px;
-      color: red;
-      font-weight: bold;
-    }
+
     label {
       @include label;
     }
@@ -38,8 +38,35 @@
     .login-btn,
     .register-btn {
       @include button(#eaeaea, #000000, 24, 400);
-      margin-top: 40px;
     }
+
+    .login-btn:hover,
+    .register-btn:hover {
+      @include button-hover($color-secondary, $white_font)
+    }
+
+    // .error-message {
+    //   @include validation-text;
+
+    //   font-size: 18px;
+    //   left: 100px;
+    //   bottom: 130px;
+    // }
+
+    .error-message-email {
+      @include validation-text;
+
+      top: 120px;
+      left: 100px;
+    }
+
+    .error-message-pw {
+      @include validation-text;
+
+      top: 230px;
+      left: 100px;
+    }
+
   }
   .title-group {
     position: absolute;
@@ -57,6 +84,7 @@
     margin: 0;
     margin-top: 10px;
     background: transparent;
+    outline-style: none;
   }
   .register-title {
     border-right: 0;
