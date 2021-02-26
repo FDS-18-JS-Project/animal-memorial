@@ -1,20 +1,30 @@
-import { logout } from '../utils/common';
-import * as request from '../request';
-import * as Cookies from '../utils/cookies';
-import { Pet, Pets } from '../model';
 import displayMainPage from './main';
 import displayAnimalPostPage from './animal-post';
+import { logout, postPetInfo } from '../utils/common';
 
 // validation
 import {
   createErrorForEmptyPetImage,
   createErrorForEmptyPetName,
   createErrorForEmptyPetDeathDate,
-  createErrorForEmptyPetFavorite,
-  reset
+  createErrorForEmptyPetFavorite
 } from '../utils/validation';
 
-const pet = new Pet();
+// validation
+const formDate = () => {
+  const formDate = [...document.forms][0];
+  const image = document.querySelector('.img-input').files[0];
+  const petName = formDate[1].value;
+  const deathDate = formDate[2].value;
+  const favorites = formDate[3].value;
+
+  return {
+    image,
+    petName,
+    deathDate,
+    favorites
+  };
+};
 
 const obtainPetInfo = () => {
   const formDate = [...document.forms][0];
@@ -35,32 +45,6 @@ const obtainPetInfo = () => {
   imgFormData.append('favorite3', favorites[2]);
 
   return imgFormData;
-};
-
-const animalRegisterHandler = async e => {
-  e.preventDefault();
-
-  // validation required
-
-  const imgFormData = obtainPetInfo();
-
-  const userInfoId = localStorage.getItem('userId');
-  const token = Cookies.getCookie('token');
-
-  const petInfo = await request.postPetInfo(imgFormData, userInfoId, token);
-
-  console.log(petInfo);
-  if (petInfo) {
-    pet.updatePetInfo(
-      petInfo.data.pet._id,
-      petInfo.data.pet.name,
-      petInfo.data.pet.deathDate,
-      petInfo.data.pet.favorites
-    );
-
-    localStorage.setItem('petId', petInfo.data.pet._id);
-    displayAnimalPostPage();
-  }
 };
 
 const dragOver = e => {
@@ -120,27 +104,6 @@ const animalRegister = () => {
   });
 };
 
-// validation
-const formDate = () => {
-  const formDate = [...document.forms][0];
-  const image = document.querySelector('.img-input').files[0];
-  const petName = formDate[1].value;
-  const deathDate = formDate[2].value;
-  const favorites = formDate[3].value;
-
-  return {
-    image,
-    petName,
-    deathDate,
-    favorites
-  };
-};
-
-// TODO:
-// const checkValidationUsingChange = e => {
-//   const { image, petName, deathDate, favorites } = formDate();
-// }
-
 const checkValidationUsingSubmit = e => {
   const { image, petName, deathDate, favorites } = formDate();
 
@@ -164,6 +127,15 @@ const checkValidationUsingSubmit = e => {
     e,
     document.querySelector('.error-message-petFavorite')
   );
+};
+
+const animalRegisterHandler = async e => {
+  e.preventDefault();
+
+  const imgFormData = obtainPetInfo();
+  const petInfo = await postPetInfo(imgFormData);
+
+  if (petInfo) displayAnimalPostPage();
 };
 
 const displayAnimalRegisterPage = () => {

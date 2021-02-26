@@ -14,14 +14,13 @@ const createErrorMessageReceivedFromServer = (message, type) => {
     type === 'login'
       ? document.querySelector('.password').nextElementSibling
       : document.querySelector('.email').nextElementSibling;
-  console.log($prevValue);
+
   if ($prevValue) $prevValue.textContent = '';
 
   const $el =
     type === 'login'
       ? document.querySelector('.password')
       : document.querySelector('.email');
-  console.log($el);
 
   const $errorMessageEl = document.createElement('span');
   $errorMessageEl.classList.add('error-message-server');
@@ -88,36 +87,17 @@ export const getUserData = async (userId, token) => {
     });
     return res;
   } catch (error) {
-    // console.log(error.response);
+    console.log(error);
   }
 };
-// export const patchPetImage = async (petId, imgFormData) => {
-//   console.log(typeof imgFormData, imgFormData.getAll('image'));
-//   try {
-//     const url = `${URL_PET}/${petId}`;
-//     const petInfo = await axios.post(url, imgFormData, {
-//       headers: { 'Content-Type': 'multipart/form-data' }
-//     });
-//     // const petInfo = await axios({
-//     //   method: 'patch',
-//     //   url: URL_PET + '/' + petId,
-//     //   headers: {
-//     //     'content-type': 'multipart/form-data',
-//     //     Authorization: 'Bearer ' + token
-//     //   },
-//     //   data: imgFormData
-//     // });
-//     return petInfo;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 
 export const postPetInfo = async (imgFormData, userId, token) => {
   console.log(
     'petInfo: ',
     imgFormData.get('image'),
-    imgFormData.get('favorites'),
+    imgFormData.get('favorites1'),
+    imgFormData.get('favorites2'),
+    imgFormData.get('favorites3'),
     imgFormData.get('deathDate'),
     imgFormData.get('petName'),
     userId,
@@ -133,10 +113,10 @@ export const postPetInfo = async (imgFormData, userId, token) => {
       },
       data: imgFormData
     });
+    console.log(petInfo);
     return petInfo;
   } catch (error) {
     console.log(error.response);
-    // alert(error.response.data.error);
   }
 };
 
@@ -152,13 +132,11 @@ export const getPetsInfo = async token => {
     });
     return petsInfo;
   } catch (error) {
-    console.log(error.response);
-    // alert(error.response.data.error);
+    console.log(error);
   }
 };
 
 export const getPetInfo = async (petId, token) => {
-  console.log(petId, token);
   try {
     const res = await axios({
       method: 'get',
@@ -170,8 +148,7 @@ export const getPetInfo = async (petId, token) => {
     });
     return res;
   } catch (error) {
-    console.log(error.response);
-    // alert(error.response.data.error);
+    console.log(error);
   }
 };
 
@@ -192,7 +169,6 @@ export const postComment = async (comment, userId, petId, token) => {
     });
     return res;
   } catch (error) {
-    console.log(error.response);
-    // alert(error.response.data.error);
+    console.log(error);
   }
 };

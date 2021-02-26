@@ -1,14 +1,16 @@
-import { logout } from '../utils/common';
-import { User, Pet, Pets } from '../model';
-import * as request from '../request';
-import * as Cookies from '../utils/cookies';
 import displayMainPage from './main';
 import displayAnimalRegisterPage from './animal-register';
+import { logout, obtainPetInfo } from '../utils/common';
+import * as request from '../request';
+import * as Cookies from '../utils/cookies';
 // import { doc } from 'prettier';
 
 // Pet And Owner Information
 // date 형식 변환 함수
-const dateToString = date => date.replaceAll('-', '.').slice(0, 10);
+const dateToString = date => {
+  console.log(date.replaceAll('-', '.').slice(0, 10));
+  return date.replaceAll('-', '.').slice(0, 10);
+};
 
 // 추모 반려견 정보 렌더링
 const renderPetInfo = pet => {
@@ -41,23 +43,10 @@ const renderOwnerInfo = owner => {
   $ownerEmail.textContent = owner.email;
 };
 
-// 반려견 및 보호자 정보 요청
-const requestPetAndUserInfo = async () => {
-  const petId = localStorage.getItem('petId');
-  const token = Cookies.getCookie('token');
-  const petAndUserInfo = await request.getPetInfo(petId, token);
-  console.log(petAndUserInfo);
-
-  // 배열
-  renderNewComment(petAndUserInfo.data.pet.comments);
-  renderOwnerInfo(petAndUserInfo.data.pet.owner);
-  renderPetInfo(petAndUserInfo.data.pet);
-};
-
 // Comment
 // 댓글 카운팅
 const countComment = list => {
-  const $commentCount = document.querySelector('.comment-count>.count');
+  const $commentCount = document.querySelector('.comment-count > .count');
   $commentCount.textContent = list.childElementCount;
 };
 
@@ -102,7 +91,6 @@ const submitNewComment = async e => {
     petId,
     token
   );
-  console.log(postComment);
 
   if (postComment.status === 200) {
     // 모델에 댓글 저장하기
@@ -154,6 +142,15 @@ const renderNewComment = () => {
   // 작성내용
   $commentContent.textContent = newComment;
   document.querySelector('.comment-input').value = '';
+};
+
+// 반려견 및 보호자 정보 요청
+const requestPetAndUserInfo = async () => {
+  const petAndUserInfo = await obtainPetInfo();
+  // 배열
+  renderNewComment(petAndUserInfo.data.pet.comments);
+  renderOwnerInfo(petAndUserInfo.data.pet.owner);
+  renderPetInfo(petAndUserInfo.data.pet);
 };
 
 const displayAnimalPostPage = () => {

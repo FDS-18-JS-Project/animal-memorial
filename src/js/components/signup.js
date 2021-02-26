@@ -13,8 +13,7 @@ import { moveLabelInForm } from '../utils/common';
 import {
   createErrorForSignupNameError,
   createErrorForSignupPwError,
-  createErrorForSignupEmailError,
-  reset
+  createErrorForSignupEmailError
 } from '../utils/validation';
 
 const user = new User();
@@ -34,10 +33,7 @@ const getSignUpInfo = () => {
 const registerHandler = async e => {
   e.preventDefault();
 
-  // validation required
-
   const { email, password, username } = getSignUpInfo();
-
   const userInfo = await request.signup(email, password, username);
 
   if (userInfo || userInfo.status === 200) {
@@ -74,21 +70,6 @@ const checkValidationPw = e => {
 };
 
 const checkValidationEmail = e => {
-  createErrorForSignupEmailError(
-    e,
-    document.querySelector('.error-message-signup-email')
-  );
-};
-
-const checkValidationUsingSubmit = e => {
-  createErrorForSignupNameError(
-    e,
-    document.querySelector('.error-message-signup-name')
-  );
-  createErrorForSignupPwError(
-    e,
-    document.querySelector('.error-message-signup-pw')
-  );
   createErrorForSignupEmailError(
     e,
     document.querySelector('.error-message-signup-email')

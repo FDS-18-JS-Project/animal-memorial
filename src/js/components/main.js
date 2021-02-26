@@ -1,15 +1,9 @@
 import displayAnimalRegisterPage from './animal-register';
 import displayAnimalPostPage from './animal-post';
-import { logout } from '../utils/common';
-import * as request from '../request';
-import * as Cookies from '../utils/cookies';
+import { logout, getPetsInfo } from '../utils/common';
 
-let $attentionPetCard;
-let $allPetsCard;
-
-const animalRegister = () => {
-  displayAnimalRegisterPage();
-};
+let $attentionPetCard = '';
+let $allPetsCard = '';
 
 const getPetIdForPost = e => {
   const petId = e.currentTarget.dataset.petid;
@@ -25,7 +19,7 @@ const renderAttentionPets = ($container, pets) => {
         name,
         image,
         _id
-      }) => `<div class="attention-card" data-petId="${_id}">
+      }) => `<div class="attention-card" data-petId="${_id}">   
     <img src="${image}" alt="">
     <p class="name">${name}</p>
   </div>`
@@ -38,7 +32,6 @@ const renderAttentionPets = ($container, pets) => {
 };
 
 const renderAllPets = ($container, pets) => {
-  console.log('petList: ', pets);
   let currentSlide = 0;
   let isMoving = false;
   const DURATION = 500;
@@ -52,7 +45,7 @@ const renderAllPets = ($container, pets) => {
     $Slides.style.setProperty('--duration', duration);
     $Slides.style.setProperty('--currentSlide', currentSlide);
   };
-
+  console.log(pets);
   $container.innerHTML = `
     <div class="pets-card-container">
       <div class="slides">
@@ -82,7 +75,11 @@ const renderAllPets = ($container, pets) => {
           </div>
           <div class="favorite">
             <span class="title">좋아했던 것</span>
-            <span class="desc">${favorites}</span>
+            <span>${
+              favorites[1] !== '' ? favorites[0] + ',' : favorites[0]
+            }</span>
+            <span>${favorites[2] !== '' ? favorites[1] + ',' : ''}</span>
+            <span>${favorites[2]}</span>
           </div>
         </div>`
         )
@@ -126,8 +123,7 @@ const renderAllPets = ($container, pets) => {
 };
 
 const getAllPets = async () => {
-  const token = Cookies.getCookie('token');
-  const renderPetList = await request.getPetsInfo(token);
+  const renderPetList = await getPetsInfo();
 
   renderAttentionPets($attentionPetCard, renderPetList.data.pets);
   renderAllPets($allPetsCard, renderPetList.data.pets);
@@ -189,7 +185,7 @@ const displayMainPage = () => {
   document.querySelector('.logout').addEventListener('click', logout);
   document
     .querySelector('.animal-register')
-    .addEventListener('click', animalRegister);
+    .addEventListener('click', displayAnimalRegisterPage);
 };
 
 export default displayMainPage;

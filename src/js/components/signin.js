@@ -13,8 +13,7 @@ import { moveLabelInForm } from '../utils/common';
 import {
   createErrorForEmptyId,
   createErrorForEmptyEmail,
-  createErrorForEmptyPw,
-  reset
+  createErrorForEmptyPw
 } from '../utils/validation';
 
 const user = new User();
@@ -65,6 +64,7 @@ const checkValidationUsingKeyup = e => {
 };
 
 const checkValidationUsingSubmit = e => {
+  e.preventDefault();
   createErrorForEmptyId(e, document.querySelector('.error-message-email'));
   createErrorForEmptyPw(e, document.querySelector('.error-message-pw'));
 };
@@ -113,6 +113,7 @@ const displaySignInPage = () => {
   document
     .querySelector('.email')
     .addEventListener('keyup', checkValidationUsingKeyup);
+
   document.querySelector('.login-form').addEventListener('submit', e => {
     checkValidationUsingSubmit(e);
     loginHandler(e);

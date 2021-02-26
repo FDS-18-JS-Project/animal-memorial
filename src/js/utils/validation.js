@@ -19,9 +19,7 @@ export const reset = spanEl => {
 
 export const createErrorForEmptyId = (e, spanEl) => {
   const $span = spanEl;
-
   if (!e.target[0].value) $span.textContent = errorMessage.emptyIdError;
-  e.preventDefault();
 };
 
 export const createErrorForEmptyEmail = (e, spanEl) => {
@@ -35,9 +33,7 @@ export const createErrorForEmptyEmail = (e, spanEl) => {
 
 export const createErrorForEmptyPw = (e, spanEl) => {
   const $span = spanEl;
-
   if (!e.target[1].value) $span.textContent = errorMessage.emptyPwError;
-  e.preventDefault();
 };
 
 export const createErrorForSignupNameError = (e, spanEl) => {
@@ -59,7 +55,6 @@ export const createErrorForSignupPwError = (e, spanEl) => {
   const $span = spanEl;
 
   if (!e.target.value) {
-    e.preventDefault();
     $span.textContent = errorMessage.signupPwError;
     return;
   }
@@ -74,7 +69,6 @@ export const createErrorForSignupEmailError = (e, spanEl) => {
   const $span = spanEl;
 
   if (!e.target.value) {
-    e.preventDefault();
     $span.textContent = errorMessage.emptyEmailError;
     return;
   }
@@ -89,8 +83,6 @@ export const createErrorForEmptyPetImage = (value, e, spanEl) => {
 
   if (!value) $span.textContent = errorMessage.emptyPetImgError;
   else reset($span);
-  e.preventDefault();
-
 };
 
 export const createErrorForEmptyPetName = (value, e, spanEl) => {
@@ -98,7 +90,6 @@ export const createErrorForEmptyPetName = (value, e, spanEl) => {
 
   if (!value) $span.textContent = errorMessage.emptyPetNameError;
   else reset($span);
-  e.preventDefault();
 };
 
 export const createErrorForEmptyPetDeathDate = (value, e, spanEl) => {
@@ -106,7 +97,6 @@ export const createErrorForEmptyPetDeathDate = (value, e, spanEl) => {
 
   if (!value) $span.textContent = errorMessage.emptyPetDeathDateError;
   else reset($span);
-  e.preventDefault();
 };
 
 export const createErrorForEmptyPetFavorite = (value, e, spanEl) => {
@@ -114,5 +104,4 @@ export const createErrorForEmptyPetFavorite = (value, e, spanEl) => {
 
   if (!value) $span.textContent = errorMessage.emptyPetFavoriteError;
   else reset($span);
-  e.preventDefault();
 };
